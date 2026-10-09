@@ -16,9 +16,9 @@ class Evento extends Model
         'fecha_hora' => 'datetime',
     ];
 
-    public function usuario()
+    public function creador()
     {
-        return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
+        return $this->belongsTo(Usuario::class, 'id_creador', 'id_usuario');
     }
 
     public function grupo()
