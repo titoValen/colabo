@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DatosCobro extends Model
 {
-    protected $table = "datos-cobro";
+    protected $table = 'datos_cobro';
+
     protected $primaryKey = 'id_datos';
+
     public $timestamps = false;
 
     protected $fillable = ['id_grupo', 'id_usuario', 'tipo', 'valor'];

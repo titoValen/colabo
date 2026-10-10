@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mensaje extends Model
 {
-    protected $table = "mensaje";
+    protected $table = 'mensajes';
+
     protected $primaryKey = 'id_mensaje';
+
     public $timestamps = false;
 
     protected $fillable = ['id_grupo', 'id_usuario', 'contenido', 'fecha_envio'];

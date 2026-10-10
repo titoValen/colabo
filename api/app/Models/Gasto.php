@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gasto extends Model
 {
     protected $table = 'gastos';
+
     protected $primaryKey = 'id_gasto';
+
     public $timestamps = false;
 
     protected $fillable = ['id_grupo', 'id_cargador', 'concepto', 'monto_total', 'fecha'];
@@ -24,6 +26,6 @@ class Gasto extends Model
 
     public function partes()
     {
-        return $this->belongsTo(ParteGasto::class, 'id_gasto', 'id_gasto');
+        return $this->hasMany(ParteGasto::class, 'id_gasto', 'id_gasto');
     }
 }

@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invitacion extends Model
 {
-    protected $table = "invitacion";
+    protected $table = 'invitaciones';
+
     protected $primaryKey = 'id_invitacion';
+
     public $timestamps = false;
 
     protected $fillable = ['id_grupo', 'codigo', 'fecha_vencimiento'];

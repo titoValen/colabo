@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class Membresia extends Pivot
 {
     protected $table = 'membresias';
+
     public $incrementing = false;
+
     public $timestamps = false;
 
     protected $fillable = ['id_usuario', 'id_grupo', 'rol', 'responsable_plata', 'calendario_activo', 'acepta_sincronizacion', 'fecha_ingreso'];
@@ -16,6 +18,7 @@ class Membresia extends Pivot
         'responsable_plata' => 'boolean',
         'calendario_activo' => 'boolean',
         'acepta_sincronizacion' => 'boolean',
+        'fecha_ingreso' => 'datetime',
     ];
 
     public function usuario()

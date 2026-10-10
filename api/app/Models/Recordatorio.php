@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recordatorio extends Model
 {
-    protected $table = "recordatorio";
+    protected $table = 'recordatorios';
+
     protected $primaryKey = 'id_recordatorio';
+
     public $timestamps = false;
 
     protected $fillable = ['id_usuario', 'id_evento', 'id_pago', 'id_acuerdo', 'tipo', 'mensaje', 'canal', 'fecha_envio'];
+
+    protected $casts = ['fecha_envio' => 'datetime'];
 
     public function usuario()
     {

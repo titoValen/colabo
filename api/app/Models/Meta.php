@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meta extends Model
 {
-    protected $table = "meta";
+    protected $table = 'metas';
+
     protected $primaryKey = 'id_meta';
+
     public $timestamps = false;
 
     protected $fillable = ['id_grupo', 'descripcion'];

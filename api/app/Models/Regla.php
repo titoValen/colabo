@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Regla extends Model
 {
-    protected $table = "regla";
+    protected $table = 'reglas';
+
     protected $primaryKey = 'id_regla';
+
     public $timestamps = false;
 
     protected $fillable = ['id_grupo', 'descripcion'];
