@@ -20,11 +20,11 @@ class Membresia extends Pivot
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'id_usuario');
+        return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
     }
 
     public function grupo()
     {
-        return $this->belongsTo(Grupo::class, 'id_grupo');
+        return $this->belongsTo(Grupo::class, 'id_grupo', 'id_grupo');
     }
 }
