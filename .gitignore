@@ -47,3 +47,5 @@ dist-ssr
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+/api/storage/certs/*.pem
