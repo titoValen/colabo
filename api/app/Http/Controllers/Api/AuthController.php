@@ -16,7 +16,7 @@ class AuthController extends Controller
         $usuario = Usuario::create([
             'nombre'   => $request->nombre,
             'email'    => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => $request->password,
         ]);
         $token = $usuario->createToken('colabo-token')->plainTextToken;
 
