@@ -26,6 +26,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
 h1,
 h2,
 h3,
