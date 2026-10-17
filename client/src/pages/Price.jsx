@@ -1,4 +1,5 @@
 import "@/styles/price.css";
+import PriceCard from "@/components/PriceCard";
 import { useState } from "react";
 
 const plusPlans = {
@@ -11,6 +12,23 @@ const plusPlans = {
     period: "/año por grupo",
   },
 };
+
+const freeFeatures = [
+  "Creación y gestión de grupos.",
+  "Asignación de tareas y responsabilidades.",
+  "Creación de acuerdos y reglas de convivencia",
+  "Fechas de vencimiento y recordatorio",
+  "Historial básico de actividad.",
+  "Organización de actividades compartidas.",
+];
+
+const plusFeatures = [
+  "Historial completo de cumplimiento e incumplimiento de acuerdos.",
+  "Panel de gastos compartidos, aportes y saldos.",
+  "Estadísticas de participación y responsabilidades.",
+  "Recordatorios y automatizaciones avanzadas.",
+  "Personalización avanzada y exportación de información.",
+];
 
 export default function Price() {
   const [billingPeriod, setBillingPeriod] = useState("monthly");
@@ -43,69 +61,23 @@ export default function Price() {
       </div>
 
       <section className="price-plans" aria-label="Planes de Colabo">
-        <article className="price-card">
-          <h2 className="price-card-title">Colabo Free</h2>
-          <div className="price-value">
-            <span className="price-currency">$</span>
-            <span className="price-amount">0</span>
-          </div>
-          <p className="price-description">
-            Para todos los grupos que quieran empezar con lo básico.
-          </p>
-          <button className="price-action" type="button">
-            Usar Colabo Free
-          </button>
-          <p className="price-features-intro">Todo lo que trae free:</p>
-          <ul className="price-features">
-            <li className="price-feature">Creación y gestión de grupos.</li>
-            <li className="price-feature">
-              Asignación de tareas y responsabilidades.
-            </li>
-            <li className="price-feature">
-              Creación de acuerdos y reglas de convivencia
-            </li>
-            <li className="price-feature">
-              Fechas de vencimiento y recordatorio
-            </li>
-            <li className="price-feature">Historial básico de actividad.</li>
-            <li className="price-feature">
-              Organización de actividades compartidas.
-            </li>
-          </ul>
-        </article>
-
-        <article className="price-card price-card-plus">
-          <h2 className="price-card-title">Colabo Plus</h2>
-          <div className="price-value">
-            <span className="price-currency">$</span>
-            <span className="price-amount">{selectedPlan.amount}</span>
-            <span className="price-period">{selectedPlan.period}</span>
-          </div>
-          <p className="price-description">
-            Para grupos que buscan una organización más completa.
-          </p>
-          <button className="price-action" type="button">
-            Obtener Plus
-          </button>
-          <p className="price-features-intro">Todo lo que trae free, más:</p>
-          <ul className="price-features">
-            <li className="price-feature">
-              Historial completo de cumplimiento e incumplimiento de acuerdos.
-            </li>
-            <li className="price-feature">
-              Panel de gastos compartidos, aportes y saldos.
-            </li>
-            <li className="price-feature">
-              Estadísticas de participación y responsabilidades.
-            </li>
-            <li className="price-feature">
-              Recordatorios y automatizaciones avanzadas.
-            </li>
-            <li className="price-feature">
-              Personalización avanzada y exportación de información.
-            </li>
-          </ul>
-        </article>
+        <PriceCard
+          title="Colabo Free"
+          price="0"
+          description="Para todos los grupos que quieran empezar con lo básico."
+          button="Usar Colabo Free"
+          features={freeFeatures}
+        />
+        <PriceCard
+          title="Colabo Plus"
+          price={selectedPlan.amount}
+          period={selectedPlan.period}
+          description="Para grupos que buscan una organización más completa."
+          button="Obtener Plus"
+          featuresIntro="Todo lo que trae free, más:"
+          features={plusFeatures}
+          className="price-card-plus"
+        />
       </section>
     </main>
   );
