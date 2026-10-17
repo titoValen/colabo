@@ -8,9 +8,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Header />
-        <AppRoutes />
-        <Footer />
+        <div className="app-shell">
+          <Header />
+          <AppRoutes />
+          <Footer />
+        </div>
       </AuthProvider>
     </BrowserRouter>
   );
