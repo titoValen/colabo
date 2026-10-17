@@ -97,6 +97,14 @@
   height: auto;
 }
 
+.auth-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .auth-switch a {
   color: var(--color-black);
   font-weight: bold;

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import AuthField from "@components/AuthField";
 import ColaboLogin from "@/assets/illustration/colabo_login.webp";
-import Logo from "@/assets/colabo_logo.svg";  
+import Logo from "@/assets/colabo_logo.svg";
 import "@/styles/auth.css";
 
 export default function Login() {
@@ -86,9 +86,15 @@ export default function Login() {
             {loading ? "Ingresando..." : "Iniciar sesión"}
           </button>
         </form>
-        <p className="auth-switch">
-          ¿Aún no tienes cuenta? <Link to="/registrarse">Crear cuenta</Link>
-        </p>
+
+        <div className="auth-links">
+          <p className="auth-switch">
+            ¿Aún no tienes cuenta? <Link to="/registrarse">Crear cuenta</Link>
+          </p>
+          <p className="auth-switch">
+            Volver al <Link to="/">inicio</Link>
+          </p>
+        </div>
       </section>
       <section className="auth-image">
         <img src={ColaboLogin} alt="Ilustración de Colabo" loading="lazy" />

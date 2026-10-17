@@ -138,9 +138,15 @@ export default function Register() {
             {loading ? "Registrando..." : "Registrarse"}
           </button>
         </form>
-        <p className="auth-switch">
-          ¿Ya tienes cuenta? <Link to="/iniciar-sesion">Iniciar sesión</Link>
-        </p>
+        
+        <div className="auth-links">
+          <p className="auth-switch">
+            ¿Aún no tienes cuenta? <Link to="/iniciar-sesion">Iniciar sesión</Link>
+          </p>
+          <p className="auth-switch">
+            Volver al <Link to="/">inicio</Link>
+          </p>
+        </div>
       </section>
     </main>
   );
