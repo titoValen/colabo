@@ -87,3 +87,17 @@
   max-width: 100%;
   object-fit: contain;
 }
+
+.auth-logo {
+  margin-bottom: 2rem;
+}
+
+.auth-logo img {
+  width: 450px;
+  height: auto;
+}
+
+.auth-switch a {
+  color: var(--color-black);
+  font-weight: bold;
+}
