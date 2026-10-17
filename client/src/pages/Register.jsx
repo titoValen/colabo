@@ -77,6 +77,7 @@ export default function Register() {
               onChange: handleChange,
               "aria-invalid": Boolean(errors.nombre),
               required: true,
+              error: error("nombre")
             }}
           />
 
@@ -91,6 +92,7 @@ export default function Register() {
               onChange: handleChange,
               "aria-invalid": Boolean(errors.email),
               required: true,
+              error: error("email")
             }}
           />
 
@@ -106,6 +108,7 @@ export default function Register() {
               onChange: handleChange,
               "aria-invalid": Boolean(errors.password),
               required: true,
+              error: error("password")
             }}
           />
 
@@ -120,6 +123,7 @@ export default function Register() {
               onChange: handleChange,
               "aria-invalid": Boolean(errors.password_confirmation),
               required: true,
+              error: error("password_confirmation")
             }}
           />
 
