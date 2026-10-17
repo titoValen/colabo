@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import AuthField from "@components/AuthField";
 import ColaboLogin from "@/assets/illustration/colabo_register.webp";
+import Logo from "@/assets/colabo_logo.svg";
 import "@/styles/auth.css";
 
 export default function Register() {
@@ -60,6 +61,9 @@ export default function Register() {
       </section>
 
       <section className="auth-panel" aria-labelledby="auth-title">
+        <figure className="auth-logo">
+          <img src={Logo} alt="Logo de Colabo" />
+        </figure>
         <h1 id="auth-title" className="auth-title">
           ¡Bienvenido!
         </h1>
@@ -80,7 +84,7 @@ export default function Register() {
               onChange: handleChange,
               "aria-invalid": Boolean(errors.nombre),
               required: true,
-              error: error("nombre")
+              error: error("nombre"),
             }}
           />
 
@@ -95,7 +99,7 @@ export default function Register() {
               onChange: handleChange,
               "aria-invalid": Boolean(errors.email),
               required: true,
-              error: error("email")
+              error: error("email"),
             }}
           />
 
@@ -111,7 +115,7 @@ export default function Register() {
               onChange: handleChange,
               "aria-invalid": Boolean(errors.password),
               required: true,
-              error: error("password")
+              error: error("password"),
             }}
           />
 
@@ -126,7 +130,7 @@ export default function Register() {
               onChange: handleChange,
               "aria-invalid": Boolean(errors.password_confirmation),
               required: true,
-              error: error("password_confirmation")
+              error: error("password_confirmation"),
             }}
           />
 

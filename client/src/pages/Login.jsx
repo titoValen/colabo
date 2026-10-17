@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import AuthField from "@components/AuthField";
 import ColaboLogin from "@/assets/illustration/colabo_login.webp";
+import Logo from "@/assets/colabo_logo.svg";  
 import "@/styles/auth.css";
 
 export default function Login() {
@@ -42,6 +43,9 @@ export default function Login() {
   return (
     <main className="auth-page">
       <section className="auth-panel" aria-labelledby="auth-title">
+        <figure className="auth-logo">
+          <img src={Logo} alt="Logo de Colabo" />
+        </figure>
         <h1>Inicia sesión</h1>
         {error && (
           <p className="auth-error" role="alert">
