@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import AuthField from "@components/AuthField";
+import ColaboLogin from "@/assets/illustration/colabo_register.webp";
 import "@/styles/auth.css";
 
 export default function Register() {
@@ -54,7 +55,9 @@ export default function Register() {
 
   return (
     <main className="auth-page">
-      <section className="auth-image"></section>
+      <section className="auth-image">
+        <img src={ColaboLogin} alt="Ilustración de Colabo" loading="lazy" />
+      </section>
 
       <section className="auth-panel" aria-labelledby="auth-title">
         <h1 id="auth-title" className="auth-title">
