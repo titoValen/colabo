@@ -1,0 +1,100 @@
+.price-title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.price-plans {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.price-card {
+  max-width: 425px;
+  width: 100%;
+  border-radius: 0.75rem;
+  padding: 1rem 1.125rem 2.625rem;
+}
+
+.price-card-title {
+  font-size: 2rem;
+}
+
+.price-billing-options {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-fur);
+  width: 100%;
+  max-width: 425px;
+  margin: 4rem auto 1.25rem;
+  border-radius: 0.875rem;
+  max-height: 32px;
+}
+
+.price-billing-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  flex: 1;
+  font-family: var(--font-body);
+  font-weight: bold;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.875rem;
+  max-height: 32px;
+}
+
+.price-billing-button.is-selected {
+  background: var(--color-fur);
+}
+
+.price-value {
+  display: flex;
+  font-weight: bold;
+  margin: 1.5rem 0;
+}
+
+.price-currency {
+  font-size: 1.5rem;
+}
+
+.price-amount {
+  font-size: 3rem;
+}
+
+.price-period {
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+.price-action {
+  margin: 2rem 0;
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 0.875rem;
+  background: var(--color-fur);
+  padding: 0.875rem 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.price-action:hover {
+  background: var(--color-orange);
+}
+
+.price-features-intro {
+  margin-bottom: 1rem;
+}
+
+.price-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: 1.5rem;
+}
