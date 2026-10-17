@@ -1,6 +1,17 @@
+.app-shell:has(.auth-page) {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+}
+
 .auth-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  overflow: hidden;
 }
 
 .auth-panel {
@@ -9,7 +20,7 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  height: 100vh;
+  min-height: 0;
 }
 
 .auth-title {
@@ -60,4 +71,19 @@
 
 .auth-submit:hover {
   background-color: var(--color-blue);
+}
+
+.auth-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-sky-blue);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.auth-image img {
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
 }

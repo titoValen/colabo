@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import AuthField from "@components/AuthField";
+import ColaboLogin from "@/assets/illustration/colabo_login.webp";
 import "@/styles/auth.css";
 
 export default function Login() {
@@ -85,7 +86,9 @@ export default function Login() {
           ¿Aún no tienes cuenta? <Link to="/registrarse">Crear cuenta</Link>
         </p>
       </section>
-      <section className="auth-image"></section>
+      <section className="auth-image">
+        <img src={ColaboLogin} alt="Ilustración de Colabo" loading="lazy" />
+      </section>
     </main>
   );
 }
