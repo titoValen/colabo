@@ -49,3 +49,8 @@ label,
 span {
   font-family: var(--font-body);
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
