@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import AuthField from "@components/AuthField";
-import "@/styles/register.css";
+import "@/styles/auth.css";
 
 export default function Register() {
   const { register } = useAuth();
