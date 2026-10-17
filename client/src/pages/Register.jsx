@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
+import AuthField from "@components/AuthField";
+import "@/styles/register.css";
 
 export default function Register() {
   const { register } = useAuth();
@@ -44,83 +46,90 @@ export default function Register() {
   };
 
   const error = (campo) =>
-    errors[campo]?.[0] && <p className="auth-error" role="alert">{errors[campo][0]}</p>;
+    errors[campo]?.[0] && (
+      <p className="auth-error" role="alert">
+        {errors[campo][0]}
+      </p>
+    );
 
   return (
     <main className="auth-page">
+      <section className="auth-image"></section>
+
       <section className="auth-panel" aria-labelledby="auth-title">
-      <h1 id="auth-title">Crea tu cuenta</h1>
-      {error("general")}
+        <h1 id="auth-title" className="auth-title">
+          ¡Bienvenido!
+        </h1>
+        <span className="auth-description">
+          Registrate para crear tu cuenta
+        </span>
+        {error("general")}
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <div className="auth-field">
-          <label htmlFor="nombre">Nombre</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            autoComplete="name"
-            value={form.nombre}
-            onChange={handleChange}
-            aria-invalid={Boolean(errors.nombre)}
-            required
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <AuthField
+            label={"Nombre"}
+            input={{
+              type: "text",
+              id: "nombre",
+              name: "nombre",
+              autoComplete: "name",
+              value: form.nombre,
+              onChange: handleChange,
+              "aria-invalid": Boolean(errors.nombre),
+              required: true,
+            }}
           />
-          {error("nombre")}
-        </div>
 
-        <div className="auth-field">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            autoComplete="email"
-            value={form.email}
-            onChange={handleChange}
-            aria-invalid={Boolean(errors.email)}
-            required
+          <AuthField
+            label={"Email"}
+            input={{
+              type: "email",
+              id: "email",
+              name: "email",
+              autoComplete: "email",
+              value: form.email,
+              onChange: handleChange,
+              "aria-invalid": Boolean(errors.email),
+              required: true,
+            }}
           />
-          {error("email")}
-        </div>
 
-        <div className="auth-field">
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            autoComplete="new-password"
-            minLength={8}
-            value={form.password}
-            onChange={handleChange}
-            aria-invalid={Boolean(errors.password)}
-            required
+          <AuthField
+            label={"Contraseña"}
+            input={{
+              type: "password",
+              id: "password",
+              name: "password",
+              autoComplete: "new-password",
+              minLength: 8,
+              value: form.password,
+              onChange: handleChange,
+              "aria-invalid": Boolean(errors.password),
+              required: true,
+            }}
           />
-          {error("password")}
-        </div>
 
-        <div className="auth-field">
-          <label htmlFor="password_confirmation">Repetir contraseña</label>
-          <input
-            type="password"
-            id="password_confirmation"
-            name="password_confirmation"
-            autoComplete="new-password"
-            value={form.password_confirmation}
-            onChange={handleChange}
-            aria-invalid={Boolean(errors.password_confirmation)}
-            required
+          <AuthField
+            label={"Repetir contraseña"}
+            input={{
+              type: "password",
+              id: "password_confirmation",
+              name: "password_confirmation",
+              autoComplete: "new-password",
+              value: form.password_confirmation,
+              onChange: handleChange,
+              "aria-invalid": Boolean(errors.password_confirmation),
+              required: true,
+            }}
           />
-          {error("password_confirmation")}
-        </div>
 
-        <button className="auth-submit" type="submit" disabled={loading}>
-          {loading ? "Registrando..." : "Registrarse"}
-        </button>
-      </form>
-      <p className="auth-switch">
-        ¿Ya tienes cuenta? <Link to="/iniciar-sesion">Iniciar sesión</Link>
-      </p>
+          <button className="auth-submit" type="submit" disabled={loading}>
+            {loading ? "Registrando..." : "Registrarse"}
+          </button>
+        </form>
+        <p className="auth-switch">
+          ¿Ya tienes cuenta? <Link to="/iniciar-sesion">Iniciar sesión</Link>
+        </p>
       </section>
     </main>
   );
