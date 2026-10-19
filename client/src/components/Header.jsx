@@ -10,10 +10,10 @@ export default function Header() {
           <img src={LogoColabo} alt="Logo de Colabo" />
         </figure>
       </Link>
-      <nav>
-        <Link to="/precios">Precios</Link>
-        <Link to="/iniciar-sesion">Iniciar sesión</Link>
-        <Link to="/registrarse">Registrarse</Link>
+      <nav className="header-nav">
+        <Link className="header-nav-link" to="/precios">Precios</Link>
+        <Link className="header-nav-link" to="/iniciar-sesion">Iniciar sesión</Link>
+        <Link className="header-nav-link header-nav-link--primary" to="/registrarse">Registrarse</Link>
       </nav>
     </header>
   );

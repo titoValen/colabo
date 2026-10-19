@@ -2,5 +2,29 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 2rem;
+  padding: 1.25rem 0;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header-nav {
+  display: flex;
+}
+
+.header-nav-link {
+  text-decoration: none;
+  padding: 0.625rem 1rem;
+  color: var(--color-black);
+}
+
+.header-nav-link--primary {
+  background-color: var(--color-fur);
+  color: var(--color-white);
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;  
+}
+
+.header-nav-link--primary:hover {
+  background-color: var(--color-orange);
 }
