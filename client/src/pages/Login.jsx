@@ -28,6 +28,7 @@ export default function Login() {
 
     try {
       await login(form);
+      // TODO: Cambiar el destino cuando se defina a dónde redirigir después del inicio de sesión.
       navigate("/");
     } catch (err) {
       if (err.errors && Object.keys(err.errors).length) {
