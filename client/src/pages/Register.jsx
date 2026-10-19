@@ -55,13 +55,16 @@ export default function Register() {
     );
 
   return (
-    <main className="auth-page">
+    <main className="auth-page auth-page-register">
       <section className="auth-image">
         <img src={ColaboLogin} alt="Ilustración de Colabo" loading="lazy" />
       </section>
 
-      <section className="auth-panel" aria-labelledby="auth-title">
-        <figure className="auth-logo">
+      <section
+        className="auth-panel auth-panel-register"
+        aria-labelledby="auth-title"
+      >
+        <figure className="auth-logo auth-logo-register">
           <img src={Logo} alt="Logo de Colabo" />
         </figure>
         <h1 id="auth-title" className="auth-title">
@@ -72,7 +75,7 @@ export default function Register() {
         </span>
         {error("general")}
 
-        <form className="auth-form" onSubmit={handleSubmit}>
+        <form className="auth-form auth-form-register" onSubmit={handleSubmit}>
           <AuthField
             label={"Nombre"}
             input={{
