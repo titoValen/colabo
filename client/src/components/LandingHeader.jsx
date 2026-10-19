@@ -11,9 +11,9 @@ export default function Header() {
         </figure>
       </Link>
       <nav className="header-nav">
-        <Link className="header-nav-link" to="#antes-y-despues">Antes y después </Link>
-        <Link className="header-nav-link" to="#como-funciona">Como funciona</Link>
-        <Link className="header-nav-link" to="#preguntas-frecuentes">Preguntas frecuentes</Link>
+        <a className="header-nav-link" href="#antes-y-despues">Antes y después </a>
+        <a className="header-nav-link" href="#como-funciona">Como funciona</a>
+        <a className="header-nav-link" href="#preguntas-frecuentes">Preguntas frecuentes</a>
         <Link className="header-nav-link header-nav-link--primary" to="/registrarse">Registrarse</Link>
       </nav>
     </header>
