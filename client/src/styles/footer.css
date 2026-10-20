@@ -1,8 +1,8 @@
 .footer {
   margin-top: 5rem;
   padding: 2.5rem max(1.5rem, calc((100% - 1200px) / 2));
-  background-color: var(--color-sky-blue);
-  color: var(--color-black);
+  background-color: var(--color-blue);
+  color: var(--color-white);
 }
 
 .footer-content {
@@ -33,13 +33,13 @@
 
 .footer-nav-link {
   padding: 0.5rem 0;
-  color: var(--color-black);
+  color: var(--color-white);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-nav-link:hover {
-  color: var(--color-white);
+  color: var(--color-gray);
 }
 
 .footer-socials {
@@ -87,11 +87,11 @@
   width: 100%;
   margin: 1.75rem auto 0;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(7, 7, 7, 0.25);
+  border-top: 1px solid rgba(240, 237, 237, 0.25);
 }
 
 .footer-copyright {
-  color: var(--color-black);
+  color: var(--color-white);
   font-size: 0.875rem;
 }
 
