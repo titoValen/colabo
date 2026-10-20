@@ -8,7 +8,7 @@ const plusPlans = {
     period: "/mes por grupo",
   },
   annual: {
-    amount: "49.999",
+    amount: "49.990",
     period: "/año por grupo",
   },
 };
