@@ -1,5 +1,6 @@
 import "@/styles/landing.css";
 import { Link } from "react-router";
+import Hero from "@/assets/illustration/colabo_hero_background.webp";
 import AcuerdoVisible from "@/assets/icons/eye.svg";
 import PlanCompartido from "@/assets/icons/equipment.svg";
 import InvitarPersona from "@/assets/icons/invite_person.svg";
@@ -36,7 +37,7 @@ export default function Landing() {
         </div>
         <div className="landing-hero-media">
           <figure className="landing-hero-figure">
-            <img className="landing-hero-image" src="" alt="" />
+            <img className="landing-hero-image" src={Hero} alt="" />
           </figure>
         </div>
       </section>

@@ -7,25 +7,67 @@
   row-gap: 90px;
 }
 
+.app-shell:has(.landing) {
+  overflow-x: clip;
+}
+
+.app-shell:has(.landing) > .header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+}
+
 .landing-hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: 50% 50%;
-  place-items: center;
-  height: calc(100vh - 101px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  width: 100vw;
+  min-height: clamp(32rem, 100vh, 52rem);
+  margin-left: calc(50% - 50vw);
+  padding: 2rem max(calc((100vw - 1200px) / 2), 1.5rem);
+}
+
+.landing-hero-media {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+}
+
+.landing-hero-figure {
+  width: 100%;
+  height: 100%;
+}
+
+.landing-hero-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .landing-hero-content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  min-width: 0;
+  max-width: 35rem;
 }
 
 .landing-hero-title {
-  font-size: 3rem;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
 }
 
 .landing-hero-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.75rem;
 }
 
@@ -64,6 +106,47 @@
 
 .landing-action-secondary:hover {
   background: var(--color-gray);
+}
+
+@media (max-width: 760px) {
+  .landing-hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 100vh;
+    padding: 6rem 1.5rem 3rem;
+  }
+
+  .landing-hero-content {
+    max-width: 38rem;
+  }
+
+  .landing-hero-title {
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
+  }
+
+  .landing-hero-image {
+    object-position: 70% center;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-hero {
+    padding: 6rem 1rem 3rem;
+  }
+
+  .landing-hero-content {
+    gap: 1.125rem;
+  }
+
+  .landing-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .landing-action {
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 /* DIVIDE FEATURES */
