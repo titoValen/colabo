@@ -1,6 +1,8 @@
 import "@/styles/landing.css";
 import { Link } from "react-router";
 import Hero from "@/assets/illustration/colabo_hero_background.webp";
+import ComparacionAntes from "@/assets/illustration/colabo_antes_comparacion.webp";
+import ComparacionDespues from "@/assets/illustration/colabo_despues_comparacion.webp";
 import AcuerdoVisible from "@/assets/icons/eye.svg";
 import PlanCompartido from "@/assets/icons/equipment.svg";
 import InvitarPersona from "@/assets/icons/invite_person.svg";
@@ -88,26 +90,42 @@ export default function Landing() {
       <section
         id="antes-y-despues"
         className="landing-section landing-comparison"
+        aria-labelledby="landing-comparison-title"
       >
         <div className="landing-comparison-intro">
-          <h2 className="landing-comparison-title">Antes y Después</h2>
+          <h2
+            id="landing-comparison-title"
+            className="landing-comparison-title"
+          >
+            Antes y Después
+          </h2>
           <p className="landing-comparison-description">
             De mensajes sueltos a un plan claro para todos.
           </p>
         </div>
         <div className="landing-comparison-container">
-          <div className="landing-comparison-panel landing-comparison-before">
-            <span className="landing-comparison-label">Antes</span>
+          <article className="landing-comparison-panel landing-comparison-before">
+            <h3 className="landing-comparison-label">Antes</h3>
             <figure className="landing-comparison-figure">
-              {/* <img className="landing-comparison-image" src="" alt="" /> */}
+              <img
+                className="landing-comparison-image"
+                src={ComparacionAntes}
+                alt="Conversación desordenada con dudas sobre horarios y responsabilidades"
+                loading="lazy"
+              />
             </figure>
-          </div>
-          <div className="landing-comparison-panel landing-comparison-after">
-            <span className="landing-comparison-label">Después</span>
+          </article>
+          <article className="landing-comparison-panel landing-comparison-after">
+            <h3 className="landing-comparison-label">Después</h3>
             <figure className="landing-comparison-figure">
-              {/* <img className="landing-comparison-image" src="" alt="" /> */}
+              <img
+                className="landing-comparison-image"
+                src={ComparacionDespues}
+                alt="Plan compartido con fecha, lugar, pendientes, responsables y acuerdos"
+                loading="lazy"
+              />
             </figure>
-          </div>
+          </article>
         </div>
       </section>
 
