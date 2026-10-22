@@ -259,3 +259,77 @@
 .landing-how-it-works-title {
   font-size: 3rem;
 }
+
+/* DIVIDE FAQ */
+
+.landing-section-faq {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  width: 100%;
+  background: var(--color-blue);
+  color: var(--color-white);
+  padding: 2rem 1rem;
+  border-radius: 0.875rem;
+}
+
+.landing-faq-title {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.landing-faq-description {
+  font-size: 1rem;
+}
+
+.landing-faq-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.landing-faq-item {
+  position: relative;
+}
+
+.landing-faq-toggle {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.landing-faq-answer {
+  max-height: 0;
+  background: var(--color-white);
+  color: var(--color-black);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition:
+    max-height 0.35s ease,
+    border-radius 0.35s ease;
+}
+
+.landing-faq-toggle:checked ~ .landing-faq-question {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.landing-faq-toggle:checked ~ .landing-faq-answer {
+  max-height: 10rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.landing-faq-answer-text {
+  padding: 0.5rem 1rem;
+}
+
+.landing-faq-question {
+  display: flex;
+  cursor: pointer;
+  padding: 1rem;
+  background: var(--color-fur);
+  border-radius: 0.5rem;
+  transition: border-radius 0.35s ease;
+}
+
+.landing-faq-toggle:not(:checked) + .landing-faq-question:hover::after {
+  animation: bounce 0.5s infinite;
+}

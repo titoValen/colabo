@@ -132,7 +132,7 @@ export default function Landing() {
 
       <section
         id="preguntas-frecuentes"
-        className="landing-section landing-faq"
+        className="landing-section landing-section-faq"
       >
         <div className="landing-faq-intro">
           <h2 className="landing-faq-title">Preguntas frecuentes</h2>
@@ -141,7 +141,76 @@ export default function Landing() {
           </p>
         </div>
         <div className="landing-faq-list">
-          {/* Acordion de preguntas frecuentes */}
+          <div className="landing-faq-item">
+            <input
+              className="landing-faq-toggle"
+              type="checkbox"
+              name="plan_compartido"
+              id="plan_compartido"
+            />
+            <label className="landing-faq-question" htmlFor="plan_compartido">
+              ¿Qué es un plan compartido?
+            </label>
+            <div className="landing-faq-answer">
+              <p className="landing-faq-answer-text">
+                Un espacio común para reunir datos, tareas y acuerdos
+              </p>
+            </div>
+          </div>
+          <div className="landing-faq-item">
+            <input
+              className="landing-faq-toggle"
+              type="checkbox"
+              name="invitar_personas"
+              id="invitar_personas"
+            />
+            <label className="landing-faq-question" htmlFor="invitar_personas">
+              ¿Cómo sumo a otras personas?
+            </label>
+            <div className="landing-faq-answer">
+              <p className="landing-faq-answer-text">
+                Podés hacerlo mediante un link de invitación o buscando su
+                usuario en el panel de búsqueda de usuarios.
+              </p>
+            </div>
+          </div>
+          <div className="landing-faq-item">
+            <input
+              className="landing-faq-toggle"
+              type="checkbox"
+              name="organizar_planes"
+              id="organizar_planes"
+            />
+            <label className="landing-faq-question" htmlFor="organizar_planes">
+              ¿Qué tipo de planes puedo organizar?
+            </label>
+            <div className="landing-faq-answer">
+              <p className="landing-faq-answer-text">
+                Podés organizar salidas, viajes, eventos y otros planes en
+                grupo.
+              </p>
+            </div>
+          </div>
+          <div className="landing-faq-item">
+            <input
+              className="landing-faq-toggle"
+              type="checkbox"
+              name="colaborar_en_grupo"
+              id="colaborar_en_grupo"
+            />
+            <label
+              className="landing-faq-question"
+              htmlFor="colaborar_en_grupo"
+            >
+              ¿Cómo puedo colaborar en el grupo?
+            </label>
+            <div className="landing-faq-answer">
+              <p className="landing-faq-answer-text">
+                Cada persona puede asumir responsabilidades y mantener los
+                acuerdos visibles para todo el grupo.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
