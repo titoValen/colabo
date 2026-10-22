@@ -244,3 +244,18 @@
   min-width: 200px;
   text-align: center;
 }
+
+.landing-how-it-works {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.landing-how-it-works-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.landing-how-it-works-title {
+  font-size: 3rem;
+}
