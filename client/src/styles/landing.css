@@ -323,11 +323,27 @@
 
 .landing-faq-question {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
   padding: 1rem;
   background: var(--color-fur);
   border-radius: 0.5rem;
   transition: border-radius 0.35s ease;
+}
+
+.landing-faq-question-figure {
+  width: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.landing-faq-question-img {
+  transition: transform 0.35s ease;
+}
+
+.landing-faq-toggle:checked ~ .landing-faq-question .landing-faq-question-img {
+  transform: rotate(180deg);
 }
 
 .landing-faq-toggle:not(:checked) + .landing-faq-question:hover::after {

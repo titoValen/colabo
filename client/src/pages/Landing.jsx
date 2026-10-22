@@ -5,6 +5,7 @@ import AcuerdoVisible from "@/assets/icons/eye.svg";
 import PlanCompartido from "@/assets/icons/equipment.svg";
 import InvitarPersona from "@/assets/icons/invite_person.svg";
 import ArrowRight from "@/assets/icons/arrow_right.svg";
+import ArrowDown from "@/assets/icons/arrow_down.svg";
 
 export default function Landing() {
   return (
@@ -150,6 +151,13 @@ export default function Landing() {
             />
             <label className="landing-faq-question" htmlFor="plan_compartido">
               ¿Qué es un plan compartido?
+              <figure className="landing-faq-question-figure">
+                <img
+                  className="landing-faq-question-img"
+                  src={ArrowDown}
+                  alt="Icono de flecha hacia abajo"
+                />
+              </figure>
             </label>
             <div className="landing-faq-answer">
               <p className="landing-faq-answer-text">
@@ -166,6 +174,13 @@ export default function Landing() {
             />
             <label className="landing-faq-question" htmlFor="invitar_personas">
               ¿Cómo sumo a otras personas?
+              <figure className="landing-faq-question-figure">
+                <img
+                  className="landing-faq-question-img"
+                  src={ArrowDown}
+                  alt="Icono de flecha hacia abajo"
+                />
+              </figure>
             </label>
             <div className="landing-faq-answer">
               <p className="landing-faq-answer-text">
@@ -183,6 +198,13 @@ export default function Landing() {
             />
             <label className="landing-faq-question" htmlFor="organizar_planes">
               ¿Qué tipo de planes puedo organizar?
+              <figure className="landing-faq-question-figure">
+                <img
+                  className="landing-faq-question-img"
+                  src={ArrowDown}
+                  alt="Icono de flecha hacia abajo"
+                />
+              </figure>
             </label>
             <div className="landing-faq-answer">
               <p className="landing-faq-answer-text">
@@ -203,6 +225,13 @@ export default function Landing() {
               htmlFor="colaborar_en_grupo"
             >
               ¿Cómo puedo colaborar en el grupo?
+              <figure className="landing-faq-question-figure">
+                <img
+                  className="landing-faq-question-img"
+                  src={ArrowDown}
+                  alt="Icono de flecha hacia abajo"
+                />
+              </figure>
             </label>
             <div className="landing-faq-answer">
               <p className="landing-faq-answer-text">
