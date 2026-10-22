@@ -3,6 +3,7 @@ import Register from '@/pages/Register';
 import Login from '@/pages/Login';
 import Price from '@/pages/Price';
 import Landing from '@/pages/Landing';
+import Onboarding from '@/pages/Onboarding';
 
 export default function AppRoutes() {
   return (
@@ -11,6 +12,7 @@ export default function AppRoutes() {
       <Route path="/iniciar-sesion" element={<Login />} />
       <Route path="/registrarse" element={<Register />} />
       <Route path="/precios" element={<Price />} />
+      <Route path="/onboarding" element={<Onboarding />} />
     </Routes>
   );
 }
