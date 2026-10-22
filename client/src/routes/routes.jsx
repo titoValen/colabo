@@ -1,18 +1,22 @@
-import { Routes, Route } from 'react-router';
-import Register from '@/pages/Register';
-import Login from '@/pages/Login';
-import Price from '@/pages/Price';
-import Landing from '@/pages/Landing';
-import Onboarding from '@/pages/Onboarding';
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router";
+
+const Register = lazy(() => import("@/pages/Register"));
+const Login = lazy(() => import("@/pages/Login"));
+const Price = lazy(() => import("@/pages/Price"));
+const Landing = lazy(() => import("@/pages/Landing"));
+const Onboarding = lazy(() => import("@/pages/Onboarding"));
 
 export default function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/iniciar-sesion" element={<Login />} />
-      <Route path="/registrarse" element={<Register />} />
-      <Route path="/precios" element={<Price />} />
-      <Route path="/onboarding" element={<Onboarding />} />
-    </Routes>
+    <Suspense fallback={<p>Cargando...</p>}>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/iniciar-sesion" element={<Login />} />
+        <Route path="/registrarse" element={<Register />} />
+        <Route path="/precios" element={<Price />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+      </Routes>
+    </Suspense>
   );
 }
