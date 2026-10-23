@@ -81,7 +81,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Si existe una cuenta con ese email, recibirás un enlace de recuperación.',
-        ]);
+        ], 200);
     }
 
     public function resetPassword(Request $request)

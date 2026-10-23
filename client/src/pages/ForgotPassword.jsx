@@ -44,33 +44,40 @@ export default function ForgotPassword() {
           Ingresa tu email y te enviaremos un enlace para crear una nueva contraseña.
         </p>
         {error && <p className="auth-error" role="alert">{error}</p>}
-        {message && <p className="auth-success" role="status">{message}</p>}
-
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <AuthField
-            label="Email"
-            input={{
-              type: "email",
-              id: "email",
-              name: "email",
-              autoComplete: "email",
-              value: email,
-              onChange: (event) => {
-                setEmail(event.target.value);
-                setError("");
-                setFieldError("");
-              },
-              "aria-invalid": Boolean(fieldError),
-              required: true,
-              error: fieldError && (
-                <p className="auth-error" role="alert">{fieldError}</p>
-              ),
-            }}
-          />
-          <button className="auth-submit" type="submit" disabled={loading}>
-            {loading ? "Enviando..." : "Enviar enlace"}
-          </button>
-        </form>
+        {message ? (
+          <>
+            <p className="auth-success" role="status">{message}</p>
+            <Link className="auth-submit auth-submit-link" to="/iniciar-sesion">
+              Ir a iniciar sesión
+            </Link>
+          </>
+        ) : (
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <AuthField
+              label="Email"
+              input={{
+                type: "email",
+                id: "email",
+                name: "email",
+                autoComplete: "email",
+                value: email,
+                onChange: (event) => {
+                  setEmail(event.target.value);
+                  setError("");
+                  setFieldError("");
+                },
+                "aria-invalid": Boolean(fieldError),
+                required: true,
+                error: fieldError && (
+                  <p className="auth-error" role="alert">{fieldError}</p>
+                ),
+              }}
+            />
+            <button className="auth-submit" type="submit" disabled={loading}>
+              {loading ? "Enviando..." : "Enviar enlace"}
+            </button>
+          </form>
+        )}
 
         <div className="auth-links">
           <p className="auth-switch">
