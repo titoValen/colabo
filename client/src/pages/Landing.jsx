@@ -45,48 +45,6 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="landing-section landing-features">
-        <div className="landing-feature">
-          <figure className="landing-feature-figure">
-            <img
-              className="landing-feature-icon"
-              src={AcuerdoVisible}
-              alt="Icono de un ojo visible, haciendo referencia a un acuerdo visible"
-            />
-          </figure>
-          <h3 className="landing-feature-title">Acuerdos visibles</h3>
-          <p className="landing-feature-description">
-            Toda la información clara en un solo lugar.
-          </p>
-        </div>
-        <div className="landing-feature">
-          <figure className="landing-feature-figure">
-            <img
-              className="landing-feature-icon"
-              src={PlanCompartido}
-              alt="Icono de gente alrededor, dando referencia a un plan compartido"
-            />
-          </figure>
-          <h3 className="landing-feature-title">Plan compartido</h3>
-          <p className="landing-feature-description">
-            Organizá con otras personas de forma simple.
-          </p>
-        </div>
-        <div className="landing-feature">
-          <figure className="landing-feature-figure">
-            <img
-              className="landing-feature-icon"
-              src={InvitarPersona}
-              alt="Icono de una persona más, dando referencia a que todos deben sumarse"
-            />
-          </figure>
-          <h3 className="landing-feature-title">Todos saben como sumarse</h3>
-          <p className="landing-feature-description">
-            Es fácil organizarse y saber como colaborar.
-          </p>
-        </div>
-      </section>
-
       <section
         id="antes-y-despues"
         className="landing-section landing-comparison"
@@ -146,6 +104,48 @@ export default function Landing() {
           <figure className="landing-how-it-works-figure">
             <img className="landing-how-it-works-image" src="" alt="" />
           </figure>
+        </div>
+      </section>
+
+      <section className="landing-section landing-features">
+        <div className="landing-feature">
+          <figure className="landing-feature-figure">
+            <img
+              className="landing-feature-icon"
+              src={AcuerdoVisible}
+              alt="Icono de un ojo visible, haciendo referencia a un acuerdo visible"
+            />
+          </figure>
+          <h3 className="landing-feature-title">Acuerdos visibles</h3>
+          <p className="landing-feature-description">
+            Toda la información clara en un solo lugar.
+          </p>
+        </div>
+        <div className="landing-feature">
+          <figure className="landing-feature-figure">
+            <img
+              className="landing-feature-icon"
+              src={PlanCompartido}
+              alt="Icono de gente alrededor, dando referencia a un plan compartido"
+            />
+          </figure>
+          <h3 className="landing-feature-title">Plan compartido</h3>
+          <p className="landing-feature-description">
+            Organizá con otras personas de forma simple.
+          </p>
+        </div>
+        <div className="landing-feature">
+          <figure className="landing-feature-figure">
+            <img
+              className="landing-feature-icon"
+              src={InvitarPersona}
+              alt="Icono de una persona más, dando referencia a que todos deben sumarse"
+            />
+          </figure>
+          <h3 className="landing-feature-title">Todos saben como sumarse</h3>
+          <p className="landing-feature-description">
+            Es fácil organizarse y saber como colaborar.
+          </p>
         </div>
       </section>
 
