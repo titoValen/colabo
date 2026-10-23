@@ -34,7 +34,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <main className="auth-page">
+    <main className="auth-page auth-page-centered">
       <section className="auth-panel" aria-labelledby="auth-title">
         <figure className="auth-logo">
           <img src={Logo} alt="Logo de Colabo" />
