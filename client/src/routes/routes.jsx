@@ -6,6 +6,8 @@ const Login = lazy(() => import("@/pages/Login"));
 const Price = lazy(() => import("@/pages/Price"));
 const Landing = lazy(() => import("@/pages/Landing"));
 const Onboarding = lazy(() => import("@/pages/Onboarding"));
+const ForgotPassword = lazy(() => import("@/pages/ForgotPassword"));
+const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
 
 export default function AppRoutes() {
   return (
@@ -16,6 +18,8 @@ export default function AppRoutes() {
         <Route path="/registrarse" element={<Register />} />
         <Route path="/precios" element={<Price />} />
         <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/recuperar-contrasena" element={<ForgotPassword />} />
+        <Route path="/restablecer-contrasena" element={<ResetPassword />} />
       </Routes>
     </Suspense>
   );

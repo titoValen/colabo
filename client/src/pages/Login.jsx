@@ -81,6 +81,9 @@ export default function Login() {
               required: true,
             }}
           />
+          <p className="auth-forgot">
+            <Link to="/recuperar-contrasena">¿Olvidaste tu contraseña?</Link>
+          </p>
 
           <button className="auth-submit" type="submit" disabled={loading}>
             {loading ? "Ingresando..." : "Iniciar sesión"}
