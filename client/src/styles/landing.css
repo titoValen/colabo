@@ -43,6 +43,12 @@
   height: 100%;
 }
 
+.landing-hero-figure picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .landing-hero-image {
   display: block;
   width: 100%;
@@ -108,46 +114,7 @@
   background: var(--color-gray);
 }
 
-@media (max-width: 760px) {
-  .landing-hero {
-    grid-template-columns: minmax(0, 1fr);
-    min-height: 100vh;
-    padding: 6rem 1.5rem 3rem;
-  }
 
-  .landing-hero-content {
-    max-width: 38rem;
-  }
-
-  .landing-hero-title {
-    font-size: clamp(2.25rem, 8vw, 3.25rem);
-  }
-
-  .landing-hero-image {
-    object-position: 70% center;
-  }
-}
-
-@media (max-width: 480px) {
-  .landing-hero {
-    padding: 6rem 1rem 3rem;
-  }
-
-  .landing-hero-content {
-    gap: 1.125rem;
-  }
-
-  .landing-hero-actions {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .landing-action {
-    justify-content: center;
-    text-align: center;
-  }
-}
 
 /* DIVIDE FEATURES */
 
@@ -263,25 +230,86 @@
 }
 
 .landing-how-it-works {
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-family: var(--font-title);
 }
 
 .landing-how-it-works-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.75rem;
+  max-width: 42rem;
 }
 
 .landing-how-it-works-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
-@media (max-width: 760px) {
-  .landing-comparison-container {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
-  }
+.landing-how-it-works-description {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+}
+
+.landing-how-it-works-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.landing-how-it-works-step {
+  min-width: 0;
+  padding: 0.5rem;
+  border: 1px solid rgb(36 59 83 / 10%);
+  border-radius: 0.875rem;
+  background: var(--color-white);
+  box-shadow: 0 0.5rem 1rem rgb(36 59 83 / 8%);
+}
+
+.landing-how-it-works-step-image {
+  display: grid;
+  place-items: center;
+  min-height: 10rem;
+  margin: 0;
+  border: 1px solid rgb(36 59 83 / 12%);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 60%);
+}
+
+.landing-how-it-works-step-number {
+  display: block;
+  margin-top: 0.75rem;
+  color: var(--color-orange);
+  font-size: 0.875rem;
+}
+
+.landing-how-it-works-step-title {
+  margin-top: 0.75rem;
+  color: var(--color-blue);
+  font-size: 1.25rem;
+}
+
+.landing-how-it-works-step-description {
+  margin-top: 0.5rem;
+  color: var(--color-blue);
+  font-size: 0.875rem;
+}
+
+.landing-how-it-works-callout {
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.875rem;
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+.landing-how-it-works-callout strong {
+  display: block;
+  font-size: 1.125rem;
+}
+
+.landing-how-it-works-callout p {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
 }
 
 /* DIVIDE FAQ */
@@ -372,4 +400,61 @@
 
 .landing-faq-toggle:not(:checked) + .landing-faq-question:hover::after {
   animation: bounce 0.5s infinite;
+}
+
+
+@media (max-width: 760px) {
+  .landing-comparison-container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .landing-how-it-works-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-shell:has(.landing) > .header {
+    left: 0;
+    transform: none;
+  }
+
+  .landing-hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 100vh;
+    padding: 6rem 1.5rem 3rem;
+  }
+
+  .landing-hero-content {
+    max-width: 38rem;
+  }
+
+  .landing-hero-title {
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
+  }
+
+  .landing-hero-image {
+    object-position: 70% center;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-hero {
+    padding: 6rem 1rem 3rem;
+  }
+
+  .landing-hero-content {
+    gap: 1.125rem;
+  }
+
+  .landing-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .landing-action {
+    justify-content: center;
+    text-align: center;
+  }
+
 }

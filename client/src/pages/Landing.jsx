@@ -1,6 +1,7 @@
 import "@/styles/landing.css";
 import { Link } from "react-router";
 import Hero from "@/assets/illustration/colabo_hero_background.webp";
+import HeroMobile from "@/assets/illustration/colabo_hero_background_mobile.webp";
 import ComparacionAntes from "@/assets/illustration/colabo_antes_comparacion.webp";
 import ComparacionDespues from "@/assets/illustration/colabo_despues_comparacion.webp";
 import AcuerdoVisible from "@/assets/icons/eye.svg";
@@ -8,6 +9,9 @@ import PlanCompartido from "@/assets/icons/equipment.svg";
 import InvitarPersona from "@/assets/icons/invite_person.svg";
 import ArrowRight from "@/assets/icons/arrow_right.svg";
 import ArrowDown from "@/assets/icons/arrow_down.svg";
+import Paso1 from "@/assets/illustration/colabo_paso_1.webp";
+import Paso2 from "@/assets/illustration/colabo_paso_2.webp";
+import Paso3 from "@/assets/illustration/colabo_paso_3.webp";
 
 export default function Landing() {
   return (
@@ -40,52 +44,15 @@ export default function Landing() {
         </div>
         <div className="landing-hero-media">
           <figure className="landing-hero-figure">
-            <img className="landing-hero-image" src={Hero} alt="" />
+            <picture>
+              <source media="(max-width: 480px)" srcSet={HeroMobile} />
+              <source media="(max-width: 760px)" srcSet={HeroMobile} />
+              <img className="landing-hero-image" src={Hero} alt="" />
+            </picture>
           </figure>
         </div>
       </section>
 
-      <section className="landing-section landing-features">
-        <div className="landing-feature">
-          <figure className="landing-feature-figure">
-            <img
-              className="landing-feature-icon"
-              src={AcuerdoVisible}
-              alt="Icono de un ojo visible, haciendo referencia a un acuerdo visible"
-            />
-          </figure>
-          <h3 className="landing-feature-title">Acuerdos visibles</h3>
-          <p className="landing-feature-description">
-            Toda la información clara en un solo lugar.
-          </p>
-        </div>
-        <div className="landing-feature">
-          <figure className="landing-feature-figure">
-            <img
-              className="landing-feature-icon"
-              src={PlanCompartido}
-              alt="Icono de gente alrededor, dando referencia a un plan compartido"
-            />
-          </figure>
-          <h3 className="landing-feature-title">Plan compartido</h3>
-          <p className="landing-feature-description">
-            Organizá con otras personas de forma simple.
-          </p>
-        </div>
-        <div className="landing-feature">
-          <figure className="landing-feature-figure">
-            <img
-              className="landing-feature-icon"
-              src={InvitarPersona}
-              alt="Icono de una persona más, dando referencia a que todos deben sumarse"
-            />
-          </figure>
-          <h3 className="landing-feature-title">Todos saben como sumarse</h3>
-          <p className="landing-feature-description">
-            Es fácil organizarse y saber como colaborar.
-          </p>
-        </div>
-      </section>
 
       <section
         id="antes-y-despues"
@@ -132,20 +99,114 @@ export default function Landing() {
       <section
         id="como-funciona"
         className="landing-section landing-how-it-works"
+        aria-labelledby="landing-how-it-works-title"
       >
         <div className="landing-how-it-works-content">
-          <h2 className="landing-how-it-works-title">
+          <h2
+            id="landing-how-it-works-title"
+            className="landing-how-it-works-title"
+          >
             ¿Cómo funcionan los planes compartidos?
           </h2>
           <p className="landing-how-it-works-description">
-            Reuní los datos importantes, definí quién se encarga de cada
-            responsabilidad pendiente y dejá los acuerdos claros para todos.
+            Organizá cada plan en pocos pasos y mantené a todas las personas al
+            tanto.
           </p>
         </div>
-        <div className="landing-how-it-works-media">
-          <figure className="landing-how-it-works-figure">
-            <img className="landing-how-it-works-image" src="" alt="" />
+        <div className="landing-how-it-works-steps">
+          <article className="landing-how-it-works-step">
+            <figure
+              className="landing-how-it-works-step-image"
+              aria-label="Imagen del paso 1"
+              role="img"
+              alt="Imagen del paso 1"
+            >
+              <img src={Paso1} alt="Imagen del paso 1" />
+            </figure>
+            <span className="landing-how-it-works-step-number">PASO 01</span>
+            <h3 className="landing-how-it-works-step-title">Creá</h3>
+            <p className="landing-how-it-works-step-description">
+              Definí la idea, la fecha y el lugar.
+            </p>
+          </article>
+          <article className="landing-how-it-works-step">
+            <figure
+              className="landing-how-it-works-step-image"
+              aria-label="Imagen del paso 2"
+              role="img"
+              alt="Imagen del paso 2"
+            >
+              <img src={Paso2} alt="Imagen del paso 2" />
+            </figure>
+            <span className="landing-how-it-works-step-number">PASO 02</span>
+            <h3 className="landing-how-it-works-step-title">Compartí</h3>
+            <p className="landing-how-it-works-step-description">
+              Invitá a quienes forman parte del plan.
+            </p>
+          </article>
+          <article className="landing-how-it-works-step">
+            <figure
+              className="landing-how-it-works-step-image"
+              aria-label="Imagen del paso 3"
+              role="img"
+              alt="Imagen del paso 3"
+            >
+              <img src={Paso3} alt="Imagen del paso 3" />
+            </figure>
+            <span className="landing-how-it-works-step-number">PASO 03</span>
+            <h3 className="landing-how-it-works-step-title">Organizá</h3>
+            <p className="landing-how-it-works-step-description">
+              Repartí tareas y dejá los acuerdos claros.
+            </p>
+          </article>
+        </div>
+        <div className="landing-how-it-works-callout">
+          <strong>Un mismo plan. Todos en la misma página.</strong>
+          <p>Menos confusión, más tiempo para disfrutar juntos.</p>
+        </div>
+      </section>
+
+      <h2 className="landing-how-it-works-title">¿Qué ofrecemos?</h2>
+      <section className="landing-section landing-features">
+
+        <div className="landing-feature">
+          <figure className="landing-feature-figure">
+            <img
+              className="landing-feature-icon"
+              src={AcuerdoVisible}
+              alt="Icono de un ojo visible, haciendo referencia a un acuerdo visible"
+            />
           </figure>
+          <h3 className="landing-feature-title">Acuerdos visibles</h3>
+          <p className="landing-feature-description">
+            Toda la información clara en un solo lugar.
+          </p>
+        </div>
+        <div className="landing-feature">
+          <figure className="landing-feature-figure">
+            <img
+              className="landing-feature-icon"
+              src={PlanCompartido}
+              alt="Icono de gente alrededor, dando referencia a un plan compartido"
+            />
+          </figure>
+          <h3 className="landing-feature-title">Plan compartido</h3>
+          <p className="landing-feature-description">
+            Organizá con otras personas de forma simple.
+          </p>
+        </div>
+        <div className="landing-feature">
+          <figure className="landing-feature-figure">
+            <img
+              className="landing-feature-icon"
+              src={InvitarPersona}
+              alt="Icono de una persona más, dando referencia a que todos deben sumarse"
+            />
+          </figure>
+          <h3 className="landing-feature-title">Todos saben como sumarse</h3>
+          <p className="landing-feature-description">
+            Es fácil organizarse y saber como colaborar.
+          </p>
         </div>
       </section>
 
