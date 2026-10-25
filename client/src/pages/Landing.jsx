@@ -2,6 +2,7 @@ import "@/styles/landing.css";
 import { Link } from "react-router";
 import Hero from "@/assets/illustration/colabo_hero_background.webp";
 import HeroMobile from "@/assets/illustration/colabo_hero_background_mobile.webp";
+import HeroTablet from "@/assets/illustration/colabo_hero_background_tablet.webp";
 import ComparacionAntes from "@/assets/illustration/colabo_antes_comparacion.webp";
 import ComparacionDespues from "@/assets/illustration/colabo_despues_comparacion.webp";
 import AcuerdoVisible from "@/assets/icons/eye.svg";
@@ -46,8 +47,8 @@ export default function Landing() {
           <figure className="landing-hero-figure">
             <picture>
               <source media="(max-width: 480px)" srcSet={HeroMobile} />
-              <source media="(max-width: 760px)" srcSet={HeroMobile} />
-              <img className="landing-hero-image" src={Hero} alt="" />
+              <source media="(max-width: 1023px)" srcSet={HeroTablet} />
+              <img className="landing-hero-image" src={Hero} alt="Background para el hero de la página de inicio" />
             </picture>
           </figure>
         </div>
@@ -166,7 +167,9 @@ export default function Landing() {
         </div>
       </section>
 
-      <h2 className="landing-how-it-works-title">¿Qué ofrecemos?</h2>
+      <h2 className="landing-how-it-works-title landing-features-title">
+        ¿Qué ofrecemos?
+      </h2>
       <section className="landing-section landing-features">
 
         <div className="landing-feature">
@@ -322,7 +325,15 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="landing-section landing-cta"></section>
+      <section className="landing-section landing-cta">
+        <h2 className="landing-cta-title">Los planes salen mejor en equipo</h2>
+        <Link className="landing-action landing-action-primary" to="/registrarse">
+          Empezar ahora
+          <figure className="landing-action-figure">
+            <img src={ArrowRight} alt="Icono de flecha hacia la derecha" />
+          </figure>
+        </Link>
+      </section>
     </main>
   );
 }
