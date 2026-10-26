@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invitaciones', function (Blueprint $table) {
-            $table->id('id_invitacion');
-            $table->foreignId('id_grupo')->constrained('grupos', 'id_grupo')->cascadeOnDelete();
-            $table->string('codigo')->unique();
-            $table->timestamp('fecha_vencimiento')->nullable();
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->boolean('notifications_enabled')->default(true);
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invitaciones');
+        Schema::dropIfExists('users');
     }
 };

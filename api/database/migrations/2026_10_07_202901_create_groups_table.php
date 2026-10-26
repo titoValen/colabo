@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('metas', function (Blueprint $table) {
-            $table->id('id_meta');
-            $table->foreignId('id_grupo')->constrained('grupos', 'id_grupo')->cascadeOnDelete();
-            $table->text('descripcion');
+        Schema::create('groups', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('type')->nullable();
+            $table->text('description')->nullable();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('metas');
+        Schema::dropIfExists('groups');
     }
 };
