@@ -9,13 +9,14 @@ function AppShell() {
   const { pathname } = useLocation();
   const { token } = useAuth();
   const isAuthPage = ["/iniciar-sesion", "/registrarse"].includes(pathname);
+  const isAppPage = ["/onboarding", "/dashboard"].includes(pathname);
   const isAuthenticated = Boolean(token);
 
   return (
     <div className="app-shell">
       {!isAuthPage && !isAuthenticated && <Header />}
       <AppRoutes />
-      {!isAuthPage && <Footer />}
+      {!isAuthPage && !isAppPage && <Footer />}
     </div>
   );
 }
