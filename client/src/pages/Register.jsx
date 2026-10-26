@@ -35,7 +35,7 @@ export default function Register() {
     setErrors({});
     try {
       await register(form);
-      navigate("/");
+      navigate("/onboarding", { replace: true });
     } catch (err) {
       setErrors(
         err.errors && Object.keys(err.errors).length
