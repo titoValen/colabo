@@ -17,13 +17,14 @@ class Usuario extends Authenticatable implements CanResetPassword
 
     protected $primaryKey = 'id_usuario';
 
-    protected $fillable = ['nombre', 'email', 'password', 'notificaciones'];
+    protected $fillable = ['nombre', 'email', 'password', 'notificaciones', 'onboarding_completado'];
 
     protected $hidden = ['password'];
 
     protected $casts = [
         'password' => 'hashed',
         'notificaciones' => 'boolean',
+        'onboarding_completado' => 'boolean',
     ];
 
     public function sendPasswordResetNotification($token): void
