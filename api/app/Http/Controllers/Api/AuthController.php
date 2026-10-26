@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -14,33 +14,33 @@ class AuthController extends Controller
 {
     public function register(RegisterRequest $request)
     {
-        $usuario = Usuario::create([
-            'nombre'   => $request->nombre,
+        $user = User::create([
+            'name'   => $request->name,
             'email'    => $request->email,
             'password' => $request->password,
         ]);
-        $token = $usuario->createToken('colabo-token')->plainTextToken;
+        $token = $user->createToken('colabo-token')->plainTextToken;
 
         return response()->json([
-            'usuario' => $usuario,
+            'user' => $user,
             'token' => $token,
         ], 201);
     }
 
     public function login(LoginRequest $request)
     {
-        $usuario = Usuario::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
-        if (! $usuario || ! Hash::check($request->password, $usuario->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'Credenciales inválidas.',
             ], 401);
         }
 
-        $token = $usuario->createToken('colabo-token')->plainTextToken;
+        $token = $user->createToken('colabo-token')->plainTextToken;
 
         return response()->json([
-            'usuario' => $usuario,
+            'user' => $user,
             'token' => $token,
         ], 200);
     }
@@ -57,7 +57,7 @@ class AuthController extends Controller
     public function me(Request $request)
     {
         return response()->json([
-            'usuario' => $request->user(),
+            'user' => $request->user(),
         ], 200);
     }
 
@@ -94,8 +94,8 @@ class AuthController extends Controller
 
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
-            function (Usuario $usuario, string $password) {
-                $usuario->forceFill([
+            function (User $user, string $password) {
+                $user->forceFill([
                     'password' => $password,
                 ])->save();
             }
