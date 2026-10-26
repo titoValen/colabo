@@ -48,7 +48,9 @@ a,
 input,
 textarea,
 label,
-span {
+span,
+select,
+option {
   font-family: var(--font-body);
 }
 
