@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import ImageOnBoarding from "@/assets/illustration/onboarding_01.webp";
+import ArrowLeft from "@/assets/icons/arrow_left.svg";
+import Logo from "@/assets/colabo_logo.svg";
 import "@/styles/onboarding.css";
 
 const TIPOS_GRUPO = [
@@ -111,6 +113,9 @@ export default function Onboarding() {
   return (
     <main className="onboarding-page">
       <section className="onboarding-panel" aria-labelledby="onboarding-title">
+        <figure className="onboarding-logo">
+          <img src={Logo} alt="Logo de Colabo" />
+        </figure>
         <h1 id="onboarding-title">Empecemos a organizar</h1>
         <p className="onboarding-intro">
           Crea tu primer grupo y evento para tener todo en un mismo lugar.
@@ -123,18 +128,20 @@ export default function Onboarding() {
         )}
 
         <nav className="onboarding-steps" aria-label="Pasos del onboarding">
-          {paso === 2 && (
-            <button
-              type="button"
-              className="onboarding-step"
-              onClick={() => setPaso(1)}
-              disabled={loading}
-            >
-              1
-            </button>
-          )}
-          <span aria-current="step">
-            {paso === 1 ? "1" : "2"}
+          <span
+            className={paso === 1 ? "is-active" : "is-complete"}
+            aria-current={paso === 1 ? "step" : undefined}
+          >
+            <span className="onboarding-step-number">1</span>
+            <span className="onboarding-step-label">Tu grupo</span>
+          </span>
+          <span className="onboarding-step-line" aria-hidden="true" />
+          <span
+            className={paso === 2 ? "is-active" : "is-inactive"}
+            aria-current={paso === 2 ? "step" : undefined}
+          >
+            <span className="onboarding-step-number">2</span>
+            <span className="onboarding-step-label">Tu evento</span>
           </span>
         </nav>
 
@@ -237,17 +244,36 @@ export default function Onboarding() {
             </fieldset>
           )}
 
-          <button
-            className="onboarding-submit"
-            type="submit"
-            disabled={loading}
-          >
-            {loading
-              ? "Guardando..."
-              : paso === 1
-                ? "Continuar al evento"
-                : "Crear grupo y evento"}
-          </button>
+          <div className="onboarding-actions">
+            {paso === 2 && (
+              <button
+                type="button"
+                className="onboarding-back"
+                onClick={() => setPaso(1)}
+                disabled={loading}
+              >
+                <figure>
+                  <img
+                    src={ArrowLeft}
+                    alt="Icono de una flecha hacia la izquierda, haciando referencia para volver al paso anterior"
+                  />
+                </figure>
+                <span>Volver</span>
+              </button>
+            )}
+
+            <button
+              className="onboarding-submit"
+              type="submit"
+              disabled={loading}
+            >
+              {loading
+                ? "Guardando..."
+                : paso === 1
+                  ? "Continuar al evento"
+                  : "Crear grupo y evento"}
+            </button>
+          </div>
         </form>
 
         <button
