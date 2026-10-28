@@ -14,13 +14,14 @@ class User extends Authenticatable implements CanResetPassword
     use HasApiTokens, CanResetPasswordTrait, Notifiable;
 
     protected $table = 'users';
-    protected $fillable = ['name', 'email', 'password', 'notifications_enabled'];
+    protected $fillable = ['name', 'email', 'password', 'notifications_enabled', 'onboarding_completed'];
 
     protected $hidden = ['password'];
 
     protected $casts = [
         'password' => 'hashed',
         'notifications_enabled' => 'boolean',
+        'onboarding_completed' => 'boolean',
     ];
 
     public function sendPasswordResetNotification($token): void
