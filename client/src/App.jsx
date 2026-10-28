@@ -13,11 +13,11 @@ function AppShell() {
   const isAuthenticated = Boolean(token);
 
   return (
-    <div className="app-shell">
+    <>
       {!isAuthPage && !isAuthenticated && <Header />}
       <AppRoutes />
       {!isAuthPage && !isAppPage && <Footer />}
-    </div>
+    </>
   );
 }
 

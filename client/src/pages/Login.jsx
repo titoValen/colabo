@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import AuthField from "@components/AuthField";
 import ColaboLogin from "@/assets/illustration/colabo_login.webp";
@@ -9,6 +9,7 @@ import "@/styles/auth.css";
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [errors, setErrors] = useState({});
@@ -47,6 +48,11 @@ export default function Login() {
           <img src={Logo} alt="Logo de Colabo" />
         </figure>
         <h1>Inicia sesión</h1>
+        {location.state?.message && (
+          <p className="auth-success" role="status">
+            {location.state.message}
+          </p>
+        )}
         {error && (
           <p className="auth-error" role="alert">
             {error}

@@ -10,7 +10,7 @@ export default function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    nombre: "",
+    name: "",
     email: "",
     password: "",
     password_confirmation: "",
@@ -80,14 +80,14 @@ export default function Register() {
             label={"Nombre"}
             input={{
               type: "text",
-              id: "nombre",
-              name: "nombre",
+              id: "name",
+              name: "name",
               autoComplete: "name",
-              value: form.nombre,
+              value: form.name,
               onChange: handleChange,
-              "aria-invalid": Boolean(errors.nombre),
+              "aria-invalid": Boolean(errors.name),
               required: true,
-              error: error("nombre"),
+              error: error("name"),
             }}
           />
 

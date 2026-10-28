@@ -28,7 +28,7 @@ export default function AppRoutes() {
     errorSesion,
   } = useAuth();
   const autenticado = Boolean(token);
-  const onboardingCompletado = Boolean(usuario?.onboarding_completado);
+  const onboardingCompletado = Boolean(usuario?.onboarding_completed);
 
   if (verificandoSesion) {
     return <p role="status">Verificando sesión...</p>;

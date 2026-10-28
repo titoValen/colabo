@@ -16,5 +16,5 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/me', [AuthController::class, 'me']);
   Route::post('/onboarding', [OnboardingController::class, 'store']);
 
-  Route::apiResource('eventos', EventController::class);
+  Route::apiResource('events', EventController::class);
 });

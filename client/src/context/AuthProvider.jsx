@@ -13,12 +13,12 @@ export default function AuthProvider({ children }) {
   );
   const [errorSesion, setErrorSesion] = useState("");
 
-  const guardarSesion = ({ token, usuario }) => {
+  const guardarSesion = ({ token, user }) => {
     localStorage.setItem("token", token);
-    localStorage.setItem("usuario", JSON.stringify(usuario));
+    localStorage.setItem("usuario", JSON.stringify(user));
 
     setToken(token);
-    setUsuario(usuario);
+    setUsuario(user);
     setVerificandoSesion(false);
     setErrorSesion("");
   };
@@ -31,8 +31,8 @@ export default function AuthProvider({ children }) {
 
   const actualizarEstadoOnboarding = async (body) => {
     const response = await apiFetch("/onboarding", { method: "POST", body, token });
-    localStorage.setItem("usuario", JSON.stringify(response.usuario));
-    setUsuario(response.usuario);
+    localStorage.setItem("usuario", JSON.stringify(response.user));
+    setUsuario(response.user);
     return response;
   };
 
@@ -63,7 +63,7 @@ export default function AuthProvider({ children }) {
     let activo = true;
 
     apiFetch("/me", { token })
-      .then(({ usuario: usuarioActual }) => {
+      .then(({ user: usuarioActual }) => {
         if (!activo) return;
         localStorage.setItem("usuario", JSON.stringify(usuarioActual));
         setUsuario(usuarioActual);

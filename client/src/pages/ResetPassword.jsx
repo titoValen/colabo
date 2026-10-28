@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useSearchParams } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import AuthField from "@components/AuthField";
 import { apiFetch } from "@/services/api";
 import Logo from "@/assets/colabo_logo.svg";
@@ -7,6 +7,7 @@ import "@/styles/auth.css";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const token = searchParams.get("token") ?? "";
   const email = searchParams.get("email") ?? "";
   const [form, setForm] = useState({
@@ -44,8 +45,9 @@ export default function ResetPassword() {
         method: "POST",
         body: { ...form, token, email },
       });
-      setMessage(response.message);
-      setForm({ password: "", password_confirmation: "" });
+      navigate("/iniciar-sesion", {
+        state: { message: response.message },
+      });
     } catch (requestError) {
       setErrors(
         Object.keys(requestError.errors ?? {}).length

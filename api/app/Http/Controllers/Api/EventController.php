@@ -3,97 +3,97 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Evento;
-use App\Models\Usuario;
+use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
     public function index(Request $request)
     {
-        $usuarioId = $request->user()->getKey();
+        $userId = $request->user()->getKey();
 
-        $eventos = Evento::query()
-            ->whereHas('grupo.usuarios', function ($query) use ($usuarioId) {
-                $query->where('usuarios.id_usuario', $usuarioId);
+        $events = Event::query()
+            ->whereHas('group.users', function ($query) use ($userId) {
+                $query->where('users.id', $userId);
             })
-            ->with(['grupo', 'creador'])
-            ->orderBy('fecha_hora')
+            ->with(['group', 'creator'])
+            ->orderBy('starts_at')
             ->get();
 
-        return response()->json($eventos);
+        return response()->json($events);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id_grupo' => ['required', 'integer', 'exists:grupos,id_grupo'],
-            'titulo' => ['required', 'string', 'max:255'],
-            'descripcion' => ['nullable', 'string'],
-            'fecha_hora' => ['required', 'date'],
+            'group_id' => ['required', 'integer', 'exists:groups,id'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'starts_at' => ['required', 'date'],
         ]);
 
-        $usuario = $request->user();
-        $this->ensureGroupMember($usuario, $validated['id_grupo']);
+        $user = $request->user();
+        $this->ensureGroupMember($user, $validated['group_id']);
 
-        $evento = $usuario->eventosCreados()->create($validated);
+        $event = $user->createdEvents()->create($validated);
 
-        return response()->json($evento->load(['grupo', 'creador']), 201);
+        return response()->json($event->load(['group', 'creator']), 201);
     }
 
-    public function show(Request $request, Evento $evento)
+    public function show(Request $request, Event $event)
     {
-        $this->ensureEventGroupMember($request->user(), $evento);
+        $this->ensureEventGroupMember($request->user(), $event);
 
-        return response()->json($evento->load(['grupo', 'creador']));
+        return response()->json($event->load(['group', 'creator']));
     }
 
-    public function update(Request $request, Evento $evento)
+    public function update(Request $request, Event $event)
     {
-        $this->ensureEventGroupMember($request->user(), $evento);
+        $this->ensureEventGroupMember($request->user(), $event);
 
         $validated = $request->validate([
-            'id_grupo' => ['sometimes', 'required', 'integer', 'exists:grupos,id_grupo'],
-            'titulo' => ['sometimes', 'required', 'string', 'max:255'],
-            'descripcion' => ['sometimes', 'nullable', 'string'],
-            'fecha_hora' => ['sometimes', 'required', 'date'],
+            'group_id' => ['sometimes', 'required', 'integer', 'exists:groups,id'],
+            'title' => ['sometimes', 'required', 'string', 'max:255'],
+            'description' => ['sometimes', 'nullable', 'string'],
+            'starts_at' => ['sometimes', 'required', 'date'],
         ]);
 
-        if (array_key_exists('id_grupo', $validated)) {
-            $this->ensureGroupMember($request->user(), $validated['id_grupo']);
+        if (array_key_exists('group_id', $validated)) {
+            $this->ensureGroupMember($request->user(), $validated['group_id']);
         }
 
-        $evento->update($validated);
+        $event->update($validated);
 
-        return response()->json($evento->fresh()->load(['grupo', 'creador']));
+        return response()->json($event->fresh()->load(['group', 'creator']));
     }
 
-    public function destroy(Request $request, Evento $evento)
+    public function destroy(Request $request, Event $event)
     {
-        $this->ensureEventGroupMember($request->user(), $evento);
-        $evento->delete();
+        $this->ensureEventGroupMember($request->user(), $event);
+        $event->delete();
 
         return response()->noContent();
     }
 
-    private function ensureGroupMember(Usuario $usuario, int|string $grupoId): void
+    private function ensureGroupMember(User $user, int|string $groupId): void
     {
-        $esMiembro = $usuario->grupos()
-            ->where('grupos.id_grupo', $grupoId)
+        $isMember = $user->groups()
+            ->where('groups.id', $groupId)
             ->exists();
 
-        if (! $esMiembro) {
+        if (! $isMember) {
             abort(403, 'No perteneces a este grupo.');
         }
     }
 
-    private function ensureEventGroupMember(Usuario $usuario, Evento $evento): void
+    private function ensureEventGroupMember(User $user, Event $event): void
     {
-        $esMiembro = $usuario->grupos()
-            ->where('grupos.id_grupo', $evento->id_grupo)
+        $isMember = $user->groups()
+            ->where('groups.id', $event->group_id)
             ->exists();
 
-        if (! $esMiembro) {
+        if (! $isMember) {
             abort(404);
         }
     }

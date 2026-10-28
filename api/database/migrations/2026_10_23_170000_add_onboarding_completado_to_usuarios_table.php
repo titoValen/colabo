@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('usuarios', function (Blueprint $table) {
-            $table->boolean('onboarding_completado')->default(false);
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('onboarding_completed')->default(false);
         });
     }
 
     public function down(): void
     {
-        Schema::table('usuarios', function (Blueprint $table) {
-            $table->dropColumn('onboarding_completado');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('onboarding_completed');
         });
     }
 };
