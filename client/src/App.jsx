@@ -16,7 +16,7 @@ function AppShell() {
     <>
       {!isAuthPage && !isAuthenticated && <Header />}
       <AppRoutes />
-      {!isAuthPage && !isAppPage && <Footer />}
+      {!isAuthPage && !isAppPage && !isAuthenticated && <Footer />}
     </>
   );
 }
