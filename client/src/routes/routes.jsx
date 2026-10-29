@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Routes, Route, useLocation } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
+import Loading from "@/components/Loading.jsx";
 
 const Register = lazy(() => import("@/pages/Register"));
 const Login = lazy(() => import("@/pages/Login"));
@@ -32,7 +33,7 @@ export default function AppRoutes() {
         "No pudimos verificar tu sesión. Intentá nuevamente.");
 
   if (verificandoSesion) {
-    return <p role="status">Verificando sesión...</p>;
+    return <Loading />;
   }
 
   if (errorSesion) {
@@ -67,7 +68,7 @@ export default function AppRoutes() {
   }
 
   return (
-    <Suspense fallback={<p>Cargando...</p>}>
+    <Suspense fallback={<Loading status="Cargando página..." />}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/iniciar-sesion" element={<Login />} />
