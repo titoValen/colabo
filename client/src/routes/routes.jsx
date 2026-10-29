@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Routes, Route, useLocation } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
+import Loading from "@/components/Loading.jsx";
 
 const Register = lazy(() => import("@/pages/Register"));
 const Login = lazy(() => import("@/pages/Login"));
@@ -21,21 +22,30 @@ const RUTAS_PUBLICAS_BLOQUEADAS = new Set([
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
-  const {
-    token,
-    usuario,
-    verificandoSesion,
-    errorSesion,
-  } = useAuth();
+  const { token, usuario, verificandoSesion, errorSesion, reintentarSesion } =
+    useAuth();
   const autenticado = Boolean(token);
   const onboardingCompletado = Boolean(usuario?.onboarding_completed);
+  const mensajeErrorSesion =
+    typeof errorSesion === "string"
+      ? errorSesion
+      : (errorSesion?.message ??
+        "No pudimos verificar tu sesión. Intentá nuevamente.");
 
   if (verificandoSesion) {
-    return <p role="status">Verificando sesión...</p>;
+    return <Loading />;
   }
 
   if (errorSesion) {
-    return <p role="alert">No se pudo verificar la sesión: {errorSesion}</p>;
+    return (
+      <section role="alert" aria-labelledby="error-sesion-title">
+        <h1 id="error-sesion-title">No se pudo verificar la sesión</h1>
+        <p>{mensajeErrorSesion}</p>
+        <button type="button" onClick={reintentarSesion}>
+          Reintentar
+        </button>
+      </section>
+    );
   }
 
   if (autenticado && RUTAS_PUBLICAS_BLOQUEADAS.has(pathname)) {
@@ -58,7 +68,7 @@ export default function AppRoutes() {
   }
 
   return (
-    <Suspense fallback={<p>Cargando...</p>}>
+    <Suspense fallback={<Loading status="Cargando página..." />}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/iniciar-sesion" element={<Login />} />
