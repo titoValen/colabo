@@ -54,7 +54,6 @@ export default function Landing() {
         </div>
       </section>
 
-
       <section
         id="antes-y-despues"
         className="landing-section landing-comparison"
@@ -212,7 +211,7 @@ export default function Landing() {
           </p>
         </div>
       </section>
-
+      
       <section
         id="preguntas-frecuentes"
         className="landing-section landing-section-faq"
