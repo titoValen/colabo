@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router";
 import Logo from "@/assets/colabo_logo.svg";
+import HideSidebarIcon from "@/assets/icons/hide_sidebar.svg";
 import HomeIcon from "@/assets/icons/home.svg";
 import GroupsIcon from "@/assets/icons/groups.svg";
 import TasksIcon from "@/assets/icons/tasks.svg";
@@ -18,12 +19,25 @@ const NAV_ITEMS = [
   { label: "Perfil", icon: ProfileIcon, path: "/perfil" },
 ];
 
-export default function AppSidebar() {
+export default function AppSidebar({ isOpen, onToggle }) {
   return (
-    <aside className="app-sidebar">
-      <Link to="/dashboard" className="app-sidebar-logo" aria-label="Colabo, ir al inicio">
-        <img src={Logo} alt="" />
-      </Link>
+    <aside id="app-sidebar" className="app-sidebar">
+      <div className="app-sidebar-header">
+        <Link to="/dashboard" className="app-sidebar-logo" aria-label="Colabo, ir al inicio">
+          <img src={Logo} alt="" />
+        </Link>
+
+        <button
+          type="button"
+          className="app-sidebar-toggle"
+          onClick={onToggle}
+          aria-label="Ocultar menú lateral"
+          aria-expanded={isOpen}
+          aria-controls="app-sidebar"
+        >
+          <img src={HideSidebarIcon} alt="" />
+        </button>
+      </div>
 
       <nav className="app-nav" aria-label="Navegación principal">
         <ul className="app-nav-list">
