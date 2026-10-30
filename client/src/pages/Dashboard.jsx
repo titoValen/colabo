@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { apiFetch } from "@/services/api";
 import AppLayout from "@components/AppLayout";
+import DashboardGroups from "@components/DashboardGroups";
+import DashboardNewGroup from "@components/DashboardNewGroup";
+import DashboardRecentActivity from "@components/DashboardRecentActivity";
 import DashboardStatEvents from "@components/DashboardStatEvents";
 import DashboardUpcomingEvents from "@components/DashboardUpcomingEvents";
 import "@/styles/dashboard.css";
+
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+const VISIBLE_EVENTS_COUNT = 3;
 
 export default function Dashboard() {
   const { token, usuario: user } = useAuth();
@@ -32,6 +38,15 @@ export default function Dashboard() {
     };
   }, [token]);
 
+  const upcomingEvents = events
+    .filter((event) => new Date(event.starts_at).getTime() >= now)
+    .slice(0, VISIBLE_EVENTS_COUNT);
+
+  const eventsThisWeek = events.filter((event) => {
+    const start = new Date(event.starts_at).getTime();
+    return start >= now && start <= now + WEEK_MS;
+  }).length;
+
   return (
     <AppLayout>
       <header className="dashboard-header">
@@ -42,20 +57,21 @@ export default function Dashboard() {
       <div className="dashboard-content">
         <section className="dashboard-summary">
           <DashboardStatEvents
-            events={events}
+            count={eventsThisWeek}
             loading={loadingEvents}
             error={eventsError}
-            now={now}
           />
+          <DashboardGroups />
+          <DashboardRecentActivity />
         </section>
 
         <aside className="dashboard-aside">
           <DashboardUpcomingEvents
-            events={events}
+            events={upcomingEvents}
             loading={loadingEvents}
             error={eventsError}
-            now={now}
           />
+          <DashboardNewGroup />
         </aside>
       </div>
     </AppLayout>

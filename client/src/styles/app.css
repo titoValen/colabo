@@ -4,6 +4,7 @@
   gap: 1.5rem;
   min-height: 100dvh;
   padding: 1rem;
+  transition: grid-template-columns 0.3s ease;
 }
 
 .app-sidebar {
@@ -17,6 +18,13 @@
   border-radius: 1.5rem;
   background-color: rgb(255 255 255 / 0.7);
   box-shadow: 0 4px 16px rgb(36 59 83 / 0.06);
+  overflow: hidden;
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s ease,
+    padding 0.3s ease;
 }
 
 .app-sidebar-header {
@@ -86,11 +94,15 @@
 }
 
 .app-layout.is-sidebar-collapsed {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: 0 minmax(0, 1fr);
 }
 
 .app-layout.is-sidebar-collapsed .app-sidebar {
-  display: none;
+  padding-right: 0;
+  padding-left: 0;
+  opacity: 0;
+  transform: translateX(-1rem);
+  pointer-events: none;
 }
 
 .app-nav-list {
@@ -159,6 +171,14 @@
     gap: 0.5rem;
     padding: 0.75rem;
     border-radius: 1rem;
+  }
+
+  .app-layout.is-sidebar-collapsed {
+    grid-template-columns: 0 minmax(0, 1fr);
+  }
+
+  .app-layout.is-sidebar-collapsed .app-sidebar {
+    padding: 0;
   }
 
   .app-sidebar-header {

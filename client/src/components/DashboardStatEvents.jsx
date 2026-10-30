@@ -11,7 +11,7 @@ export default function DashboardStatEvents({ count, loading, error }) {
 
   return (
     <article className="dashboard-card dashboard-stat">
-      <h2 className="dashboard-stat-title">Próximos eventos</h2>
+      <h2 className="dashboard-stat-title">Resumen</h2>
       <strong className="dashboard-stat-value">{value}</strong>
       <p className="dashboard-stat-detail">{detail}</p>
     </article>
