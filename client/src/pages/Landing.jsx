@@ -64,7 +64,7 @@ export default function Landing() {
             id="landing-comparison-title"
             className="landing-comparison-title"
           >
-            Antes y Después
+            Antes y después
           </h2>
           <p className="landing-comparison-description">
             De mensajes sueltos a un plan claro para todos.
