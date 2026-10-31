@@ -3,6 +3,9 @@ import { useAuth } from "@/hooks/useAuth";
 import { apiFetch } from "@/services/api";
 import AppLayout from "@components/AppLayout";
 import DashboardGroups from "@components/DashboardGroups";
+import DashboardNotificationButton from "@components/DashboardNotificationButton";
+import DashboardSearchBar from "@components/DashboardSearchBar";
+import DashboardUserMenu from "@components/DashboardUserMenu";
 import DashboardNewGroup from "@components/DashboardNewGroup";
 import DashboardRecentActivity from "@components/DashboardRecentActivity";
 import DashboardStatEvents from "@components/DashboardStatEvents";
@@ -50,8 +53,16 @@ export default function Dashboard() {
   return (
     <AppLayout>
       <header className="dashboard-header">
-        <h1>Hola{user?.name ? `, ${user.name}` : ""}</h1>
-        <p>Organizá, compartí y hacé que las cosas pasen.</p>
+        <div>
+          <h1>Hola{user?.name ? `, ${user.name}` : ""}</h1>
+          <p>Organizá, compartí y hacé que las cosas pasen.</p>
+        </div>
+
+        <div className="dashboard-header-actions">
+          <DashboardSearchBar />
+          <DashboardNotificationButton />
+          <DashboardUserMenu />
+        </div>
       </header>
 
       <div className="dashboard-content">
