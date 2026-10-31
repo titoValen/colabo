@@ -78,9 +78,9 @@
   width: 2.5rem;
   height: 2.5rem;
   margin-bottom: 1rem;
-  border-radius: 0.75rem;
-  background-color: rgb(255 255 255 / 0.7);
-  box-shadow: 0 4px 16px rgb(36 59 83 / 0.06);
+  border-radius: 50px;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .app-sidebar-open img {
@@ -90,7 +90,7 @@
 }
 
 .app-sidebar-open:hover {
-  background-color: rgb(255 255 255 / 0.95);
+  background-color: rgba(255, 255, 255, 0.76);
 }
 
 .app-layout.is-sidebar-collapsed {
