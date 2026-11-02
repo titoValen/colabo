@@ -6,16 +6,17 @@ import AppRoutes from "@/routes/routes";
 import AuthProvider from "@/context/AuthProvider";
 import { useAuth } from "@/hooks/useAuth";
 import { BrowserRouter, useLocation } from "react-router";
+import { Toaster } from "react-hot-toast";
 
 function AppShell() {
   const { pathname } = useLocation();
-  const { token, verificandoSesion } = useAuth();
+  const { token, verificandoSesion, errorSesion } = useAuth();
   const [tipografiaLista, setTipografiaLista] = useState(false);
   const [errorTipografia, setErrorTipografia] = useState(null);
   const [intentoCargaTipografia, setIntentoCargaTipografia] = useState(0);
   const isAuthPage = ["/iniciar-sesion", "/registrarse"].includes(pathname);
   const isAppPage = ["/onboarding", "/dashboard"].includes(pathname);
-  const isAuthenticated = Boolean(token);
+  const isAuthenticated = Boolean(token) && !(errorSesion && !isAppPage);
 
   useEffect(() => {
     let cancelado = false;
@@ -75,6 +76,7 @@ function AppShell() {
 
   return (
     <>
+      <Toaster position="top-center" />
       {!isAuthPage && !isAuthenticated && <Header />}
       <AppRoutes />
       {!isAuthPage && !isAppPage && !isAuthenticated && <Footer />}
