@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 // Configuración principal de la aplicación y del manejo global de excepciones.
 return Application::configure(basePath: dirname(__DIR__))
+  ->withRouting(
+    web: __DIR__.'/../routes/web.php',
+    api: __DIR__.'/../routes/api.php',
+    commands: __DIR__.'/../routes/console.php',
+    health: '/up'
+  )
   ->withExceptions(function (Exceptions $exceptions): void {
     // Convierte las excepciones de las rutas API en respuestas JSON controladas.
     $exceptions->render(function (Throwable $e, Request $request) {
