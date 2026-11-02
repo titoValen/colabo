@@ -7,6 +7,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Configuration\Middleware;
 
 // Configuración principal de la aplicación y del manejo global de excepciones.
 return Application::configure(basePath: dirname(__DIR__))
@@ -16,6 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
     commands: __DIR__.'/../routes/console.php',
     health: '/up'
   )
+  ->withMiddleware(function (Middleware $middleware): void {
+  })
   ->withExceptions(function (Exceptions $exceptions): void {
     // Convierte las excepciones de las rutas API en respuestas JSON controladas.
     $exceptions->render(function (Throwable $e, Request $request) {
