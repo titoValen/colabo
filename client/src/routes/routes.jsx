@@ -1,7 +1,9 @@
-import { lazy, Suspense } from "react";
-import { Navigate, Routes, Route, useLocation } from "react-router";
+import { lazy, Suspense, useEffect } from "react";
+import { Navigate, Routes, Route, useLocation, Link } from "react-router";
+import toast from "react-hot-toast";
 import { useAuth } from "@/hooks/useAuth";
 import Loading from "@/components/Loading.jsx";
+import "@/styles/alert.css";
 
 const Register = lazy(() => import("@/pages/Register"));
 const Login = lazy(() => import("@/pages/Login"));
@@ -20,10 +22,19 @@ const RUTAS_PUBLICAS_BLOQUEADAS = new Set([
   "/restablecer-contrasena",
 ]);
 
+const RUTAS_PUBLICAS = new Set([...RUTAS_PUBLICAS_BLOQUEADAS, "/precios"]);
+
 export default function AppRoutes() {
   const { pathname } = useLocation();
-  const { token, usuario, verificandoSesion, errorSesion, reintentarSesion } =
-    useAuth();
+  const {
+    token,
+    usuario,
+    verificandoSesion,
+    errorSesion,
+    reintentarSesion,
+    sesionExpirada,
+    limpiarAvisoSesionExpirada,
+  } = useAuth();
   const autenticado = Boolean(token);
   const onboardingCompletado = Boolean(usuario?.onboarding_completed);
   const mensajeErrorSesion =
@@ -32,23 +43,51 @@ export default function AppRoutes() {
       : (errorSesion?.message ??
         "No pudimos verificar tu sesión. Intentá nuevamente.");
 
+  useEffect(() => {
+    if (!sesionExpirada) return;
+
+    toast.error("Tu sesión no está activa. Iniciá sesión para continuar.", {
+      id: "sesion-expirada",
+    });
+    if (pathname === "/") limpiarAvisoSesionExpirada();
+  }, [limpiarAvisoSesionExpirada, pathname, sesionExpirada]);
+
   if (verificandoSesion) {
     return <Loading />;
   }
 
-  if (errorSesion) {
+  if (sesionExpirada && pathname !== "/") {
+    return <Navigate to="/" replace />;
+  }
+
+  if (errorSesion && !RUTAS_PUBLICAS.has(pathname)) {
     return (
-      <section role="alert" aria-labelledby="error-sesion-title">
-        <h1 id="error-sesion-title">No se pudo verificar la sesión</h1>
-        <p>{mensajeErrorSesion}</p>
-        <button type="button" onClick={reintentarSesion}>
-          Reintentar
-        </button>
+      <section
+        className="alert"
+        role="alert"
+        aria-labelledby="error-sesion-title"
+      >
+        <h1 id="error-sesion-title" className="alert-title">
+          No se pudo verificar la sesión
+        </h1>
+        <p className="alert-message">{mensajeErrorSesion}</p>
+        <div className="alert-actions">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={reintentarSesion}
+          >
+            Reintentar
+          </button>
+          <Link to="/" className="btn btn-secondary">
+            Volver al inicio
+          </Link>
+        </div>
       </section>
     );
   }
 
-  if (autenticado && RUTAS_PUBLICAS_BLOQUEADAS.has(pathname)) {
+  if (autenticado && !errorSesion && RUTAS_PUBLICAS_BLOQUEADAS.has(pathname)) {
     return (
       <Navigate
         to={onboardingCompletado ? "/dashboard" : "/onboarding"}

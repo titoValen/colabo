@@ -15,6 +15,7 @@ export default function AuthProvider({ children }) {
   );
   const [errorSesion, setErrorSesion] = useState("");
   const [disparoSesion, setDisparoSesion] = useState(0);
+  const [sesionExpirada, setSesionExpirada] = useState(false);
 
   const guardarSesion = ({ token, user }) => {
     localStorage.setItem("token", token);
@@ -24,6 +25,7 @@ export default function AuthProvider({ children }) {
     setUsuario(user);
     setVerificandoSesion(false);
     setErrorSesion("");
+    setSesionExpirada(false);
   };
 
   const timerReintento = useRef(null);
@@ -79,7 +81,12 @@ export default function AuthProvider({ children }) {
     setUsuario(null);
     setErrorSesion(null);
     setVerificandoSesion(false);
+    setSesionExpirada(true);
   }, [cancelarReintento]);
+
+  const limpiarAvisoSesionExpirada = useCallback(() => {
+    setSesionExpirada(false);
+  }, []);
 
   // Cada ejecución representa un ciclo independiente; así un reintento no
   // puede actualizar el estado después de que cambió el token o se cerró sesión.
@@ -150,6 +157,8 @@ export default function AuthProvider({ children }) {
         verificandoSesion,
         errorSesion,
         reintentarSesion,
+        sesionExpirada,
+        limpiarAvisoSesionExpirada,
       }}
     >
       {children}
