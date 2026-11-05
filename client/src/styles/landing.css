@@ -120,12 +120,17 @@
 
 .landing-features {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1.25rem;
 }
 
-.landing-features .landing-feature {
-  flex: 1;
+.landing-features-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.landing-feature {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -170,9 +175,9 @@
 .landing-comparison-intro {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: justify;
   gap: 0.75rem;
-  text-align: center;
+  text-align: justify;
 }
 
 .landing-comparison-title {
@@ -560,17 +565,20 @@
   }
 
   .landing-features-title {
-    margin-bottom: -2rem;
+    margin-bottom: 0;
     text-align: center;
   }
 
   .landing-features {
-    flex-direction: column;
     gap: 0.75rem;
   }
 
-  .landing-features .landing-feature {
-    flex: none;
+  .landing-features-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .landing-feature {
     display: grid;
     grid-template-columns: 3.5rem minmax(0, 1fr);
     grid-template-areas:
@@ -685,6 +693,10 @@
 }
 
 @media (max-width: 480px) {
+  .landing {
+    row-gap: 2jjjjjjjjjjjrem;
+  }
+
   .app-shell:has(.landing) {
     --landing-gutter: 1rem;
   }
@@ -706,6 +718,37 @@
   .landing-action {
     justify-content: center;
     text-align: center;
+  }
+
+  .landing-comparison-container {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .landing-how-it-works {
+    gap: 0.75rem;
+  }
+
+  .landing-how-it-works-callout {
+    padding: 0.875rem 1rem;
+  }
+
+  .landing-features {
+    gap: 0.75rem;
+  }
+
+  .landing-features-title {
+    margin-bottom: 0;
+  }
+
+  .landing-section-faq {
+    gap: 1rem;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .landing-cta {
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
   }
 
 }
