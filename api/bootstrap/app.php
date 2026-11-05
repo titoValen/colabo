@@ -35,7 +35,7 @@ return Application::configure(basePath: dirname(__DIR__))
       // Una sesión inválida siempre se comunica como 401, sin detalles internos.
       if ($e instanceof AuthenticationException) {
         return response()->json([
-          'message' => 'Tu sesión venció. Volvé a iniciar sesión.',
+          'message' => 'Tu sesión venció. Vuelve a iniciar sesión.',
           'code' => 'unauthenticated',
         ], 401);
       }
@@ -44,14 +44,14 @@ return Application::configure(basePath: dirname(__DIR__))
       if ($e instanceof HttpExceptionInterface) {
         $status = $e->getStatusCode();
         $mensajes = [
-          403 => 'No tenés permiso para hacer esto.',
+          403 => 'No tienes permiso para hacer esto.',
           404 => 'No encontramos lo que buscabas.',
-          429 => 'Hiciste demasiados intentos. Esperá un momento.',
+          429 => 'Hiciste demasiados intentos. Espera un momento.',
         ];
 
         return response()->json([
           'message' => $mensajes[$status]
-            ?? 'No pudimos completar la solicitud. Intentá de nuevo.',
+            ?? 'No pudimos completar la solicitud. Intenta de nuevo.',
           'code' => 'request_error',
         ], $status);
       }
@@ -66,8 +66,8 @@ return Application::configure(basePath: dirname(__DIR__))
       // consultas SQL, rutas internas ni trazas de ejecución.
       return response()->json([
         'message' => $esBaseDeDatos
-          ? 'El servicio no está disponible en este momento. Intentá de nuevo en unos minutos.'
-          : 'Ocurrió un error inesperado. Intentá de nuevo.',
+          ? 'El servicio no está disponible en este momento. Intenta de nuevo en unos minutos.'
+          : 'Ocurrió un error inesperado. Intenta de nuevo.',
         'code' => $esBaseDeDatos ? 'service_unavailable' : 'server_error',
       ], $esBaseDeDatos ? 503 : 500);
     });

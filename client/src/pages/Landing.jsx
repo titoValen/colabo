@@ -48,7 +48,7 @@ export default function Landing() {
             <picture>
               <source media="(max-width: 480px)" srcSet={HeroMobile} />
               <source media="(max-width: 1023px)" srcSet={HeroTablet} />
-              <img className="landing-hero-image" src={Hero} alt="Background para el hero de la página de inicio" />
+              <img className="landing-hero-image" src={Hero} alt="Imagen de fondo de la página de inicio" />
             </picture>
           </figure>
         </div>
@@ -109,7 +109,7 @@ export default function Landing() {
             ¿Cómo funcionan los planes compartidos?
           </h2>
           <p className="landing-how-it-works-description">
-            Organizá cada plan en pocos pasos y mantené a todas las personas al
+            Organiza cada plan en pocos pasos y mantén a todas las personas al
             tanto.
           </p>
         </div>
@@ -124,9 +124,9 @@ export default function Landing() {
               <img src={Paso1} alt="Imagen del paso 1" />
             </figure>
             <span className="landing-how-it-works-step-number">PASO 01</span>
-            <h3 className="landing-how-it-works-step-title">Creá</h3>
+            <h3 className="landing-how-it-works-step-title">Crea</h3>
             <p className="landing-how-it-works-step-description">
-              Definí la idea, la fecha y el lugar.
+              Define la idea, la fecha y el lugar.
             </p>
           </article>
           <article className="landing-how-it-works-step">
@@ -139,9 +139,9 @@ export default function Landing() {
               <img src={Paso2} alt="Imagen del paso 2" />
             </figure>
             <span className="landing-how-it-works-step-number">PASO 02</span>
-            <h3 className="landing-how-it-works-step-title">Compartí</h3>
+            <h3 className="landing-how-it-works-step-title">Comparte</h3>
             <p className="landing-how-it-works-step-description">
-              Invitá a quienes forman parte del plan.
+              Invita a quienes forman parte del plan.
             </p>
           </article>
           <article className="landing-how-it-works-step">
@@ -154,9 +154,9 @@ export default function Landing() {
               <img src={Paso3} alt="Imagen del paso 3" />
             </figure>
             <span className="landing-how-it-works-step-number">PASO 03</span>
-            <h3 className="landing-how-it-works-step-title">Organizá</h3>
+            <h3 className="landing-how-it-works-step-title">Organiza</h3>
             <p className="landing-how-it-works-step-description">
-              Repartí tareas y dejá los acuerdos claros.
+              Reparte tareas y deja los acuerdos claros.
             </p>
           </article>
         </div>
@@ -194,7 +194,7 @@ export default function Landing() {
           </figure>
           <h3 className="landing-feature-title">Plan compartido</h3>
           <p className="landing-feature-description">
-            Organizá con otras personas de forma simple.
+            Organiza con otras personas de forma simple.
           </p>
         </div>
         <div className="landing-feature">
@@ -205,9 +205,9 @@ export default function Landing() {
               alt="Icono de una persona más, dando referencia a que todos deben sumarse"
             />
           </figure>
-          <h3 className="landing-feature-title">Todos saben como sumarse</h3>
+          <h3 className="landing-feature-title">Todos saben cómo sumarse</h3>
           <p className="landing-feature-description">
-            Es fácil organizarse y saber como colaborar.
+            Es fácil organizarse y saber cómo colaborar.
           </p>
         </div>
       </section>
@@ -219,7 +219,7 @@ export default function Landing() {
         <div className="landing-faq-intro">
           <h2 className="landing-faq-title">Preguntas frecuentes</h2>
           <p className="landing-faq-description">
-            Todo lo que necesitás saber para empezar a usar Colabo.
+            Todo lo que necesitas saber para empezar a usar Colabo.
           </p>
         </div>
         <div className="landing-faq-list">
@@ -265,7 +265,7 @@ export default function Landing() {
             </label>
             <div className="landing-faq-answer">
               <p className="landing-faq-answer-text">
-                Podés hacerlo mediante un link de invitación o buscando su
+                Puedes hacerlo mediante un enlace de invitación o buscando su
                 usuario en el panel de búsqueda de usuarios.
               </p>
             </div>
@@ -289,7 +289,7 @@ export default function Landing() {
             </label>
             <div className="landing-faq-answer">
               <p className="landing-faq-answer-text">
-                Podés organizar salidas, viajes, eventos y otros planes en
+                Puedes organizar salidas, viajes, eventos y otros planes en
                 grupo.
               </p>
             </div>

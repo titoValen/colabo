@@ -36,7 +36,7 @@ export default function Price() {
 
   return (
     <main className="price-page">
-      <h1 className="price-title">Elegí cómo colaborar</h1>
+      <h1 className="price-title">Elige cómo colaborar</h1>
 
       <div
         className="price-billing-options"
@@ -56,7 +56,7 @@ export default function Price() {
           aria-pressed={billingPeriod === "annual"}
           onClick={() => setBillingPeriod("annual")}
         >
-          Anual · Ahorrá $9.998
+          Anual · Ahorra $9.998
         </button>
       </div>
 
@@ -74,7 +74,7 @@ export default function Price() {
           period={selectedPlan.period}
           description="Para grupos que buscan una organización más completa."
           button="Obtener Plus"
-          featuresIntro="Todo lo que trae free, más:"
+          featuresIntro="Todo lo que incluye el plan gratuito, más:"
           features={plusFeatures}
           className="price-card-plus"
         />

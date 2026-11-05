@@ -15,7 +15,7 @@ class OnboardingController extends Controller
 
         if ($user->onboarding_completed) {
             return response()->json([
-                'message' => 'El onboarding ya fue completado.',
+                'message' => 'La configuración inicial ya se completó.',
             ], 409);
         }
 

@@ -74,13 +74,13 @@ class AuthController extends Controller
         if ($status !== Password::RESET_LINK_SENT) {
             return response()->json([
                 'message' => app()->isLocal() && $status === Password::INVALID_USER
-                    ? 'No existe una cuenta con ese email.'
-                    : 'Si existe una cuenta con ese email, recibirás un enlace de recuperación.',
+                    ? 'No existe una cuenta con ese correo electrónico.'
+                    : 'Si existe una cuenta con ese correo electrónico, recibirás un enlace de recuperación.',
             ], 422);
         }
 
         return response()->json([
-            'message' => 'Si existe una cuenta con ese email, recibirás un enlace de recuperación.',
+            'message' => 'Si existe una cuenta con ese correo electrónico, recibirás un enlace de recuperación.',
         ], 200);
     }
 
@@ -106,7 +106,7 @@ class AuthController extends Controller
                 'message' => app()->isLocal()
                     ? match ($status) {
                         Password::INVALID_TOKEN => 'El token de recuperación no es válido o ya expiró.',
-                        Password::INVALID_USER => 'No existe una cuenta con ese email.',
+                        Password::INVALID_USER => 'No existe una cuenta con ese correo electrónico.',
                         default => 'No se pudo restablecer la contraseña.',
                     }
                     : 'El enlace de recuperación no es válido o ya expiró.',
