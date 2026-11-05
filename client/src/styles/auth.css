@@ -208,8 +208,11 @@
     margin-bottom: 0.5rem;
   }
 
-  .auth-logo-register img {
+  .auth-logo img {
     width: clamp(150px, 40vw, 190px);
+    margin-bottom: 1rem;
+    width: 100%;
+
   }
 
   .auth-panel-register > h1 {
