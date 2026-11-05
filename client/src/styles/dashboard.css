@@ -86,7 +86,7 @@
 
 .dashboard-header p {
   margin-top: 0.25rem;
-  color: var(--color-gray);
+  color: var(--color-dark-gray);
 }
 
 .dashboard-content {
@@ -116,11 +116,7 @@
 .dashboard-card-title,
 .dashboard-stat-title {
   color: var(--color-blue);
-  font-size: 1.125rem;
-}
-
-.dashboard-card-message {
-  color: var(--color-gray);
+  font-size: 1.25rem;
 }
 
 .dashboard-stat-value {
@@ -131,10 +127,13 @@
   line-height: 1;
 }
 
-.dashboard-stat-detail {
+.dashboard-stat-detail,
+.dashboard-card-message,
+.dashboard-event-meta,
+.dashboard-new-group-text {
   margin-top: 0.5rem;
-  color: var(--color-gray);
-  font-size: 0.875rem;
+  color: var(--color-dark-gray);
+  font-size: 1rem;
 }
 
 .dashboard-event-list {
@@ -181,13 +180,6 @@
   white-space: nowrap;
 }
 
-.dashboard-event-meta {
-  color: var(--color-gray);
-  font-size: 0.875rem;
-}
-
-
-
 .dashboard-new-group {
   display: flex;
   flex-direction: column;
@@ -205,13 +197,7 @@
 .dashboard-new-group-title {
   margin-top: 1rem;
   color: var(--color-blue);
-  font-size: 1.125rem;
-}
-
-.dashboard-new-group-text {
-  margin-top: 0.5rem;
-  color: var(--color-gray);
-  font-size: 0.875rem;
+  font-size: 1.25rem;
 }
 
 .dashboard-new-group-button {
