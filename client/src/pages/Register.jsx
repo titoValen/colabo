@@ -64,7 +64,7 @@ export default function Register() {
         className="auth-panel auth-panel-register"
         aria-labelledby="auth-title"
       >
-        <figure className="auth-logo auth-logo-register">
+        <figure className="auth-logo">
           <img src={Logo} alt="Logo de Colabo" />
         </figure>
         <h1 id="auth-title" className="auth-title">
