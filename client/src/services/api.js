@@ -11,16 +11,16 @@ export class ApiError extends Error {
 }
 
 const MENSAJES_POR_ESTADO = {
-  400: "Revisá los datos enviados e intentá de nuevo.",
-  401: "Tu sesión venció. Volvé a iniciar sesión.",
-  403: "No tenés permiso para hacer esto.",
+  400: "Revisa los datos enviados e intenta de nuevo.",
+  401: "Tu sesión venció. Vuelve a iniciar sesión.",
+  403: "No tienes permiso para hacer esto.",
   404: "No encontramos lo que buscabas.",
-  422: "Revisá los datos ingresados.",
-  429: "Hiciste demasiados intentos. Esperá un momento.",
+  422: "Revisa los datos ingresados.",
+  429: "Hiciste demasiados intentos. Espera un momento.",
 };
 
 const MENSAJE_ERROR_SERVIDOR =
-  "Tenemos un problema en el servidor. Intentá más tarde.";
+  "Tenemos un problema en el servidor. Intenta más tarde.";
 
 export async function apiFetch(path, { method = "GET", body, token } = {}) {
   let res;
@@ -36,7 +36,7 @@ export async function apiFetch(path, { method = "GET", body, token } = {}) {
     });
   } catch {
     throw new ApiError(
-      "No pudimos conectarnos con Colabo. Revisá tu conexión e intentá de nuevo.",
+      "No pudimos conectarnos con Colabo. Revisa tu conexión e intenta de nuevo.",
       { code: "network" },
     );
   }

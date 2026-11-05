@@ -9,7 +9,7 @@ import "@/styles/onboarding.css";
 const TIPOS_GRUPO = [
   "Amigos",
   "Familia",
-  "Compañeros de piso",
+  "Compañeros de vivienda",
   "Viaje",
   "Otro",
 ];
@@ -127,7 +127,7 @@ export default function Onboarding() {
           </p>
         )}
 
-        <nav className="onboarding-steps" aria-label="Pasos del onboarding">
+        <nav className="onboarding-steps" aria-label="Pasos de la configuración inicial">
           <span
             className={paso === 1 ? "is-active" : "is-complete"}
             aria-current={paso === 1 ? "step" : undefined}
@@ -255,7 +255,7 @@ export default function Onboarding() {
                 <figure>
                   <img
                     src={ArrowLeft}
-                    alt="Icono de una flecha hacia la izquierda, haciando referencia para volver al paso anterior"
+                    alt="Icono de una flecha hacia la izquierda que indica cómo volver al paso anterior"
                   />
                 </figure>
                 <span>Volver</span>

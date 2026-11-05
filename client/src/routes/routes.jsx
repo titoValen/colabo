@@ -41,12 +41,12 @@ export default function AppRoutes() {
     typeof errorSesion === "string"
       ? errorSesion
       : (errorSesion?.message ??
-        "No pudimos verificar tu sesión. Intentá nuevamente.");
+        "No pudimos verificar tu sesión. Intenta nuevamente.");
 
   useEffect(() => {
     if (!sesionExpirada) return;
 
-    toast.error("Tu sesión no está activa. Iniciá sesión para continuar.", {
+    toast.error("Tu sesión no está activa. Inicia sesión para continuar.", {
       id: "sesion-expirada",
     });
     if (pathname === "/") limpiarAvisoSesionExpirada();

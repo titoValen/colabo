@@ -5,7 +5,7 @@ export default function Dashboard() {
 
   return (
     <main className="dashboard-page">
-      <h1>Dashboard</h1>
+      <h1>Panel principal</h1>
       <p>¡Todo listo{usuario?.name ? `, ${usuario.name}` : ""}!</p>
       <p>Tu espacio de Colabo ya está preparado.</p>
     </main>
