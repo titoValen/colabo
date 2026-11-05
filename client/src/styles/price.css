@@ -110,3 +110,117 @@
   gap: 0.5rem;
   margin-left: 1.5rem;
 }
+
+/* ==========================================================================
+  RESPONSIVE
+  ========================================================================== */
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .price-page {
+    width: min(100% - 2rem, 56rem);
+    margin-inline: auto;
+  }
+
+  .price-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .price-billing-options {
+    max-width: 400px;
+    margin: 3rem auto 1.25rem;
+  }
+
+  .price-plans {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .price-card {
+    max-width: none;
+    width: 100%;
+    padding: 3rem 1rem;
+    background-size: 4.5rem auto;
+  }
+
+  .price-card-title {
+    font-size: 1.75rem;
+  }
+
+  .price-value {
+    margin: 1.25rem 0;
+  }
+
+  .price-amount {
+    font-size: 2.75rem;
+  }
+
+  .price-action {
+    margin: 1.75rem 0;
+  }
+
+  .price-features-intro {
+    margin-bottom: 0.875rem;
+  }
+
+  .price-features {
+    margin-left: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .price-page {
+    margin-inline: 0.25rem;
+  }
+
+  .price-title {
+    margin-inline: 0.5rem;
+    font-size: 2.25rem;
+    line-height: 1.1;
+  }
+
+  .price-billing-options {
+    margin: 2rem auto 1rem;
+    max-width: 350px;
+  }
+
+  .price-billing-button {
+    padding-inline: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .price-plans {
+    margin: 2rem 1rem;
+  }
+
+  .price-card {
+    padding: 2.5rem 1rem;
+    background-size: 4rem auto;
+  }
+
+  .price-card-title {
+    font-size: 1.75rem;
+  }
+
+  .price-value {
+    margin: 1rem 0;
+  }
+
+  .price-amount {
+    font-size: 2.5rem;
+  }
+
+  .price-action {
+    margin: 1.5rem 0;
+  }
+
+  .price-features-intro {
+    margin-bottom: 0.75rem;
+  }
+
+  .price-features {
+    margin-left: 1rem;
+  }
+}
