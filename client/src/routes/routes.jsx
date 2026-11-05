@@ -13,8 +13,14 @@ const Onboarding = lazy(() => import("@/pages/Onboarding"));
 const ForgotPassword = lazy(() => import("@/pages/ForgotPassword"));
 const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
+const Groups = lazy(() => import("@/pages/Groups"));
+const Tasks = lazy(() => import("@/pages/Tasks"));
+const Events = lazy(() => import("@/pages/Events"));
+const Expenses = lazy(() => import("@/pages/Expenses"));
+const Agreements = lazy(() => import("@/pages/Agreements"));
+const Profile = lazy(() => import("@/pages/Profile"));
 
-const RUTAS_PUBLICAS_BLOQUEADAS = new Set([
+const PUBLIC_ONLY_ROUTES = new Set([
   "/",
   "/iniciar-sesion",
   "/registrarse",
@@ -90,20 +96,20 @@ export default function AppRoutes() {
   if (autenticado && !errorSesion && RUTAS_PUBLICAS_BLOQUEADAS.has(pathname)) {
     return (
       <Navigate
-        to={onboardingCompletado ? "/dashboard" : "/onboarding"}
+        to={isOnboardingCompleted ? "/dashboard" : "/onboarding"}
         replace
       />
     );
   }
 
   if (pathname === "/onboarding") {
-    if (!autenticado) return <Navigate to="/iniciar-sesion" replace />;
-    if (onboardingCompletado) return <Navigate to="/dashboard" replace />;
+    if (!isAuthenticated) return <Navigate to="/iniciar-sesion" replace />;
+    if (isOnboardingCompleted) return <Navigate to="/dashboard" replace />;
   }
 
-  if (pathname === "/dashboard") {
-    if (!autenticado) return <Navigate to="/iniciar-sesion" replace />;
-    if (!onboardingCompletado) return <Navigate to="/onboarding" replace />;
+  if (APP_ROUTES.has(pathname)) {
+    if (!isAuthenticated) return <Navigate to="/iniciar-sesion" replace />;
+    if (!isOnboardingCompleted) return <Navigate to="/onboarding" replace />;
   }
 
   return (
@@ -117,6 +123,12 @@ export default function AppRoutes() {
         <Route path="/recuperar-contrasena" element={<ForgotPassword />} />
         <Route path="/restablecer-contrasena" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/grupos" element={<Groups />} />
+        <Route path="/tareas" element={<Tasks />} />
+        <Route path="/eventos" element={<Events />} />
+        <Route path="/gastos" element={<Expenses />} />
+        <Route path="/acuerdos" element={<Agreements />} />
+        <Route path="/perfil" element={<Profile />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
