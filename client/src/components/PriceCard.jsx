@@ -4,7 +4,7 @@ export default function PriceCard({
   period,
   description,
   button,
-  featuresIntro = "Todo lo que trae free:",
+  featuresIntro = "Todo lo que incluye el plan gratuito:",
   features,
   className = "",
 }) {

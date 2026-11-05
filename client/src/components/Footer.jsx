@@ -25,7 +25,7 @@ export default function Footer() {
           </Link>
         </nav>
         <div className="footer-socials">
-          <span className="footer-socials-label">Seguinos</span>
+          <span className="footer-socials-label">Síguenos</span>
           <div className="footer-socials-list" aria-label="Redes sociales">
             <figure className="footer-social-icon">
               <img src={Instagram} alt="Instagram" />

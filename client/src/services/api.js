@@ -15,8 +15,8 @@ const MESSAGES_BY_STATUS = {
   401: "Tu sesión venció. Volvé a iniciar sesión.",
   403: "No tenés permiso para hacer esto.",
   404: "No encontramos lo que buscabas.",
-  422: "Revisá los datos ingresados.",
-  429: "Hiciste demasiados intentos. Esperá un momento.",
+  422: "Revisa los datos ingresados.",
+  429: "Hiciste demasiados intentos. Espera un momento.",
 };
 
 const SERVER_ERROR_MESSAGE =
@@ -36,7 +36,7 @@ export async function apiFetch(path, { method = "GET", body, token } = {}) {
     });
   } catch {
     throw new ApiError(
-      "No pudimos conectarnos con Colabo. Revisá tu conexión e intentá de nuevo.",
+      "No pudimos conectarnos con Colabo. Revisa tu conexión e intenta de nuevo.",
       { code: "network" },
     );
   }

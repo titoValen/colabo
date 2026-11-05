@@ -61,7 +61,7 @@ export default function Login() {
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <AuthField
-            label={"Email"}
+            label={"Correo electrónico"}
             input={{
               type: "email",
               id: "email",

@@ -71,7 +71,7 @@ export default function Register() {
           ¡Bienvenido!
         </h1>
         <span className="auth-description">
-          Registrate para crear tu cuenta
+          Regístrate para crear tu cuenta
         </span>
         {error("general")}
 
@@ -92,7 +92,7 @@ export default function Register() {
           />
 
           <AuthField
-            label={"Email"}
+            label={"Correo electrónico"}
             input={{
               type: "email",
               id: "email",

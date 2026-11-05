@@ -62,7 +62,7 @@ export default function AppRoutes() {
   useEffect(() => {
     if (!isSessionExpired) return;
 
-    toast.error("Tu sesión no está activa. Iniciá sesión para continuar.", {
+    toast.error("Tu sesión no está activa. Inicia sesión para continuar.", {
       id: "sesion-expirada",
     });
     if (pathname === "/") clearSessionExpiredNotice();
