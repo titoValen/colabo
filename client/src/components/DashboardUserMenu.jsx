@@ -15,7 +15,7 @@ function getInitials(name) {
 }
 
 export default function DashboardUserMenu() {
-  const { usuario: user, logout } = useAuth();
+  const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 

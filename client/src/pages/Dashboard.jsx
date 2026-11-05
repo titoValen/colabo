@@ -16,7 +16,7 @@ const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 const VISIBLE_EVENTS_COUNT = 3;
 
 export default function Dashboard() {
-  const { token, usuario: user } = useAuth();
+  const { token, user } = useAuth();
   const [now] = useState(() => Date.now());
   const [events, setEvents] = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(true);

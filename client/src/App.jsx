@@ -10,52 +10,50 @@ import { Toaster } from "react-hot-toast";
 
 function AppShell() {
   const { pathname } = useLocation();
-  const { token, verificandoSesion, errorSesion } = useAuth();
-  const [tipografiaLista, setTipografiaLista] = useState(false);
-  const [errorTipografia, setErrorTipografia] = useState(null);
-  const [intentoCargaTipografia, setIntentoCargaTipografia] = useState(0);
+  const { token, isCheckingSession, sessionError } = useAuth();
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
+  const [fontError, setFontError] = useState(null);
+  const [fontLoadAttempt, setFontLoadAttempt] = useState(0);
   const isAuthPage = ["/iniciar-sesion", "/registrarse"].includes(pathname);
   const isAppPage = ["/onboarding", "/dashboard"].includes(pathname);
-  const isAuthenticated = Boolean(token) && !(errorSesion && !isAppPage);
+  const isAuthenticated = Boolean(token) && !(sessionError && !isAppPage);
 
   useEffect(() => {
-    let cancelado = false;
+    let isCancelled = false;
 
-    const cargarTipografia = async () => {
+    const loadFonts = async () => {
       try {
         await Promise.all([
           document.fonts.load('16px "Asap"'),
           document.fonts.load('16px "Quicksand"'),
         ]);
-        if (!cancelado) setTipografiaLista(true);
+        if (!isCancelled) setIsFontLoaded(true);
       } catch (error) {
-        if (!cancelado) setErrorTipografia(error);
+        if (!isCancelled) setFontError(error);
       }
     };
 
-    cargarTipografia();
+    loadFonts();
 
     return () => {
-      cancelado = true;
+      isCancelled = true;
     };
-  }, [intentoCargaTipografia]);
+  }, [fontLoadAttempt]);
 
-  if (errorTipografia) {
-    const mensajeError =
-      errorTipografia instanceof Error
-        ? errorTipografia.message
-        : String(errorTipografia);
+  if (fontError) {
+    const errorMessage =
+      fontError instanceof Error ? fontError.message : String(fontError);
 
     return (
       <section role="alert" aria-labelledby="error-tipografia-title">
         <h1 id="error-tipografia-title">No se pudo cargar la tipografía</h1>
-        <p>{mensajeError}</p>
+        <p>{errorMessage}</p>
         <button
           type="button"
           onClick={() => {
-            setTipografiaLista(false);
-            setErrorTipografia(null);
-            setIntentoCargaTipografia((intento) => intento + 1);
+            setIsFontLoaded(false);
+            setFontError(null);
+            setFontLoadAttempt((attempt) => attempt + 1);
           }}
         >
           Reintentar
@@ -64,11 +62,11 @@ function AppShell() {
     );
   }
 
-  if (!tipografiaLista || verificandoSesion) {
+  if (!isFontLoaded || isCheckingSession) {
     return (
       <Loading
         status={
-          tipografiaLista ? "Verificando sesión..." : "Cargando tipografía..."
+          isFontLoaded ? "Verificando sesión..." : "Cargando tipografía..."
         }
       />
     );

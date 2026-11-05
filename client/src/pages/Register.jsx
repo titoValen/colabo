@@ -47,10 +47,10 @@ export default function Register() {
     }
   };
 
-  const error = (campo) =>
-    errors[campo]?.[0] && (
+  const error = (field) =>
+    errors[field]?.[0] && (
       <p className="auth-error" role="alert">
-        {errors[campo][0]}
+        {errors[field][0]}
       </p>
     );
 
