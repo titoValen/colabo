@@ -48,5 +48,3 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 
-/api/storage/certs/*.pem
-api/storage/certs/isrgrootx1.pem

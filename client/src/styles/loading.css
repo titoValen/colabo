@@ -1,0 +1,108 @@
+@property --square-1 {
+  syntax: "<transform-function>";
+  inherits: true;
+  initial-value: translate(0, 0);
+}
+
+@property --square-2 {
+  syntax: "<transform-function>";
+  inherits: true;
+  initial-value: translate(0, 0);
+}
+
+@property --square-3 {
+  syntax: "<transform-function>";
+  inherits: true;
+  initial-value: translate(0, 0);
+}
+
+@property --square-4 {
+  syntax: "<transform-function>";
+  inherits: true;
+  initial-value: translate(0, 0);
+}
+
+.loader-square {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  place-content: center;
+  gap: 4px;
+  width: min(320px, calc(100vw - 32px));
+  height: 320px;
+  animation: loader forwards 3s infinite;
+}
+
+.square {
+  width: clamp(40px, 14vw, 60px);
+  height: clamp(40px, 14vw, 60px);
+  border-radius: 50%;
+}
+
+.loading-indicator {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--color-white);
+  text-align: center;
+}
+
+.loading-status {
+  color: var(--color-black);
+  font-size: 1rem;
+}
+
+.square-1 {
+  transform: var(--square-1);
+  background: var(--color-orange);
+}
+
+.square-2 {
+  transform: var(--square-2);
+  background: var(--color-sky-blue);
+}
+
+.square-3 {
+  transform: var(--square-3);
+  background: var(--color-blue);
+}
+
+.square-4 {
+  transform: var(--square-4);
+  background: var(--color-fur);
+}
+
+@keyframes loader {
+  0% {
+    --square-1: translate(0%, 0%);
+    --square-2: translate(0%, 0%);
+    --square-3: translate(0%, 0%);
+    --square-4: translate(0%, 0%);
+  }
+
+  25% {
+    --square-1: translate(-60%, -60%);
+    --square-2: translate(60%, -60%);
+    --square-3: translate(-60%, 60%);
+    --square-4: translate(60%, 60%);
+  }
+
+  50% {
+    --square-1: translate(166%, -60%);
+    --square-2: translate(60%, 166%);
+    --square-3: translate(-60%, -166%);
+    --square-4: translate(-166%, 60%);
+  }
+
+  75% {
+    --square-1: translate(106%, 0%);
+    --square-2: translate(0%, 106%);
+    --square-3: translate(0%, -106%);
+    --square-4: translate(-106%, 0%);
+  }
+}
