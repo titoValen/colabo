@@ -10,17 +10,17 @@ export class ApiError extends Error {
   }
 }
 
-const MENSAJES_POR_ESTADO = {
-  400: "Revisa los datos enviados e intenta de nuevo.",
-  401: "Tu sesión venció. Vuelve a iniciar sesión.",
-  403: "No tienes permiso para hacer esto.",
+const MESSAGES_BY_STATUS = {
+  400: "Revisá los datos enviados e intentá de nuevo.",
+  401: "Tu sesión venció. Volvé a iniciar sesión.",
+  403: "No tenés permiso para hacer esto.",
   404: "No encontramos lo que buscabas.",
   422: "Revisa los datos ingresados.",
   429: "Hiciste demasiados intentos. Espera un momento.",
 };
 
-const MENSAJE_ERROR_SERVIDOR =
-  "Tenemos un problema en el servidor. Intenta más tarde.";
+const SERVER_ERROR_MESSAGE =
+  "Tenemos un problema en el servidor. Intentá más tarde.";
 
 export async function apiFetch(path, { method = "GET", body, token } = {}) {
   let res;
@@ -48,8 +48,8 @@ export async function apiFetch(path, { method = "GET", body, token } = {}) {
 
     throw new ApiError(
       esServidor
-        ? MENSAJE_ERROR_SERVIDOR
-        : (MENSAJES_POR_ESTADO[res.status] ?? "Error en la solicitud."),
+        ? SERVER_ERROR_MESSAGE
+        : (MESSAGES_BY_STATUS[res.status] ?? "Error en la solicitud."),
       {
         status: res.status,
         code: data?.code ?? (esServidor ? "server_error" : "request_error"),

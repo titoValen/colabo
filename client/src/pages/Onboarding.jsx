@@ -6,7 +6,7 @@ import ArrowLeft from "@/assets/icons/arrow_left.svg";
 import Logo from "@/assets/colabo_logo.svg";
 import "@/styles/onboarding.css";
 
-const TIPOS_GRUPO = [
+const GROUP_TYPES = [
   "Amigos",
   "Familia",
   "Compañeros de vivienda",
@@ -14,7 +14,7 @@ const TIPOS_GRUPO = [
   "Otro",
 ];
 
-const FORM_INICIAL = {
+const INITIAL_FORM = {
   grupo: {
     nombre: "",
     tipo: "Amigos",
@@ -29,58 +29,59 @@ const FORM_INICIAL = {
 };
 
 export default function Onboarding() {
-  const { completarOnboarding, saltarOnboarding } = useAuth();
+  const { completeOnboarding, skipOnboarding } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState(FORM_INICIAL);
+  const [form, setForm] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState({});
-  const [errorGeneral, setErrorGeneral] = useState("");
+  const [generalError, setGeneralError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [paso, setPaso] = useState(1);
+  const [step, setStep] = useState(1);
 
-  const cambiarGrupo = (event) => {
+  const handleGroupChange = (event) => {
     const { name, value } = event.target;
-    setForm((actual) => ({
-      ...actual,
-      grupo: { ...actual.grupo, [name]: value },
+    setForm((current) => ({
+      ...current,
+      grupo: { ...current.grupo, [name]: value },
     }));
-    setErrors((actuales) => ({ ...actuales, [`grupo.${name}`]: undefined }));
-    setErrorGeneral("");
+    setErrors((current) => ({ ...current, [`grupo.${name}`]: undefined }));
+    setGeneralError("");
   };
 
-  const cambiarEvento = (event) => {
+  const handleEventChange = (event) => {
     const { name, value } = event.target;
-    setForm((actual) => ({
-      ...actual,
-      evento: { ...actual.evento, [name]: value },
+    setForm((current) => ({
+      ...current,
+      evento: { ...current.evento, [name]: value },
     }));
-    setErrors((actuales) => ({ ...actuales, [`evento.${name}`]: undefined }));
-    setErrorGeneral("");
+    setErrors((current) => ({ ...current, [`evento.${name}`]: undefined }));
+    setGeneralError("");
   };
 
-  const mostrarError = (campo) =>
-    errors[campo]?.[0] && (
+  const showError = (field) =>
+    errors[field]?.[0] && (
       <p className="onboarding-error" role="alert">
-        {errors[campo][0]}
+        {errors[field][0]}
       </p>
     );
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors({});
-    setErrorGeneral("");
+    setGeneralError("");
 
-    if (paso === 1) {
-      setPaso(2);
+    if (step === 1) {
+      setStep(2);
       return;
     }
 
     setLoading(true);
-    const { tipoPersonalizado, ...grupo } = form.grupo;
+    const { tipoPersonalizado, ...group } = form.grupo;
     try {
-      await completarOnboarding({
+      await completeOnboarding({
         grupo: {
-          ...grupo,
-          tipo: grupo.tipo === "Otro" ? tipoPersonalizado.trim() : grupo.tipo,
+          ...group,
+          tipo:
+            group.tipo === "Otro" ? tipoPersonalizado.trim() : group.tipo,
         },
         evento: form.evento,
       });
@@ -89,22 +90,22 @@ export default function Onboarding() {
       if (Object.keys(error.errors ?? {}).length) {
         setErrors(error.errors);
       } else {
-        setErrorGeneral(error.message);
+        setGeneralError(error.message);
       }
     } finally {
       setLoading(false);
     }
   };
 
-  const handleSaltar = async () => {
+  const handleSkip = async () => {
     setLoading(true);
     setErrors({});
-    setErrorGeneral("");
+    setGeneralError("");
     try {
-      await saltarOnboarding();
+      await skipOnboarding();
       navigate("/dashboard", { replace: true });
     } catch (error) {
-      setErrorGeneral(error.message);
+      setGeneralError(error.message);
     } finally {
       setLoading(false);
     }
@@ -121,24 +122,24 @@ export default function Onboarding() {
           Crea tu primer grupo y evento para tener todo en un mismo lugar.
         </p>
 
-        {errorGeneral && (
+        {generalError && (
           <p className="onboarding-error" role="alert">
-            {errorGeneral}
+            {generalError}
           </p>
         )}
 
         <nav className="onboarding-steps" aria-label="Pasos de la configuración inicial">
           <span
-            className={paso === 1 ? "is-active" : "is-complete"}
-            aria-current={paso === 1 ? "step" : undefined}
+            className={step === 1 ? "is-active" : "is-complete"}
+            aria-current={step === 1 ? "step" : undefined}
           >
             <span className="onboarding-step-number">1</span>
             <span className="onboarding-step-label">Tu grupo</span>
           </span>
           <span className="onboarding-step-line" aria-hidden="true" />
           <span
-            className={paso === 2 ? "is-active" : "is-inactive"}
-            aria-current={paso === 2 ? "step" : undefined}
+            className={step === 2 ? "is-active" : "is-inactive"}
+            aria-current={step === 2 ? "step" : undefined}
           >
             <span className="onboarding-step-number">2</span>
             <span className="onboarding-step-label">Tu evento</span>
@@ -146,7 +147,7 @@ export default function Onboarding() {
         </nav>
 
         <form className="onboarding-form" onSubmit={handleSubmit}>
-          {paso === 1 ? (
+          {step === 1 ? (
             <fieldset disabled={loading}>
               <legend>Tu grupo</legend>
 
@@ -155,23 +156,23 @@ export default function Onboarding() {
                 id="grupo-nombre"
                 name="nombre"
                 value={form.grupo.nombre}
-                onChange={cambiarGrupo}
+                onChange={handleGroupChange}
                 maxLength={255}
                 required
               />
-              {mostrarError("grupo.nombre")}
+              {showError("grupo.nombre")}
 
               <label htmlFor="grupo-tipo">Tipo de grupo</label>
               <select
                 id="grupo-tipo"
                 name="tipo"
                 value={form.grupo.tipo}
-                onChange={cambiarGrupo}
+                onChange={handleGroupChange}
                 required
               >
-                {TIPOS_GRUPO.map((tipo) => (
-                  <option key={tipo} value={tipo}>
-                    {tipo}
+                {GROUP_TYPES.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
                   </option>
                 ))}
               </select>
@@ -184,13 +185,13 @@ export default function Onboarding() {
                     id="grupo-tipo-personalizado"
                     name="tipoPersonalizado"
                     value={form.grupo.tipoPersonalizado}
-                    onChange={cambiarGrupo}
+                    onChange={handleGroupChange}
                     maxLength={255}
                     required
                   />
                 </>
               )}
-              {mostrarError("grupo.tipo")}
+              {showError("grupo.tipo")}
 
               <label htmlFor="grupo-descripcion">
                 Descripción <span>(opcional)</span>
@@ -199,10 +200,10 @@ export default function Onboarding() {
                 id="grupo-descripcion"
                 name="descripcion"
                 value={form.grupo.descripcion}
-                onChange={cambiarGrupo}
+                onChange={handleGroupChange}
                 rows="2"
               />
-              {mostrarError("grupo.descripcion")}
+              {showError("grupo.descripcion")}
             </fieldset>
           ) : (
             <fieldset disabled={loading}>
@@ -213,11 +214,11 @@ export default function Onboarding() {
                 id="evento-titulo"
                 name="titulo"
                 value={form.evento.titulo}
-                onChange={cambiarEvento}
+                onChange={handleEventChange}
                 maxLength={255}
                 required
               />
-              {mostrarError("evento.titulo")}
+              {showError("evento.titulo")}
 
               <label htmlFor="evento-fecha-hora">Fecha y hora</label>
               <input
@@ -225,10 +226,10 @@ export default function Onboarding() {
                 name="fecha_hora"
                 type="datetime-local"
                 value={form.evento.fecha_hora}
-                onChange={cambiarEvento}
+                onChange={handleEventChange}
                 required
               />
-              {mostrarError("evento.fecha_hora")}
+              {showError("evento.fecha_hora")}
 
               <label htmlFor="evento-descripcion">
                 Descripción <span>(opcional)</span>
@@ -237,19 +238,19 @@ export default function Onboarding() {
                 id="evento-descripcion"
                 name="descripcion"
                 value={form.evento.descripcion}
-                onChange={cambiarEvento}
+                onChange={handleEventChange}
                 rows="2"
               />
-              {mostrarError("evento.descripcion")}
+              {showError("evento.descripcion")}
             </fieldset>
           )}
 
           <div className="onboarding-actions">
-            {paso === 2 && (
+            {step === 2 && (
               <button
                 type="button"
                 className="onboarding-back"
-                onClick={() => setPaso(1)}
+                onClick={() => setStep(1)}
                 disabled={loading}
               >
                 <figure>
@@ -269,7 +270,7 @@ export default function Onboarding() {
             >
               {loading
                 ? "Guardando..."
-                : paso === 1
+                : step === 1
                   ? "Continuar al evento"
                   : "Crear grupo y evento"}
             </button>
@@ -279,7 +280,7 @@ export default function Onboarding() {
         <button
           className="onboarding-skip"
           type="button"
-          onClick={handleSaltar}
+          onClick={handleSkip}
           disabled={loading}
         >
           {loading ? "Procesando..." : "Saltar todo"}

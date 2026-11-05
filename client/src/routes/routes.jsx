@@ -28,45 +28,55 @@ const PUBLIC_ONLY_ROUTES = new Set([
   "/restablecer-contrasena",
 ]);
 
-const RUTAS_PUBLICAS = new Set([...RUTAS_PUBLICAS_BLOQUEADAS, "/precios"]);
+const PUBLIC_ROUTES = new Set([...PUBLIC_ONLY_ROUTES, "/precios"]);
+const AUTHENTICATED_REDIRECT_ROUTES = PUBLIC_ONLY_ROUTES;
+const APP_ROUTES = new Set([
+  "/dashboard",
+  "/grupos",
+  "/tareas",
+  "/eventos",
+  "/gastos",
+  "/acuerdos",
+  "/perfil",
+]);
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
   const {
     token,
-    usuario,
-    verificandoSesion,
-    errorSesion,
-    reintentarSesion,
-    sesionExpirada,
-    limpiarAvisoSesionExpirada,
+    user,
+    isCheckingSession,
+    sessionError,
+    retrySession,
+    isSessionExpired,
+    clearSessionExpiredNotice,
   } = useAuth();
-  const autenticado = Boolean(token);
-  const onboardingCompletado = Boolean(usuario?.onboarding_completed);
-  const mensajeErrorSesion =
-    typeof errorSesion === "string"
-      ? errorSesion
-      : (errorSesion?.message ??
-        "No pudimos verificar tu sesión. Intenta nuevamente.");
+  const isAuthenticated = Boolean(token);
+  const isOnboardingCompleted = Boolean(user?.onboarding_completed);
+  const sessionErrorMessage =
+    typeof sessionError === "string"
+      ? sessionError
+      : (sessionError?.message ??
+        "No pudimos verificar tu sesión. Intentá nuevamente.");
 
   useEffect(() => {
-    if (!sesionExpirada) return;
+    if (!isSessionExpired) return;
 
     toast.error("Tu sesión no está activa. Inicia sesión para continuar.", {
       id: "sesion-expirada",
     });
-    if (pathname === "/") limpiarAvisoSesionExpirada();
-  }, [limpiarAvisoSesionExpirada, pathname, sesionExpirada]);
+    if (pathname === "/") clearSessionExpiredNotice();
+  }, [clearSessionExpiredNotice, pathname, isSessionExpired]);
 
-  if (verificandoSesion) {
+  if (isCheckingSession) {
     return <Loading />;
   }
 
-  if (sesionExpirada && pathname !== "/") {
+  if (isSessionExpired && pathname !== "/") {
     return <Navigate to="/" replace />;
   }
 
-  if (errorSesion && !RUTAS_PUBLICAS.has(pathname)) {
+  if (sessionError && !PUBLIC_ROUTES.has(pathname)) {
     return (
       <section
         className="alert"
@@ -76,12 +86,12 @@ export default function AppRoutes() {
         <h1 id="error-sesion-title" className="alert-title">
           No se pudo verificar la sesión
         </h1>
-        <p className="alert-message">{mensajeErrorSesion}</p>
+        <p className="alert-message">{sessionErrorMessage}</p>
         <div className="alert-actions">
           <button
             type="button"
             className="btn btn-primary"
-            onClick={reintentarSesion}
+            onClick={retrySession}
           >
             Reintentar
           </button>
@@ -93,7 +103,11 @@ export default function AppRoutes() {
     );
   }
 
-  if (autenticado && !errorSesion && RUTAS_PUBLICAS_BLOQUEADAS.has(pathname)) {
+  if (
+    isAuthenticated &&
+    !sessionError &&
+    AUTHENTICATED_REDIRECT_ROUTES.has(pathname)
+  ) {
     return (
       <Navigate
         to={isOnboardingCompleted ? "/dashboard" : "/onboarding"}
