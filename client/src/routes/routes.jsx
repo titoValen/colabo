@@ -19,6 +19,7 @@ const Events = lazy(() => import("@/pages/Events"));
 const Expenses = lazy(() => import("@/pages/Expenses"));
 const Agreements = lazy(() => import("@/pages/Agreements"));
 const Profile = lazy(() => import("@/pages/Profile"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const PUBLIC_ONLY_ROUTES = new Set([
   "/",
@@ -143,7 +144,7 @@ export default function AppRoutes() {
         <Route path="/gastos" element={<Expenses />} />
         <Route path="/acuerdos" element={<Agreements />} />
         <Route path="/perfil" element={<Profile />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

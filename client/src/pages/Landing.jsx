@@ -27,7 +27,7 @@ export default function Landing() {
           </p>
           <div className="landing-hero-actions">
             <Link
-              className="landing-action landing-action-primary"
+              className="btn btn-primary"
               to="/registrarse"
             >
               Empezar ahora
@@ -36,7 +36,7 @@ export default function Landing() {
               </figure>
             </Link>
             <a
-              className="landing-action landing-action-secondary"
+              className="btn btn-secondary"
               href="#como-funciona"
             >
               Ver cómo funciona
