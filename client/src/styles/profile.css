@@ -51,8 +51,10 @@
   border-radius: 999px;
 }
 
-.profile-avatar--illustrated {
-  border-radius: 42% 58% 55% 45% / 45% 40% 60% 55%;
+.profile-avatar--blobatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .profile-avatar--lg {

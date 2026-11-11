@@ -11,11 +11,12 @@ const COLOR_OPTIONS = [
 
 const AVATAR_STYLE_OPTIONS = [
   { value: "initials", label: "Logo con inicial" },
-  { value: "illustrated", label: "Avatar ilustrado" },
+  { value: "blobatar", label: "Blobatar" },
 ];
 
 export default function ProfileCustomization({
   name,
+  seed,
   avatarColor,
   avatarStyle,
   onAvatarColorChange,
@@ -53,7 +54,7 @@ export default function ProfileCustomization({
       <div className="profile-customization-block">
         <p className="profile-customization-label">Estilo de avatar</p>
         <p className="profile-customization-hint">
-          Usá tu inicial o probá un avatar ilustrado en su lugar.
+          Usá tu inicial o probá un blobatar, una criaturita única generada a partir de tu cuenta.
         </p>
 
         <div className="profile-avatar-style-options" role="radiogroup" aria-label="Estilo de avatar">
@@ -66,7 +67,7 @@ export default function ProfileCustomization({
               className={`profile-avatar-style-option${avatarStyle === value ? " is-selected" : ""}`}
               onClick={() => onAvatarStyleChange(value)}
             >
-              <ProfileAvatar name={name} color={avatarColor} style={value} size="sm" />
+              <ProfileAvatar name={name} seed={seed} color={avatarColor} style={value} size="sm" />
               <span>{label}</span>
             </button>
           ))}

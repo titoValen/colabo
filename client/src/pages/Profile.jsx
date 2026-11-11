@@ -24,6 +24,7 @@ export default function Profile() {
 
       <ProfileSummary
         name={user?.name}
+        seed={user?.email}
         avatarColor={avatarColor}
         avatarStyle={avatarStyle}
       />
@@ -40,6 +41,7 @@ export default function Profile() {
           />
           <ProfileCustomization
             name={user?.name}
+            seed={user?.email}
             avatarColor={avatarColor}
             avatarStyle={avatarStyle}
             onAvatarColorChange={setAvatarColor}

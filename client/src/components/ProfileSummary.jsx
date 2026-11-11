@@ -9,10 +9,16 @@ const STATS = [
   { label: "Eventos", icon: EventsIcon },
 ];
 
-export default function ProfileSummary({ name, avatarColor, avatarStyle }) {
+export default function ProfileSummary({ name, seed, avatarColor, avatarStyle }) {
   return (
     <section className="profile-card profile-summary">
-      <ProfileAvatar name={name} color={avatarColor} style={avatarStyle} size="lg" />
+      <ProfileAvatar
+        name={name}
+        seed={seed}
+        color={avatarColor}
+        style={avatarStyle}
+        size="lg"
+      />
 
       <div className="profile-summary-info">
         <h2 className="profile-summary-name">{name}</h2>
