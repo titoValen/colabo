@@ -48,7 +48,11 @@ export default function Landing() {
             <picture>
               <source media="(max-width: 480px)" srcSet={HeroMobile} />
               <source media="(max-width: 1023px)" srcSet={HeroTablet} />
-              <img className="landing-hero-image" src={Hero} alt="Imagen de fondo de la página de inicio" />
+              <img
+                className="landing-hero-image"
+                src={Hero}
+                alt="Imagen de fondo de la página de inicio"
+              />
             </picture>
           </figure>
         </div>
@@ -60,13 +64,10 @@ export default function Landing() {
         aria-labelledby="landing-comparison-title"
       >
         <div className="landing-comparison-intro">
-          <h2
-            id="landing-comparison-title"
-            className="landing-comparison-title"
-          >
+          <h2 id="landing-comparison-title" className="landing-section-heading">
             Antes y después
           </h2>
-          <p className="landing-comparison-description">
+          <p className="landing-section-description">
             De mensajes sueltos a un plan claro para todos.
           </p>
         </div>
@@ -104,11 +105,11 @@ export default function Landing() {
         <div className="landing-how-it-works-content">
           <h2
             id="landing-how-it-works-title"
-            className="landing-how-it-works-title"
+            className="landing-section-heading"
           >
             ¿Cómo funcionan los planes compartidos?
           </h2>
-          <p className="landing-how-it-works-description">
+          <p className="landing-section-description">
             Organiza cada plan en pocos pasos y mantén a todas las personas al
             tanto.
           </p>
@@ -217,8 +218,8 @@ export default function Landing() {
         className="landing-section landing-section-faq"
       >
         <div className="landing-faq-intro">
-          <h2 className="landing-faq-title">Preguntas frecuentes</h2>
-          <p className="landing-faq-description">
+          <h2 className="landing-section-heading">Preguntas frecuentes</h2>
+          <p className="landing-section-description">
             Todo lo que necesitas saber para empezar a usar Colabo.
           </p>
         </div>
@@ -325,8 +326,13 @@ export default function Landing() {
       </section>
 
       <section className="landing-section landing-cta">
-        <h2 className="landing-cta-title">Los planes salen mejor en equipo</h2>
-        <Link className="landing-action landing-action-primary" to="/registrarse">
+        <h2 className="landing-section-heading landing-cta-title">
+          Los planes salen mejor en equipo
+        </h2>
+        <Link
+          className="landing-action landing-action-primary"
+          to="/registrarse"
+        >
           Empezar ahora
           <figure className="landing-action-figure">
             <img src={ArrowRight} alt="Icono de flecha hacia la derecha" />

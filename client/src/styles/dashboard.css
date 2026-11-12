@@ -305,3 +305,127 @@
     grid-template-columns: 1fr;
   }
 }
+
+.dashboard-notifications {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dashboard-notification-button {
+  position: relative;
+}
+
+.dashboard-notification-badge {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.dashboard-notifications-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 20;
+  width: min(360px, 90vw);
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: rgb(255 255 255 / 0.97);
+  box-shadow: 0 8px 24px rgb(36 59 83 / 0.12);
+}
+
+.dashboard-notifications-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.dashboard-notifications-header h2 {
+  color: var(--color-blue);
+  font-size: 1.125rem;
+}
+
+.dashboard-notifications-action,
+.dashboard-notifications-more {
+  border: none;
+  background: transparent;
+  color: var(--color-sky-blue);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dashboard-notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.dashboard-notifications-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dashboard-notifications-item:hover {
+  background-color: color-mix(in srgb, var(--color-fur) 12%, transparent);
+}
+
+.dashboard-notifications-item.is-unread {
+  background-color: color-mix(in srgb, var(--color-sky-blue) 12%, transparent);
+}
+
+.dashboard-notifications-title {
+  color: var(--color-blue);
+  font-weight: 700;
+}
+
+.dashboard-notifications-body {
+  color: var(--color-dark-gray);
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-notifications-time {
+  color: var(--color-gray);
+  font-size: 0.75rem;
+}
+
+.dashboard-notifications-empty,
+.dashboard-notifications-error {
+  padding: 1rem 0;
+  color: var(--color-dark-gray);
+  text-align: center;
+}
+
+.dashboard-notifications-error {
+  color: #a21d16;
+}
+
+.dashboard-notifications-more {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+}

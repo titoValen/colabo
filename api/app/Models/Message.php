@@ -13,6 +13,11 @@ class Message extends Model
 
     protected $casts = ['sent_at' => 'datetime'];
 
+    public function recipients()
+    {
+        return $this->hasMany(MessageRecipient::class);
+    }
+
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id', 'id');

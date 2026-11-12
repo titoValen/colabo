@@ -114,8 +114,6 @@
   background: var(--color-gray);
 }
 
-
-
 /* DIVIDE FEATURES */
 
 .landing-features {
@@ -134,7 +132,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
   border-radius: 0.875rem;
   padding: 1.25rem 1rem;
   color: var(--color-white);
@@ -170,9 +168,14 @@
   font-size: 1rem;
 }
 
-/* DIVIDE COMPARISON */
+.landing-feature-content {
+  display: grid;
+  place-items: center;
+}
 
-.landing-comparison-intro {
+.landing-comparison-intro,
+.landing-how-it-works-content,
+.landing-faq-intro {
   display: flex;
   flex-direction: column;
   align-items: justify;
@@ -180,14 +183,26 @@
   text-align: justify;
 }
 
-.landing-comparison-title {
+.landing-section-heading {
+  width: 100%;
+  margin: 0;
+  padding-inline: 1rem;
   font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  text-align: center;
 }
 
-.landing-comparison-description {
+.landing-section-description {
+  width: 100%;
   max-width: 42rem;
+  margin: 0;
+  padding-inline: 1rem;
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  line-height: 1.4;
+  text-align: center;
 }
+
+/* DIVIDE COMPARISON */
 
 .landing-comparison-container {
   display: grid;
@@ -241,22 +256,6 @@
   font-family: var(--font-title);
 }
 
-.landing-how-it-works-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  max-width: 42rem;
-}
-
-.landing-how-it-works-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin: 0 0 10px;
-}
-
-.landing-how-it-works-description {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-}
-
 .landing-how-it-works-steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -284,21 +283,20 @@
 
 .landing-how-it-works-step-number {
   display: block;
-  margin-top: 0.75rem;
+  margin: 0.75rem 0 0.25rem 0;
   color: var(--color-orange);
   font-size: 0.875rem;
 }
 
 .landing-how-it-works-step-title {
-  margin-top: 0.75rem;
   color: var(--color-blue);
   font-size: 1.25rem;
 }
 
 .landing-how-it-works-step-description {
-  margin-top: 0.5rem;
+  margin: 0.25rem 0 0.5rem 0;
   color: var(--color-blue);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .landing-how-it-works-callout {
@@ -328,15 +326,6 @@
   color: var(--color-white);
   padding: 2rem 1rem;
   border-radius: 0.875rem;
-}
-
-.landing-faq-title {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-.landing-faq-description {
-  font-size: 1rem;
 }
 
 .landing-faq-list {
@@ -421,9 +410,7 @@
 
 .landing-cta-title {
   max-width: 32rem;
-  font-size: clamp(2rem, 4vw, 3rem);
 }
-
 
 /* ==========================================================================
   RESPONSIVE
@@ -478,19 +465,12 @@
     margin-top: 1.25rem;
   }
 
-  .landing-comparison-intro {
-    gap: 0.5rem;
-    padding: 0 0.5rem;
-  }
-
-  .landing-comparison-title,
-  .landing-how-it-works-title {
+  .landing-section-heading {
     font-size: clamp(1.75rem, 8vw, 2.25rem);
     line-height: 1.05;
   }
 
-  .landing-comparison-description,
-  .landing-how-it-works-description {
+  .landing-section-description {
     font-size: 0.875rem;
     line-height: 1.35;
   }
@@ -517,10 +497,6 @@
 
   .landing-how-it-works {
     gap: 1rem;
-  }
-
-  .landing-how-it-works-content {
-    gap: 0.5rem;
   }
 
   .landing-how-it-works-step {
@@ -588,13 +564,21 @@
     align-items: center;
     padding: 0.75rem;
     border-radius: 0.625rem;
-    text-align: left;
   }
 
   .landing-feature-figure {
     grid-area: icon;
     width: 3.5rem;
     padding: 0.75rem;
+  }
+
+  .landing-feature-content {
+    display: grid;
+    grid-template-areas:
+      "title"
+      "description";
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
   }
 
   .landing-feature-title {
@@ -612,20 +596,6 @@
     gap: 1.25rem;
     padding: 1.5rem 0.75rem;
     border-radius: 0.75rem;
-  }
-
-  .landing-faq-intro {
-    text-align: center;
-  }
-
-  .landing-faq-title {
-    margin-bottom: 0.5rem;
-    font-size: clamp(1.75rem, 8vw, 2.25rem);
-    line-height: 1.05;
-  }
-
-  .landing-faq-description {
-    font-size: 0.75rem;
   }
 
   .landing-faq-list {
@@ -655,10 +625,6 @@
     gap: 1rem;
     padding: 2rem 1rem;
     border-radius: 0.75rem;
-  }
-
-  .landing-cta-title {
-    font-size: 1.75rem;
   }
 
   .landing-cta .landing-action {
