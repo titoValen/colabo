@@ -14,6 +14,7 @@ export default function Profile() {
   const { user } = useAuth();
   const [avatarColor, setAvatarColor] = useState(DEFAULT_AVATAR_COLOR);
   const [avatarStyle, setAvatarStyle] = useState("initials");
+  const [blobatarShape, setBlobatarShape] = useState(null);
 
   return (
     <AppLayout>
@@ -25,6 +26,7 @@ export default function Profile() {
       <ProfileSummary
         name={user?.name}
         seed={user?.email}
+        blobatarShape={blobatarShape}
         avatarColor={avatarColor}
         avatarStyle={avatarStyle}
       />
@@ -44,8 +46,10 @@ export default function Profile() {
             seed={user?.email}
             avatarColor={avatarColor}
             avatarStyle={avatarStyle}
+            blobatarShape={blobatarShape}
             onAvatarColorChange={setAvatarColor}
             onAvatarStyleChange={setAvatarStyle}
+            onBlobatarShapeChange={setBlobatarShape}
           />
         </div>
       </div>

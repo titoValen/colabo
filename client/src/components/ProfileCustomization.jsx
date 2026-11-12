@@ -1,5 +1,6 @@
 import PaletteIcon from "@/assets/icons/palette.svg";
 import ProfileAvatar from "@components/ProfileAvatar";
+import { BLOBATAR_SHAPES } from "@components/blobatarShapes";
 
 const COLOR_OPTIONS = [
   { value: "#cb4528", label: "Naranja" },
@@ -19,8 +20,10 @@ export default function ProfileCustomization({
   seed,
   avatarColor,
   avatarStyle,
+  blobatarShape,
   onAvatarColorChange,
   onAvatarStyleChange,
+  onBlobatarShapeChange,
 }) {
   return (
     <section className="profile-card">
@@ -73,6 +76,51 @@ export default function ProfileCustomization({
           ))}
         </div>
       </div>
+
+      {avatarStyle === "blobatar" && (
+        <div className="profile-customization-block">
+          <p className="profile-customization-label">Forma del blobatar</p>
+          <p className="profile-customization-hint">
+            Dejá que se elija sola según tu cuenta o fijá la forma que más te guste.
+          </p>
+
+          <div className="profile-shape-options" role="radiogroup" aria-label="Forma del blobatar">
+            <button
+              type="button"
+              role="radio"
+              aria-checked={!blobatarShape}
+              aria-label="Automática"
+              className={`profile-shape-option${!blobatarShape ? " is-selected" : ""}`}
+              onClick={() => onBlobatarShapeChange(null)}
+            >
+              <ProfileAvatar name={name} seed={seed} color={avatarColor} style="blobatar" size="md" />
+              <span>Automática</span>
+            </button>
+
+            {BLOBATAR_SHAPES.map(({ value, label }) => (
+              <button
+                key={value}
+                type="button"
+                role="radio"
+                aria-checked={blobatarShape === value}
+                aria-label={label}
+                className={`profile-shape-option${blobatarShape === value ? " is-selected" : ""}`}
+                onClick={() => onBlobatarShapeChange(value)}
+              >
+                <ProfileAvatar
+                  name={name}
+                  seed={seed}
+                  shape={value}
+                  color={avatarColor}
+                  style="blobatar"
+                  size="md"
+                />
+                <span>{label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

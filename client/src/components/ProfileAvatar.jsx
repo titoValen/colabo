@@ -1,4 +1,5 @@
 import { Blobatar } from "@blobatar/react";
+import { BLOBATAR_SHAPES } from "./blobatarShapes";
 
 const BLOBATAR_FALLBACK_SEED = "colabo";
 const EYE_LIGHT = "#ffffff";
@@ -37,6 +38,7 @@ function getEyeColor(bodyColor) {
 export default function ProfileAvatar({
   name,
   seed,
+  shape,
   color,
   style = "initials",
   size = "lg",
@@ -46,12 +48,14 @@ export default function ProfileAvatar({
   if (style === "blobatar") {
     // Mismo seed => mismo blobatar. Se genera en el navegador, sin pedidos de red.
     const blobatarSeed = seed || name || BLOBATAR_FALLBACK_SEED;
+    const shapePosition = BLOBATAR_SHAPES.find((option) => option.value === shape)?.position;
 
     return (
       <span className={className} aria-hidden="true">
         <Blobatar
           name={blobatarSeed}
           palette={{ head: color, eye: getEyeColor(color) }}
+          traits={shapePosition === undefined ? undefined : { shape: shapePosition }}
           alt=""
         />
       </span>

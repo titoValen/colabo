@@ -9,12 +9,13 @@ const STATS = [
   { label: "Eventos", icon: EventsIcon },
 ];
 
-export default function ProfileSummary({ name, seed, avatarColor, avatarStyle }) {
+export default function ProfileSummary({ name, seed, blobatarShape, avatarColor, avatarStyle }) {
   return (
     <section className="profile-card profile-summary">
       <ProfileAvatar
         name={name}
         seed={seed}
+        shape={blobatarShape}
         color={avatarColor}
         style={avatarStyle}
         size="lg"
@@ -22,7 +23,7 @@ export default function ProfileSummary({ name, seed, avatarColor, avatarStyle })
 
       <div className="profile-summary-info">
         <h2 className="profile-summary-name">{name}</h2>
-        <span className="profile-plan-badge">⭐ Plan gratuito</span>
+        <span className="profile-plan-badge">Plan gratuito</span>
       </div>
 
       <ul className="profile-stats">
