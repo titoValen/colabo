@@ -11,7 +11,7 @@ import "@/styles/profile.css";
 const DEFAULT_AVATAR_COLOR = "#cb4528";
 
 export default function Profile() {
-  const { user } = useAuth();
+  const { user, updateProfile } = useAuth();
   const [avatarColor, setAvatarColor] = useState(DEFAULT_AVATAR_COLOR);
   const [avatarStyle, setAvatarStyle] = useState("initials");
   const [blobatarShape, setBlobatarShape] = useState(null);
@@ -33,7 +33,13 @@ export default function Profile() {
 
       <div className="profile-grid">
         <div className="profile-grid-col">
-          <ProfilePersonalInfo name={user?.name} email={user?.email} />
+          <ProfilePersonalInfo
+            name={user?.name}
+            email={user?.email}
+            location={user?.location}
+            bio={user?.bio}
+            onSave={updateProfile}
+          />
           <ProfileSecurity />
         </div>
 

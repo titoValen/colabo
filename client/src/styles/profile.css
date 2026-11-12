@@ -163,7 +163,11 @@
   font-family: var(--font-body);
   font-size: 0.875rem;
   font-weight: 700;
-  cursor: not-allowed;
+  cursor: pointer;
+}
+
+.profile-edit-button:hover {
+  background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
 }
 
 .profile-info-list {
@@ -185,11 +189,13 @@
 .profile-info-row dt {
   color: var(--color-dark-gray);
   font-size: 0.875rem;
+  font-family: var(--font-body);
 }
 
 .profile-info-row dd {
   color: var(--color-blue);
   font-weight: 700;
+  font-family: var(--font-body);
 }
 
 .profile-info-row dd.is-empty {
@@ -204,6 +210,104 @@
 
 .profile-info-row--block dd {
   margin-top: 0.25rem;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+/* Edición de información personal */
+
+.profile-form .profile-info-row {
+  align-items: start;
+}
+
+.profile-form .profile-info-row dt {
+  padding-top: 0.5rem;
+}
+
+.profile-form .profile-info-row--block dt {
+  padding-top: 0;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-blue) 20%, transparent);
+  border-radius: 0.5rem;
+  background-color: var(--color-white);
+  color: var(--color-blue);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.profile-input:focus-visible {
+  outline: 2px solid var(--color-sky-blue);
+  outline-offset: 1px;
+}
+
+.profile-input[aria-invalid="true"] {
+  border-color: var(--color-orange);
+}
+
+.profile-textarea {
+  resize: vertical;
+}
+
+.profile-counter {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--color-dark-gray);
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-align: right;
+}
+
+.profile-error {
+  margin-top: 0.25rem;
+  color: var(--color-orange);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.profile-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.profile-cancel-button,
+.profile-save-button {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profile-cancel-button {
+  border: 1px solid color-mix(in srgb, var(--color-blue) 20%, transparent);
+  background: transparent;
+  color: var(--color-blue);
+}
+
+.profile-save-button {
+  border: 1px solid var(--color-sky-blue);
+  background-color: var(--color-sky-blue);
+  color: var(--color-white);
+  transition: background-color 0.3s ease;
+}
+
+.profile-save-button:hover:not(:disabled) {
+  border-color: var(--color-blue);
+  background-color: var(--color-blue);
+}
+
+.profile-cancel-button:disabled,
+.profile-save-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 /* Filas de navegación (Seguridad / Preferencias) */

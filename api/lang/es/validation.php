@@ -16,9 +16,11 @@ return [
     'string' => 'El campo :attribute debe ser una cadena de texto.',
     'unique' => 'El campo :attribute ya ha sido registrado.',
     'attributes' => [
+        'bio' => 'biografía',
         'description' => 'descripción',
         'email' => 'correo electrónico',
         'group_id' => 'grupo',
+        'location' => 'ubicación',
         'name' => 'nombre',
         'password' => 'contraseña',
         'password_confirmation' => 'confirmación de contraseña',
