@@ -115,14 +115,6 @@
   height: auto;
 }
 
-.auth-logo-register {
-  margin-bottom: 0.75rem;
-}
-
-.auth-logo-register img {
-  width: clamp(180px, 22vw, 280px);
-}
-
 .auth-form-register {
   max-width: 360px;
   gap: 0.5rem;
@@ -208,8 +200,11 @@
     margin-bottom: 0.5rem;
   }
 
-  .auth-logo-register img {
+  .auth-logo img {
     width: clamp(150px, 40vw, 190px);
+    margin-bottom: 1rem;
+    width: 100%;
+
   }
 
   .auth-panel-register > h1 {

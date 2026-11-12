@@ -27,7 +27,7 @@ export default function Landing() {
           </p>
           <div className="landing-hero-actions">
             <Link
-              className="landing-action landing-action-primary"
+              className="btn btn-primary"
               to="/registrarse"
             >
               Empezar ahora
@@ -36,7 +36,7 @@ export default function Landing() {
               </figure>
             </Link>
             <a
-              className="landing-action landing-action-secondary"
+              className="btn btn-secondary"
               href="#como-funciona"
             >
               Ver cómo funciona
@@ -168,9 +168,10 @@ export default function Landing() {
       </section>
 
       <section className="landing-section landing-features">
-        <h2 className="landing-section-heading">¿Qué ofrecemos?</h2>
-
-        <div className="landing-feature-container">
+        <h2 className="landing-how-it-works-title landing-features-title">
+          ¿Qué ofrecemos?
+        </h2>
+        <div className="landing-features-list">
           <div className="landing-feature">
             <figure className="landing-feature-figure">
               <img
@@ -179,12 +180,10 @@ export default function Landing() {
                 alt="Icono de un ojo visible, haciendo referencia a un acuerdo visible"
               />
             </figure>
-            <div className="landing-feature-content">
-              <h3 className="landing-feature-title">Acuerdos visibles</h3>
-              <p className="landing-feature-description">
-                Toda la información clara en un solo lugar.
-              </p>
-            </div>
+            <h3 className="landing-feature-title">Acuerdos visibles</h3>
+            <p className="landing-feature-description">
+              Toda la información clara en un solo lugar.
+            </p>
           </div>
           <div className="landing-feature">
             <figure className="landing-feature-figure">
@@ -194,12 +193,10 @@ export default function Landing() {
                 alt="Icono de gente alrededor, dando referencia a un plan compartido"
               />
             </figure>
-            <div className="landing-feature-content">
-              <h3 className="landing-feature-title">Plan compartido</h3>
-              <p className="landing-feature-description">
-                Organiza con otras personas de forma simple.
-              </p>
-            </div>
+            <h3 className="landing-feature-title">Plan compartido</h3>
+            <p className="landing-feature-description">
+              Organiza con otras personas de forma simple.
+            </p>
           </div>
           <div className="landing-feature">
             <figure className="landing-feature-figure">
@@ -209,18 +206,13 @@ export default function Landing() {
                 alt="Icono de una persona más, dando referencia a que todos deben sumarse"
               />
             </figure>
-            <div className="landing-feature-content">
-              <h3 className="landing-feature-title">
-                Todos saben cómo sumarse
-              </h3>
-              <p className="landing-feature-description">
-                Es fácil organizarse y saber cómo colaborar.
-              </p>
-            </div>
+            <h3 className="landing-feature-title">Todos saben cómo sumarse</h3>
+            <p className="landing-feature-description">
+              Es fácil organizarse y saber cómo colaborar.
+            </p>
           </div>
         </div>
       </section>
-
       <section
         id="preguntas-frecuentes"
         className="landing-section landing-section-faq"
