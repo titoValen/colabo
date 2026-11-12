@@ -12,9 +12,26 @@ const DEFAULT_AVATAR_COLOR = "#cb4528";
 
 export default function Profile() {
   const { user, updateProfile } = useAuth();
-  const [avatarColor, setAvatarColor] = useState(DEFAULT_AVATAR_COLOR);
-  const [avatarStyle, setAvatarStyle] = useState("initials");
-  const [blobatarShape, setBlobatarShape] = useState(null);
+  const savedAvatar = user?.avatar_preference;
+  const savedColor = savedAvatar?.avatar_color ?? DEFAULT_AVATAR_COLOR;
+  const savedStyle = savedAvatar?.avatar_style ?? "initials";
+  const savedShape = savedAvatar?.blobatar_shape ?? null;
+
+  const [avatarColor, setAvatarColor] = useState(savedColor);
+  const [avatarStyle, setAvatarStyle] = useState(savedStyle);
+  const [blobatarShape, setBlobatarShape] = useState(savedShape);
+
+  const hasAvatarChanges =
+    avatarColor !== savedColor ||
+    avatarStyle !== savedStyle ||
+    blobatarShape !== savedShape;
+
+  const saveAvatar = () =>
+    updateProfile({
+      avatar_color: avatarColor,
+      avatar_style: avatarStyle,
+      blobatar_shape: blobatarShape,
+    });
 
   return (
     <AppLayout>
@@ -53,6 +70,8 @@ export default function Profile() {
             avatarColor={avatarColor}
             avatarStyle={avatarStyle}
             blobatarShape={blobatarShape}
+            hasChanges={hasAvatarChanges}
+            onSave={saveAvatar}
             onAvatarColorChange={setAvatarColor}
             onAvatarStyleChange={setAvatarStyle}
             onBlobatarShapeChange={setBlobatarShape}

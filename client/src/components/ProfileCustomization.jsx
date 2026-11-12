@@ -1,3 +1,5 @@
+import { useState } from "react";
+import toast from "react-hot-toast";
 import PaletteIcon from "@/assets/icons/palette.svg";
 import ProfileAvatar from "@components/ProfileAvatar";
 import { BLOBATAR_SHAPES } from "@components/blobatarShapes";
@@ -21,10 +23,26 @@ export default function ProfileCustomization({
   avatarColor,
   avatarStyle,
   blobatarShape,
+  hasChanges,
+  onSave,
   onAvatarColorChange,
   onAvatarStyleChange,
   onBlobatarShapeChange,
 }) {
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      await onSave();
+      toast.success("Personalización guardada.");
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
     <section className="profile-card">
       <h2 className="profile-card-title">
@@ -121,6 +139,17 @@ export default function ProfileCustomization({
           </div>
         </div>
       )}
+
+      <div className="profile-form-actions">
+        <button
+          type="button"
+          className="profile-save-button"
+          onClick={handleSave}
+          disabled={!hasChanges || saving}
+        >
+          {saving ? "Guardando..." : "Guardar cambios"}
+        </button>
+      </div>
     </section>
   );
 }

@@ -1,9 +1,11 @@
 import { Blobatar } from "@blobatar/react";
 import { BLOBATAR_SHAPES } from "./blobatarShapes";
+import "@/styles/avatar.css";
 
 const BLOBATAR_FALLBACK_SEED = "colabo";
 const EYE_LIGHT = "#ffffff";
 const EYE_DARK = "#243b53";
+const DEFAULT_COLOR = "#cb4528";
 
 function getInitials(name) {
   if (!name) return "";
@@ -39,7 +41,7 @@ export default function ProfileAvatar({
   name,
   seed,
   shape,
-  color,
+  color = DEFAULT_COLOR,
   style = "initials",
   size = "lg",
 }) {

@@ -24,15 +24,27 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
             'email' => [
+                'sometimes',
                 'required',
                 'email',
                 'max:255',
                 Rule::unique('users', 'email')->ignore($this->user()->getKey()),
             ],
-            'location' => ['nullable', 'string', 'max:255'],
-            'bio' => ['nullable', 'string', 'max:500'],
+            'location' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'bio' => ['sometimes', 'nullable', 'string', 'max:500'],
+            'avatar_color' => ['sometimes', 'required', 'string', 'regex:/^#[0-9a-fA-F]{6}$/'],
+            'avatar_style' => ['sometimes', 'required', 'string', Rule::in(['initials', 'blobatar'])],
+            'blobatar_shape' => [
+                'sometimes',
+                'nullable',
+                'string',
+                Rule::in([
+                    'round', 'organic', 'boxy', 'capsule', 'nub',
+                    'cloud', 'droplet', 'hexagon', 'sun', 'triangle',
+                ]),
+            ],
         ];
     }
 }

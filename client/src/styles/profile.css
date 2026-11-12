@@ -35,46 +35,6 @@
   height: 1.25rem;
 }
 
-/* Avatar compartido */
-
-.profile-avatar {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-white);
-  font-family: var(--font-body);
-  font-weight: 700;
-}
-
-.profile-avatar--initials {
-  border-radius: 999px;
-}
-
-.profile-avatar--blobatar img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.profile-avatar--lg {
-  width: 5.5rem;
-  height: 5.5rem;
-  font-size: 1.75rem;
-}
-
-.profile-avatar--md {
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 1.25rem;
-}
-
-.profile-avatar--sm {
-  width: 2.5rem;
-  height: 2.5rem;
-  font-size: 1rem;
-}
-
 /* Tarjeta resumen */
 
 .profile-summary {
@@ -189,13 +149,11 @@
 .profile-info-row dt {
   color: var(--color-dark-gray);
   font-size: 0.875rem;
-  font-family: var(--font-body);
 }
 
 .profile-info-row dd {
   color: var(--color-blue);
   font-weight: 700;
-  font-family: var(--font-body);
 }
 
 .profile-info-row dd.is-empty {
