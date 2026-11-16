@@ -149,11 +149,13 @@
 .profile-info-row dt {
   color: var(--color-dark-gray);
   font-size: 0.875rem;
+  font-family: var(--font-body);
 }
 
 .profile-info-row dd {
   color: var(--color-blue);
   font-weight: 700;
+    font-family: var(--font-body);
 }
 
 .profile-info-row dd.is-empty {

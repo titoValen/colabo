@@ -84,6 +84,18 @@ export default function AuthProvider({ children }) {
     }
   };
 
+  const deleteAccount = async () => {
+    await apiFetch("/account", { method: "DELETE", token });
+
+    cancelRetry();
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    setToken(null);
+    setUser(null);
+    setSessionError("");
+    setIsCheckingSession(false);
+  };
+
   const clearLocalSession = useCallback(() => {
     cancelRetry();
     localStorage.removeItem("token");
@@ -162,6 +174,7 @@ export default function AuthProvider({ children }) {
         register,
         login,
         logout,
+        deleteAccount,
         updateProfile,
         completeOnboarding,
         skipOnboarding,

@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -52,6 +53,42 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Sesión cerrada correctamente.',
         ], 200);
+    }
+
+    public function destroyAccount(Request $request)
+    {
+        $user = $request->user();
+
+        DB::transaction(function () use ($user) {
+            $userId = $user->id;
+
+            DB::table('payments')->where('responsible_user_id', $userId)->delete();
+            DB::table('agreement_responses')->where('user_id', $userId)->delete();
+            DB::table('agreements')
+                ->where(function ($query) use ($userId) {
+                    $query
+                        ->where('creator_id', $userId)
+                        ->orWhere('responsible_user_id', $userId)
+                        ->orWhere('assigned_user_id', $userId);
+                })
+                ->delete();
+            DB::table('messages')->where('user_id', $userId)->delete();
+            DB::table('reminders')->where('user_id', $userId)->delete();
+            DB::table('calendar_syncs')->where('user_id', $userId)->delete();
+            DB::table('payment_details')->where('user_id', $userId)->delete();
+            DB::table('expense_shares')->where('user_id', $userId)->delete();
+            DB::table('expenses')->where('charged_by_user_id', $userId)->delete();
+            DB::table('events')->where('creator_id', $userId)->delete();
+            DB::table('memberships')->where('user_id', $userId)->delete();
+            DB::table('personal_access_tokens')->where('tokenable_id', $userId)->delete();
+            DB::table('avatar_preferences')->where('user_id', $userId)->delete();
+
+            $user->delete();
+        });
+
+        return response()->json([
+            'message' => 'Cuenta eliminada correctamente.',
+        ]);
     }
 
     public function me(Request $request)

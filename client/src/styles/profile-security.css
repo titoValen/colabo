@@ -1,0 +1,224 @@
+/* Seguridad: cambiar contraseña */
+
+.profile-nav-group {
+  border-top: 1px solid color-mix(in srgb, var(--color-blue) 10%, transparent);
+}
+
+.profile-nav-group:first-child {
+  border-top: none;
+}
+
+.profile-nav-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  padding: 0.875rem 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-nav-trigger:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+.profile-nav-trigger > img:first-child {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.profile-nav-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.profile-nav-title {
+  color: var(--color-blue);
+  font-weight: 700;
+}
+
+.profile-nav-description {
+  color: var(--color-dark-gray);
+  font-size: 0.8125rem;
+}
+
+.profile-nav-trigger .profile-nav-chevron {
+  transition: transform 0.2s ease;
+}
+
+.profile-nav-trigger[aria-expanded="true"] .profile-nav-chevron {
+  transform: rotate(0deg);
+}
+
+.profile-security-form {
+  display: grid;
+  gap: 1rem;
+  padding: 0.25rem 0 1rem;
+}
+
+.profile-security-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.profile-security-field label {
+  color: var(--color-blue);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.profile-security-field input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-gray);
+  border-radius: 0.5rem;
+  background: var(--color-white);
+  color: var(--color-black);
+  font-size: 1rem;
+}
+
+.profile-security-field input:focus {
+  outline: 2px solid var(--color-fur);
+  outline-offset: 1px;
+  border-color: var(--color-blue);
+}
+
+.profile-security-field input[aria-invalid="true"] {
+  border-color: var(--color-orange);
+}
+
+.profile-security-error {
+  color: var(--color-orange);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.profile-security-success {
+  margin-bottom: 0.875rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--color-sky-blue) 15%, transparent);
+  color: var(--color-blue);
+  font-size: 0.875rem;
+}
+
+.profile-security-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-dark-gray);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.profile-security-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.profile-security-actions .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.profile-security-actions .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.profile-nav-group--danger {
+  border-top-color: color-mix(in srgb, var(--color-orange) 25%, transparent);
+}
+
+.profile-delete-account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem 0;
+}
+
+.profile-delete-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.profile-delete-button,
+.profile-delete-confirm {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--color-orange);
+  color: var(--color-white);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.profile-delete-button:hover,
+.profile-delete-confirm:hover {
+  filter: brightness(0.9);
+}
+
+.profile-delete-button:focus-visible,
+.profile-delete-confirm:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
+.profile-delete-button:disabled,
+.profile-delete-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.profile-delete-modal-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(0 0 0 / 45%);
+}
+
+.profile-delete-modal {
+  width: min(100%, 28rem);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background: var(--color-white);
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 20%);
+}
+
+.profile-delete-modal h2 {
+  margin: 0;
+  color: var(--color-blue);
+  font-size: 1.25rem;
+}
+
+.profile-delete-modal p {
+  margin: 0.75rem 0 1.25rem;
+  color: var(--color-dark-gray);
+}
+
+@media (max-width: 30rem) {
+  .profile-delete-account {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
