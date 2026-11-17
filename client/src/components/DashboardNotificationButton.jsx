@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import useNotification from "../hooks/useNotifications.js";
+import useNotification from "@/hooks/useNotifications.js";
 import {
   getNotificationText,
   getNotificationRoute,
-} from "@/utils/notificationstext";
+} from "@/utils/notificationsText.js";
 import BellIcon from "@/assets/icons/bell.svg";
 
 function formatRelative(dateString) {
