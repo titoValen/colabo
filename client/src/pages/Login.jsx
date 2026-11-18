@@ -44,9 +44,6 @@ export default function Login() {
   return (
     <main className="auth-page">
       <section className="auth-panel" aria-labelledby="auth-title">
-        <figure className="auth-logo">
-          <img src={Logo} alt="Logo de Colabo" />
-        </figure>
         <h1>Inicia sesión</h1>
         {location.state?.message && (
           <p className="auth-success" role="status">
@@ -106,7 +103,12 @@ export default function Login() {
         </div>
       </section>
       <section className="auth-image">
-        <img src={ColaboLogin} alt="Ilustración de Colabo" loading="lazy" />
+        <figure className="auth-logo auth-logo--login">
+          <img src={Logo} alt="Logo de Colabo" />
+        </figure>
+        <figure>
+          <img src={ColaboLogin} alt="Ilustración de Colabo" loading="lazy" />
+        </figure>
       </section>
     </main>
   );

@@ -155,7 +155,7 @@
 .profile-info-row dd {
   color: var(--color-blue);
   font-weight: 700;
-    font-family: var(--font-body);
+  font-family: var(--font-body);
 }
 
 .profile-info-row dd.is-empty {
@@ -256,7 +256,9 @@
   border: 1px solid var(--color-sky-blue);
   background-color: var(--color-sky-blue);
   color: var(--color-white);
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border 0.3s ease;
 }
 
 .profile-save-button:hover:not(:disabled) {

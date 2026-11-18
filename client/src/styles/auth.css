@@ -58,7 +58,7 @@
 
 .auth-input {
   padding: 0.75rem 1rem;
-  border: 1px solid #dfdfdf;
+  border: 1px solid var(--color-gray);
   border-radius: 0.5rem;
   font-size: 1rem;
 }
@@ -105,27 +105,37 @@
 }
 
 .auth-logo {
-  margin-bottom: clamp(1rem, 3vw, 2rem);
+  margin: 1rem;
+  position: absolute;
+  top: 0;
+}
+
+.auth-logo--register {
+  left: 0;
+}
+
+.auth-logo--login {
+  right: 0;
 }
 
 .auth-logo img {
   display: block;
-  width: clamp(250px, 35vw, 450px);
+  width: clamp(100px, 35vw, 200px);
   max-width: 100%;
   height: auto;
 }
 
-.auth-form-register {
+.auth-form--register {
   max-width: 360px;
   gap: 0.5rem;
   margin: 0.75rem 0 1rem;
 }
 
-.auth-form-register .auth-input {
+.auth-form--register .auth-input {
   padding: 0.625rem 0.875rem;
 }
 
-.auth-form-register .auth-submit {
+.auth-form--register .auth-submit {
   margin-top: 0.5rem;
 }
 
@@ -169,7 +179,7 @@
     padding: clamp(1.5rem, 5vw, 3rem);
   }
 
-  .auth-panel-register {
+  .auth-panel--register {
     justify-content: flex-start;
     padding: 1.5rem clamp(1rem, 5vw, 2.5rem);
   }
@@ -182,7 +192,7 @@
     max-width: min(100%, 400px);
   }
 
-  .auth-form-register {
+  .auth-form--register {
     max-width: min(100%, 360px);
   }
 }
@@ -196,7 +206,7 @@
     font-size: clamp(1.75rem, 8vw, 2.25rem);
   }
 
-  .auth-logo-register {
+  .auth-logo--register {
     margin-bottom: 0.5rem;
   }
 
@@ -207,11 +217,11 @@
 
   }
 
-  .auth-panel-register > h1 {
+  .auth-panel--register > h1 {
     font-size: clamp(1.5rem, 7vw, 2rem);
   }
 
-  .auth-panel-register .auth-description {
+  .auth-panel--register .auth-description {
     margin-top: 0.5rem;
     font-size: 0.9375rem;
   }
@@ -221,7 +231,7 @@
     margin: 1rem 0 1.5rem;
   }
 
-  .auth-form-register {
+  .auth-form--register {
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
   }
@@ -231,11 +241,11 @@
     font-size: 0.9375rem;
   }
 
-  .auth-form-register .auth-input {
+  .auth-form--register .auth-input {
     padding: 0.55rem 0.75rem;
   }
 
-  .auth-form-register .auth-submit {
+  .auth-form--register .auth-submit {
     padding: 0.625rem;
   }
 
@@ -244,7 +254,7 @@
     text-align: center;
   }
 
-  .auth-panel-register .auth-links {
+  .auth-panel--register .auth-links {
     gap: 0.5rem;
     font-size: 0.875rem;
   }

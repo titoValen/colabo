@@ -55,19 +55,21 @@ export default function Register() {
     );
 
   return (
-    <main className="auth-page auth-page-register">
+    <main className="auth-page auth-page--register">
       <section className="auth-image">
-        <img src={ColaboLogin} alt="Ilustración de Colabo" loading="lazy" />
+        <figure className="auth-logo auth-logo--register">
+          <img src={Logo} alt="Logo de Colabo" />
+        </figure>
+        <figure>
+          <img src={ColaboLogin} alt="Ilustración de Colabo" loading="lazy" />
+        </figure>
       </section>
 
       <section
-        className="auth-panel auth-panel-register"
+        className="auth-panel auth-panel--register"
         aria-labelledby="auth-title"
       >
-        <figure className="auth-logo">
-          <img src={Logo} alt="Logo de Colabo" />
-        </figure>
-        <h1 id="auth-title" className="auth-title">
+        <h1 id="auth-title">
           ¡Bienvenido!
         </h1>
         <span className="auth-description">
@@ -75,7 +77,7 @@ export default function Register() {
         </span>
         {error("general")}
 
-        <form className="auth-form auth-form-register" onSubmit={handleSubmit}>
+        <form className="auth-form auth-form--register" onSubmit={handleSubmit}>
           <AuthField
             label={"Nombre"}
             input={{
@@ -141,10 +143,11 @@ export default function Register() {
             {loading ? "Registrando..." : "Registrarse"}
           </button>
         </form>
-        
+
         <div className="auth-links">
           <p className="auth-switch">
-            ¿Aún no tienes cuenta? <Link to="/iniciar-sesion">Iniciar sesión</Link>
+            ¿Aún no tienes cuenta?{" "}
+            <Link to="/iniciar-sesion">Iniciar sesión</Link>
           </p>
           <p className="auth-switch">
             Volver al <Link to="/">inicio</Link>

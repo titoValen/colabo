@@ -4,12 +4,12 @@ import { useState } from "react";
 
 const plusPlans = {
   monthly: {
-    amount: "4.999",
-    period: "/mes por grupo",
+    amount: "19.999",
+    period: "/mes",
   },
   annual: {
-    amount: "49.990",
-    period: "/año por grupo",
+    amount: "199.990",
+    period: "/año",
   },
 };
 
@@ -26,8 +26,9 @@ const plusFeatures = [
   "Historial completo de cumplimiento e incumplimiento de acuerdos.",
   "Panel de gastos compartidos, aportes y saldos.",
   "Estadísticas de participación y responsabilidades.",
-  "Recordatorios y automatizaciones avanzadas.",
+  "Capacidad de agregar hasta 50 personas.",
   "Personalización avanzada y exportación de información.",
+  "Beneficios premium compartidos con todos los integrantes del grupo.."
 ];
 
 export default function Price() {
