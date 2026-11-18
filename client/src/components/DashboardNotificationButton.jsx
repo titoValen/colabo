@@ -5,6 +5,9 @@ import {
   getNotificationText,
   getNotificationRoute,
 } from "@/utils/notificationsText.js";
+import { isPushSupported, subscribeToPush } from "@/services/pushSubscription";
+import { savePushSubscription } from "@/services/notifications";
+import { useAuth } from "@/hooks/useAuth";
 import BellIcon from "@/assets/icons/bell.svg";
 
 function formatRelative(dateString) {
@@ -23,6 +26,10 @@ function formatRelative(dateString) {
 }
 
 export default function DashboardNotificationButton() {
+  const { token } = useAuth();
+  const [pushEnable, setPushEnabled] = useState(
+    () => isPushSupported() && Notification.permission === "granted"
+  );
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
   const navigate = useNavigate();
@@ -68,6 +75,15 @@ export default function DashboardNotificationButton() {
       setIsOpen(false);
       navigate(route);
     }
+  }
+
+  async function enablePush() {
+    const permission = await Notification.requestPermission();
+    if (permission !== "granted") return;
+    const subscription = await subscribeToPush();
+
+    await savePushSubscription(subscription, { token });
+    setPushEnabled(true);
   }
 
   return (
@@ -153,6 +169,16 @@ export default function DashboardNotificationButton() {
               onClick={loadMore}
             >
               Cargar más
+            </button>
+          )}
+
+          {isPushSupported() && !pushEnable && (
+            <button
+              type="button"
+              className="dashboard-notifications-more"
+              onClick={enablePush}
+            >
+              Activar avisos del sistema
             </button>
           )}
         </div>

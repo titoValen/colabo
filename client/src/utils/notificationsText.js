@@ -11,7 +11,7 @@ export function getNotificationText(notification) {
     case "group_message":
       return {
         title: `Mensaje de ${data.from ?? "un miembro del grupo"}`,
-        body: data.message,
+        body: data.preview,
         link: ROUTES.group_message(data),
       };
     case "payment_due":
