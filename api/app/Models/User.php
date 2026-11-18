@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\ResetPasswordNotification;
 use Laravel\Sanctum\HasApiTokens;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class User extends Authenticatable implements CanResetPassword
 {
-    use HasApiTokens, CanResetPasswordTrait, Notifiable;
+    use HasApiTokens, CanResetPasswordTrait, Notifiable, HasPushSubscriptions;
 
     protected $table = 'users';
     protected $fillable = ['name', 'email', 'password', 'notifications_enabled', 'onboarding_completed'];
