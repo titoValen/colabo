@@ -27,3 +27,10 @@ export async function subscribeToPush() {
     applicationServerKey: urlBase64ToUnit8Array(VAPID_PUBLIC_KEY),
   });
 }
+
+export async function getCurrentPushSubscription() {
+  if (!isPushSupported()) return null;
+  const registration = await navigator.serviceWorker.ready;
+
+  return registration.pushManager.getSubscription();
+}
