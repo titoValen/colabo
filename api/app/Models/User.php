@@ -15,9 +15,12 @@ class User extends Authenticatable implements CanResetPassword
     use HasApiTokens, CanResetPasswordTrait, Notifiable, HasPushSubscriptions;
 
     protected $table = 'users';
-    protected $fillable = ['name', 'email', 'password', 'notifications_enabled', 'onboarding_completed'];
+    protected $fillable = ['name', 'email', 'password', 'location', 'bio', 'notifications_enabled', 'onboarding_completed'];
 
     protected $hidden = ['password'];
+
+    // Las preferencias del avatar viajan siempre con el usuario (login, /me, onboarding).
+    protected $with = ['avatarPreference'];
 
     protected $casts = [
         'password' => 'hashed',
@@ -28,6 +31,11 @@ class User extends Authenticatable implements CanResetPassword
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function avatarPreference()
+    {
+        return $this->hasOne(AvatarPreference::class, 'user_id', 'id');
     }
 
     public function groups()

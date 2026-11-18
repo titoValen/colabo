@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\OnboardingController;
 use App\Http\Controllers\Api\PresenceController;
 use App\Http\Controllers\Api\PushSubscriptionController;
+use App\Http\Controllers\Api\PasswordController;
+use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -17,7 +19,10 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
 Route::middleware('auth:sanctum')->group(function () {
   Route::post('/logout', [AuthController::class, 'logout']);
+  Route::delete('/account', [AuthController::class, 'destroyAccount']);
   Route::get('/me', [AuthController::class, 'me']);
+  Route::patch('/profile', [ProfileController::class, 'update']);
+  Route::put('/password', [PasswordController::class, 'update'])->middleware('throttle:5,1');
   Route::post('/onboarding', [OnboardingController::class, 'store']);
 
   Route::apiResource('events', EventController::class);

@@ -1,18 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
+import ProfileAvatar from "@components/ProfileAvatar";
 import ChevronIcon from "@/assets/icons/chevron_down.svg";
-
-function getInitials(name) {
-  if (!name) return "";
-
-  return name
-    .trim()
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((part) => part[0].toUpperCase())
-    .join("");
-}
 
 export default function DashboardUserMenu() {
   const { user, logout } = useAuth();
@@ -56,9 +46,14 @@ export default function DashboardUserMenu() {
         aria-label="Menú de usuario"
         onClick={() => setIsOpen((open) => !open)}
       >
-        <span className="dashboard-user-avatar">
-          {getInitials(user?.name)}
-        </span>
+        <ProfileAvatar
+          name={user?.name}
+          seed={user?.email}
+          shape={user?.avatar_preference?.blobatar_shape}
+          color={user?.avatar_preference?.avatar_color}
+          style={user?.avatar_preference?.avatar_style}
+          size="sm"
+        />
         <img
           src={ChevronIcon}
           className={`dashboard-user-chevron${isOpen ? " is-open" : ""}`}

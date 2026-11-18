@@ -226,7 +226,6 @@
 .dashboard-user-trigger {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
   padding: 0;
   border: none;
   background: transparent;
@@ -237,19 +236,6 @@
   outline: 2px solid var(--color-orange);
   outline-offset: 2px;
   border-radius: 999px;
-}
-
-.dashboard-user-avatar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 999px;
-  background-color: var(--color-orange);
-  color: var(--color-white);
-  font-weight: 700;
-  font-size: 0.875rem;
 }
 
 .dashboard-user-chevron {

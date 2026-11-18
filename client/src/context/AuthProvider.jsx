@@ -47,6 +47,17 @@ export default function AuthProvider({ children }) {
     return response;
   };
 
+  const updateProfile = async (body) => {
+    const response = await apiFetch("/profile", {
+      method: "PATCH",
+      body,
+      token,
+    });
+    localStorage.setItem("usuario", JSON.stringify(response.user));
+    setUser(response.user);
+    return response;
+  };
+
   const completeOnboarding = (data) => updateOnboardingStatus(data);
 
   const skipOnboarding = () => updateOnboardingStatus({ saltar: true });
@@ -71,6 +82,18 @@ export default function AuthProvider({ children }) {
       setSessionError("");
       setIsCheckingSession(false);
     }
+  };
+
+  const deleteAccount = async () => {
+    await apiFetch("/account", { method: "DELETE", token });
+
+    cancelRetry();
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    setToken(null);
+    setUser(null);
+    setSessionError("");
+    setIsCheckingSession(false);
   };
 
   const clearLocalSession = useCallback(() => {
@@ -151,6 +174,8 @@ export default function AuthProvider({ children }) {
         register,
         login,
         logout,
+        deleteAccount,
+        updateProfile,
         completeOnboarding,
         skipOnboarding,
         isCheckingSession,

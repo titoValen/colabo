@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('location')->nullable();
+            $table->string('bio', 500)->nullable();
             $table->boolean('notifications_enabled')->default(true);
             $table->timestamps();
         });
