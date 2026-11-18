@@ -15,7 +15,15 @@ class NotificationController extends Controller
             ->latest()
             ->paginate(20);
 
-        return response()->json($notifications);
+        $unreadCount = Notification::query()
+            ->where('user_id', $request->user()->id)
+            ->whereNull('read_at')
+            ->count();
+
+        return response()->json([
+            ...$notifications->toArray(),
+            'unread_count' => $unreadCount,
+        ]);
     }
 
     public function markAsRead(Request $request, Notification $notification)

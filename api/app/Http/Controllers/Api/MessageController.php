@@ -7,6 +7,8 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\DispatchUserNotification;
+use App\Models\Notification;
 
 class MessageController extends Controller
 {
@@ -41,32 +43,27 @@ class MessageController extends Controller
                 'sent_at' => now(),
             ]);
 
-            $now = now();
-            if ($recipientIds->isNotEmpty()) {
-                DB::table('message_recipients')->insert(
-                    $recipientIds->map(fn($id) => [
-                        'message_id' => $message->id,
-                        'user_id' => $id,
-                    ])->all()
-                );
+            $message->recipients()->createMany((
+                $recipientIds->map(fn($id) => ['user_id' => $id])->all()
+            ));
 
-                DB::table('notifications')->insert(
-                    $recipientIds->map(fn($id) => [
-                        'user_id' => $id,
-                        'type' => 'group_message',
-                        'data' => json_encode([
-                            'message_id' => $message->id,
-                            'group_id' => $message->group_id,
-                        ], JSON_THROW_ON_ERROR),
-                        'created_at' => $now,
-                    ])->all()
-                );
+            foreach ($recipientIds as $recipientId) {
+                $notification = Notification::create([
+                    'user_id' => $recipientId,
+                    'type' => 'group_message',
+                    'data' => [
+                        'message_id' => $message->id,
+                        'group_id' => $message->group_id,
+                        'from' => $user->name,
+                        'preview' => mb_substr($message->content, 0, 120),
+                    ],
+                ]);
+
+                DispatchUserNotification::dispatch($notification->id)->afterCommit();
             }
 
             return $message;
         });
-
-        // Aquí se despacha el job que decide: broadcast si está online, push si no.
 
         return response()->json($message, 201);
     }
