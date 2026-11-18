@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\OnboardingController;
 use App\Http\Controllers\Api\PasswordController;
 use App\Http\Controllers\Api\ProfileController;
@@ -22,4 +24,9 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::post('/onboarding', [OnboardingController::class, 'store']);
 
   Route::apiResource('events', EventController::class);
+
+  Route::post('/messages', [MessageController::class, 'store']);
+  Route::get('/notifications', [NotificationController::class, 'index']);
+  Route::patch('/notifications/{notification}/read', [NotificationController::class, 'markAsRead']);
+  Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
 });
