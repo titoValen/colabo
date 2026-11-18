@@ -11,7 +11,13 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      strategies: "injectManifest",
+      srcDir: "src",
+      filename: "sw.js",
       registerType: "autoUpdate",
+      injectManifest: {
+        injectionPoint: "self.__WB_MANIFEST",
+      },
       manifest: {
         name: "Colabo",
         short_name: "Colabo",
