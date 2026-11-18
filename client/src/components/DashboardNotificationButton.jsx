@@ -13,7 +13,7 @@ import {
 import {
   getNotificationText,
   getNotificationRoute,
-} from "@/utils/notificationText";
+} from "@/utils/notificationsText.js";
 
 function formatRelative(dateString) {
   const diff = Date.now() - new Date(dateString).getTime();
