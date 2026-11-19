@@ -2,24 +2,24 @@ import { lazy, Suspense, useEffect } from "react";
 import { Navigate, Routes, Route, useLocation, Link } from "react-router";
 import toast from "react-hot-toast";
 import { useAuth } from "@/hooks/useAuth";
-import Loading from "@/components/Loading.jsx";
-import "@/styles/alert.css";
+import Loading from "@/components/shared/Loading.jsx";
+import "@/styles/shared/alert.css";
 
-const Register = lazy(() => import("@/pages/Register"));
-const Login = lazy(() => import("@/pages/Login"));
-const Price = lazy(() => import("@/pages/Price"));
-const Landing = lazy(() => import("@/pages/Landing"));
-const Onboarding = lazy(() => import("@/pages/Onboarding"));
-const ForgotPassword = lazy(() => import("@/pages/ForgotPassword"));
-const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
-const Dashboard = lazy(() => import("@/pages/Dashboard"));
-const Groups = lazy(() => import("@/pages/Groups"));
-const Tasks = lazy(() => import("@/pages/Tasks"));
-const Events = lazy(() => import("@/pages/Events"));
-const Expenses = lazy(() => import("@/pages/Expenses"));
-const Agreements = lazy(() => import("@/pages/Agreements"));
-const Profile = lazy(() => import("@/pages/Profile"));
-const NotFound = lazy(() => import("@/pages/NotFound"));
+const Register = lazy(() => import("@/pages/auth/Register"));
+const Login = lazy(() => import("@/pages/auth/Login"));
+const Price = lazy(() => import("@/pages/public/Price"));
+const Landing = lazy(() => import("@/pages/public/Landing"));
+const Onboarding = lazy(() => import("@/pages/onboarding/Onboarding"));
+const ForgotPassword = lazy(() => import("@/pages/auth/ForgotPassword"));
+const ResetPassword = lazy(() => import("@/pages/auth/ResetPassword"));
+const Dashboard = lazy(() => import("@/pages/workspace/Dashboard"));
+const Groups = lazy(() => import("@/pages/workspace/Groups"));
+const Tasks = lazy(() => import("@/pages/workspace/Tasks"));
+const Events = lazy(() => import("@/pages/workspace/Events"));
+const Expenses = lazy(() => import("@/pages/workspace/Expenses"));
+const Agreements = lazy(() => import("@/pages/workspace/Agreements"));
+const Profile = lazy(() => import("@/pages/workspace/Profile"));
+const NotFound = lazy(() => import("@/pages/errors/NotFound"));
 
 const PUBLIC_ONLY_ROUTES = new Set([
   "/",

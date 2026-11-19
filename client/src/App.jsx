@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Loading from "@/components/Loading";
-import Header from "@components/Header";
-import Footer from "@components/Footer";
+import Loading from "@/components/shared/Loading";
+import Header from "@components/layout/Header";
+import Footer from "@components/layout/Footer";
 import AppRoutes from "@/routes/routes";
 import AuthProvider from "@/context/AuthProvider";
 import { useAuth } from "@/hooks/useAuth";
