@@ -1,5 +1,5 @@
-import "@/styles/price.css";
-import PriceCard from "@/components/PriceCard";
+import "@/styles/pricing/price.css";
+import PriceCard from "@/components/pricing/PriceCard";
 import { useState } from "react";
 
 const plusPlans = {

@@ -1,5 +1,5 @@
-import AppLayout from "@components/AppLayout";
-import ComingSoonSection from "@components/ComingSoonSection";
+import AppLayout from "@components/layout/AppLayout";
+import ComingSoonSection from "@components/shared/ComingSoonSection";
 
 export default function Tasks() {
   return (

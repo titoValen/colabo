@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import ImageOnBoarding from "@/assets/illustration/onboarding_01.webp";
 import ArrowLeft from "@/assets/icons/arrow_left.svg";
 import Logo from "@/assets/colabo_logo.svg";
-import "@/styles/onboarding.css";
+import "@/styles/onboarding/onboarding.css";
 
 const GROUP_TYPES = [
   "Amigos",

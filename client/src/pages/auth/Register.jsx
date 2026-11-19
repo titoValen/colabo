@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
-import AuthField from "@components/AuthField";
+import AuthField from "@components/auth/AuthField";
 import ColaboLogin from "@/assets/illustration/colabo_register.webp";
 import Logo from "@/assets/colabo_logo.svg";
-import "@/styles/auth.css";
+import "@/styles/auth/auth.css";
 
 export default function Register() {
   const { register } = useAuth();

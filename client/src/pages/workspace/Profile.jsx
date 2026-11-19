@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import AppLayout from "@components/AppLayout";
-import ProfileSummary from "@components/ProfileSummary";
-import ProfilePersonalInfo from "@components/ProfilePersonalInfo";
-import ProfileSecurity from "@components/ProfileSecurity";
-import ProfilePreferences from "@components/ProfilePreferences";
-import ProfileCustomization from "@components/ProfileCustomization";
-import "@/styles/profile.css";
+import AppLayout from "@components/layout/AppLayout";
+import ProfileSummary from "@components/profile/ProfileSummary";
+import ProfilePersonalInfo from "@components/profile/ProfilePersonalInfo";
+import ProfileSecurity from "@components/profile/ProfileSecurity";
+import ProfilePreferences from "@components/profile/ProfilePreferences";
+import ProfileCustomization from "@components/profile/ProfileCustomization";
+import "@/styles/profile/profile.css";
 
 const DEFAULT_AVATAR_COLOR = "#cb4528";
 

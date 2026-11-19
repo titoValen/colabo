@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
-import AuthField from "@components/AuthField";
+import AuthField from "@components/auth/AuthField";
 import { apiFetch } from "@/services/api";
 import Logo from "@/assets/colabo_logo.svg";
-import "@/styles/auth.css";
+import "@/styles/auth/auth.css";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { apiFetch } from "@/services/api";
-import AppLayout from "@components/AppLayout";
-import DashboardGroups from "@components/DashboardGroups";
-import DashboardNotificationButton from "@components/DashboardNotificationButton";
-import DashboardSearchBar from "@components/DashboardSearchBar";
-import DashboardUserMenu from "@components/DashboardUserMenu";
-import DashboardNewGroup from "@components/DashboardNewGroup";
-import DashboardRecentActivity from "@components/DashboardRecentActivity";
-import DashboardStatEvents from "@components/DashboardStatEvents";
-import DashboardUpcomingEvents from "@components/DashboardUpcomingEvents";
-import "@/styles/dashboard.css";
+import AppLayout from "@components/layout/AppLayout";
+import DashboardGroups from "@components/dashboard/DashboardGroups";
+import DashboardNotificationButton from "@components/dashboard/DashboardNotificationButton";
+import DashboardSearchBar from "@components/dashboard/DashboardSearchBar";
+import DashboardUserMenu from "@components/dashboard/DashboardUserMenu";
+import DashboardNewGroup from "@components/dashboard/DashboardNewGroup";
+import DashboardRecentActivity from "@components/dashboard/DashboardRecentActivity";
+import DashboardStatEvents from "@components/dashboard/DashboardStatEvents";
+import DashboardUpcomingEvents from "@components/dashboard/DashboardUpcomingEvents";
+import "@/styles/dashboard/dashboard.css";
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 const VISIBLE_EVENTS_COUNT = 3;

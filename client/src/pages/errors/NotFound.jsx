@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import NotFoundIllustration from "@/assets/illustration/colabo_404.webp";
-import "@/styles/not-found.css";
+import "@/styles/errors/not-found.css";
 
 export default function NotFound() {
   return (

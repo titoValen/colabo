@@ -1,4 +1,4 @@
-import "@/styles/landing.css";
+import "@/styles/public/landing.css";
 import { Link } from "react-router";
 import Hero from "@/assets/illustration/colabo_hero_background.webp";
 import HeroMobile from "@/assets/illustration/colabo_hero_background_mobile.webp";
