@@ -17,10 +17,10 @@
   border-radius: 0.75rem;
   padding: 4rem 1.125rem;
   background-image:
-    url("../assets/illustration/corner/left_top.svg"),
-    url("../assets/illustration/corner/right_top.svg"),
-    url("../assets/illustration/corner/left_bottom.svg"),
-    url("../assets/illustration/corner/right_bottom.svg");
+    url("../../assets/illustration/corner/left_top.svg"),
+    url("../../assets/illustration/corner/right_top.svg"),
+    url("../../assets/illustration/corner/left_bottom.svg"),
+    url("../../assets/illustration/corner/right_bottom.svg");
   background-position:
     left top,
     right top,
