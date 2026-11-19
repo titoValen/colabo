@@ -1,6 +1,6 @@
 import { Blobatar } from "@blobatar/react";
 import { BLOBATAR_SHAPES } from "./blobatarShapes";
-import "@/styles/avatar.css";
+import "@/styles/profile/avatar.css";
 
 const BLOBATAR_FALLBACK_SEED = "colabo";
 const EYE_LIGHT = "#ffffff";

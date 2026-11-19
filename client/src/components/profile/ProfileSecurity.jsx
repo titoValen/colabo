@@ -5,7 +5,7 @@ import { apiFetch } from "@/services/api";
 import LockIcon from "@/assets/icons/lock.svg";
 import ShieldIcon from "@/assets/icons/shield.svg";
 import ChevronIcon from "@/assets/icons/chevron_down.svg";
-import "@/styles/profile-security.css";
+import "@/styles/profile/profile-security.css";
 
 const MIN_PASSWORD_LENGTH = 8;
 const PASSWORD_UPDATED_MESSAGE =

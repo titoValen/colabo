@@ -1,4 +1,4 @@
-import ProfileAvatar from "@components/ProfileAvatar";
+import ProfileAvatar from "@components/profile/ProfileAvatar";
 import GroupsIcon from "@/assets/icons/groups.svg";
 import TasksIcon from "@/assets/icons/tasks.svg";
 import EventsIcon from "@/assets/icons/events.svg";

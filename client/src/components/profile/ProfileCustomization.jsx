@@ -1,8 +1,8 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import PaletteIcon from "@/assets/icons/palette.svg";
-import ProfileAvatar from "@components/ProfileAvatar";
-import { BLOBATAR_SHAPES } from "@components/blobatarShapes";
+import ProfileAvatar from "@components/profile/ProfileAvatar";
+import { BLOBATAR_SHAPES } from "@components/profile/blobatarShapes";
 
 const COLOR_OPTIONS = [
   { value: "#cb4528", label: "Naranja" },

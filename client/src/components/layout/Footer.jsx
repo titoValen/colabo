@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import LogoColabo from "@/assets/colabo_logo-white-border.svg";
 import Instagram from "@/assets/social/instagram.svg";
 import Tiktok from "@/assets/social/tiktok.svg";
-import "@/styles/footer.css";
+import "@/styles/layout/footer.css";
 
 export default function Footer() {
   return (

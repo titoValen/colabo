@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import LogoColabo from "@/assets/colabo_logo.svg";
 import MenuIcon from "@/assets/icons/menu.svg";
 import CloseIcon from "@/assets/icons/close.svg";
-import "@/styles/header.css";
+import "@/styles/layout/header.css";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
-import ProfileAvatar from "@components/ProfileAvatar";
+import ProfileAvatar from "@components/profile/ProfileAvatar";
 import ChevronIcon from "@/assets/icons/chevron_down.svg";
 
 export default function DashboardUserMenu() {

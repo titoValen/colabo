@@ -1,8 +1,8 @@
 import { Children, useState } from "react";
-import AppSidebar from "@components/AppSidebar";
+import AppSidebar from "@components/layout/AppSidebar";
 import HideSidebarIcon from "@/assets/icons/hide_sidebar.svg";
 import ColaboLogo from "@/assets/colabo_isotipo.svg";
-import "@/styles/app.css";
+import "@/styles/layout/app.css";
 
 export default function AppLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

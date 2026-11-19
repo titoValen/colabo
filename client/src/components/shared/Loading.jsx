@@ -1,4 +1,4 @@
-import "@/styles/loading.css";
+import "@/styles/shared/loading.css";
 
 export default function Loading({ status = "Cargando..." }) {
   return (
