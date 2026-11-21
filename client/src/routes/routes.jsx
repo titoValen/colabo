@@ -14,6 +14,8 @@ const ForgotPassword = lazy(() => import("@/pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("@/pages/auth/ResetPassword"));
 const Dashboard = lazy(() => import("@/pages/workspace/Dashboard"));
 const Groups = lazy(() => import("@/pages/workspace/Groups"));
+const NewGroup = lazy(() => import("@/pages/workspace/NewGroup"));
+const GroupLobby = lazy(() => import("@/pages/workspace/GroupLobby"));
 const Tasks = lazy(() => import("@/pages/workspace/Tasks"));
 const Events = lazy(() => import("@/pages/workspace/Events"));
 const Expenses = lazy(() => import("@/pages/workspace/Expenses"));
@@ -41,6 +43,9 @@ const APP_ROUTES = new Set([
   "/perfil",
 ]);
 
+const isAppRoute = (pathname) =>
+  APP_ROUTES.has(pathname) || pathname.startsWith("/grupos/");
+
 export default function AppRoutes() {
   const { pathname } = useLocation();
   const {
@@ -58,7 +63,7 @@ export default function AppRoutes() {
     typeof sessionError === "string"
       ? sessionError
       : (sessionError?.message ??
-        "No pudimos verificar tu sesión. Intentá nuevamente.");
+        "No pudimos verificar tu sesión. Inténtalo nuevamente.");
 
   useEffect(() => {
     if (!isSessionExpired) return;
@@ -122,7 +127,7 @@ export default function AppRoutes() {
     if (isOnboardingCompleted) return <Navigate to="/dashboard" replace />;
   }
 
-  if (APP_ROUTES.has(pathname)) {
+  if (isAppRoute(pathname)) {
     if (!isAuthenticated) return <Navigate to="/iniciar-sesion" replace />;
     if (!isOnboardingCompleted) return <Navigate to="/onboarding" replace />;
   }
@@ -139,6 +144,8 @@ export default function AppRoutes() {
         <Route path="/restablecer-contrasena" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/grupos" element={<Groups />} />
+        <Route path="/grupos/nuevo" element={<NewGroup />} />
+        <Route path="/grupos/:groupId" element={<GroupLobby />} />
         <Route path="/tareas" element={<Tasks />} />
         <Route path="/eventos" element={<Events />} />
         <Route path="/gastos" element={<Expenses />} />

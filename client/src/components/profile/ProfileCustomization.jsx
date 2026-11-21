@@ -51,12 +51,12 @@ export default function ProfileCustomization({
       </h2>
 
       <div className="profile-customization-block">
-        <p className="profile-customization-label">Color de tu perfil</p>
+        <p className="profile-customization-label">Color del perfil</p>
         <p className="profile-customization-hint">
-          Elegí un color para identificar tus grupos.
+          Selecciona un color para identificar tus grupos.
         </p>
 
-        <div className="profile-color-options" role="radiogroup" aria-label="Color de tu perfil">
+        <div className="profile-color-options" role="radiogroup" aria-label="Color del perfil">
           {COLOR_OPTIONS.map(({ value, label }) => (
             <button
               key={value}
@@ -75,7 +75,7 @@ export default function ProfileCustomization({
       <div className="profile-customization-block">
         <p className="profile-customization-label">Estilo de avatar</p>
         <p className="profile-customization-hint">
-          Usá tu inicial o probá un blobatar, una criaturita única generada a partir de tu cuenta.
+          Usa tu inicial o prueba un blobatar, una figura única generada a partir de tu cuenta.
         </p>
 
         <div className="profile-avatar-style-options" role="radiogroup" aria-label="Estilo de avatar">
@@ -99,7 +99,7 @@ export default function ProfileCustomization({
         <div className="profile-customization-block">
           <p className="profile-customization-label">Forma del blobatar</p>
           <p className="profile-customization-hint">
-            Dejá que se elija sola según tu cuenta o fijá la forma que más te guste.
+            Deja que se elija automáticamente según tu cuenta o selecciona la forma que prefieras.
           </p>
 
           <div className="profile-shape-options" role="radiogroup" aria-label="Forma del blobatar">

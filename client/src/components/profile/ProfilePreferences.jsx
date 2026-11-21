@@ -22,7 +22,7 @@ export default function ProfilePreferences({ initialNotificationsEnabled }) {
           <img src={BellIcon} alt="" />
           <div>
             <p>Notificaciones</p>
-            <span>Gestioná cómo y cuándo recibir notificaciones.</span>
+            <span>Gestiona cómo y cuándo recibir notificaciones.</span>
           </div>
           <button
             type="button"
@@ -40,7 +40,7 @@ export default function ProfilePreferences({ initialNotificationsEnabled }) {
           <img src={EyeIcon} alt="" />
           <div>
             <p>Privacidad</p>
-            <span>Controlá quién puede ver tu información.</span>
+            <span>Controla quién puede ver tu información.</span>
           </div>
           <img src={ChevronIcon} alt="" className="profile-nav-chevron" />
         </li>

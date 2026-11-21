@@ -12,6 +12,9 @@
   "dependencies": {
     "@blobatar/react": "^2.7.0",
     "blobatar": "^2.7.0",
+    "code": "^5.2.4",
+    "qr": "^0.7.2",
+    "qrcode": "^1.5.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-hot-toast": "^2.6.1",

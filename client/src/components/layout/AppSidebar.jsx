@@ -65,7 +65,9 @@ export default function AppSidebar({ isOpen, onToggle }) {
   const location = useLocation();
 
   const currentSection = NAV_ITEMS.find(
-    (item) => item.path === location.pathname,
+    (item) =>
+      item.path === location.pathname ||
+      location.pathname.startsWith(`${item.path}/`),
   );
 
   return (

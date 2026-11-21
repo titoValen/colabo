@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\OnboardingController;
@@ -26,6 +27,9 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::post('/onboarding', [OnboardingController::class, 'store']);
 
   Route::apiResource('events', EventController::class);
+
+  Route::apiResource('groups', GroupController::class)->only(['index', 'store', 'show']);
+  Route::post('/groups/{group}/images', [GroupController::class, 'storeImages']);
 
   Route::post('/messages', [MessageController::class, 'store']);
   Route::get('/notifications', [NotificationController::class, 'index']);

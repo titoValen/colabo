@@ -144,7 +144,7 @@ export default function ProfileSecurity() {
             <span className="profile-nav-text">
               <span className="profile-nav-title">Cambiar contraseña</span>
               <span className="profile-nav-description">
-                Actualizá tu contraseña para mayor seguridad.
+                Actualiza tu contraseña para mayor seguridad.
               </span>
             </span>
             <img src={ChevronIcon} alt="" className="profile-nav-chevron" />
@@ -236,7 +236,7 @@ export default function ProfileSecurity() {
             <span className="profile-nav-text">
               <span className="profile-nav-title">Eliminar cuenta</span>
               <span className="profile-nav-description">
-                Se eliminarán permanentemente tu cuenta y sus datos.
+                Se eliminarán permanentemente tu cuenta y tus datos.
               </span>
             </span>
             <button
@@ -269,7 +269,7 @@ export default function ProfileSecurity() {
             aria-modal="true"
             aria-labelledby="delete-account-title"
           >
-            <h2 id="delete-account-title">¿Eliminar tu cuenta?</h2>
+            <h2 id="delete-account-title">¿Eliminar la cuenta?</h2>
             <p>
               Esta acción es permanente. Se eliminarán tu cuenta y todos los
               datos asociados.

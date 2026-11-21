@@ -21,6 +21,9 @@ export default function Dashboard() {
   const [events, setEvents] = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
   const [eventsError, setEventsError] = useState("");
+  const [groups, setGroups] = useState([]);
+  const [loadingGroups, setLoadingGroups] = useState(true);
+  const [groupsError, setGroupsError] = useState("");
 
   useEffect(() => {
     let active = true;
@@ -34,6 +37,25 @@ export default function Dashboard() {
       })
       .finally(() => {
         if (active) setLoadingEvents(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [token]);
+
+  useEffect(() => {
+    let active = true;
+
+    apiFetch("/groups", { token })
+      .then((data) => {
+        if (active) setGroups(data);
+      })
+      .catch((error) => {
+        if (active) setGroupsError(error.message);
+      })
+      .finally(() => {
+        if (active) setLoadingGroups(false);
       });
 
     return () => {
@@ -55,7 +77,7 @@ export default function Dashboard() {
       <header className="dashboard-header">
         <div>
           <h1>Hola{user?.name ? `, ${user.name}` : ""}</h1>
-          <p>Organizá, compartí y hacé que las cosas pasen.</p>
+          <p>Organiza, comparte y haz realidad tus planes.</p>
         </div>
 
         <div className="dashboard-header-actions">
@@ -72,7 +94,11 @@ export default function Dashboard() {
             loading={loadingEvents}
             error={eventsError}
           />
-          <DashboardGroups />
+          <DashboardGroups
+            groups={groups}
+            loading={loadingGroups}
+            error={groupsError}
+          />
           <DashboardRecentActivity />
         </section>
 

@@ -219,7 +219,7 @@ export default function DashboardNotificationButton() {
 
           {pushStatus === "denied" && (
             <p className="dashboard-notifications-empty">
-              Los avisos están bloqueados en este navegador. Podés habilitarlos
+              Los avisos están bloqueados en este navegador. Puedes habilitarlos
               desde la configuración del sitio.
             </p>
           )}
