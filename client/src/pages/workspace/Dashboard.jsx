@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { apiFetch } from "@/services/api";
+import { fetchDashboardSummary } from "@/services/dashboard";
 import AppLayout from "@components/layout/AppLayout";
 import DashboardGroups from "@components/dashboard/DashboardGroups";
 import DashboardNotificationButton from "@components/dashboard/DashboardNotificationButton";
@@ -8,22 +9,39 @@ import DashboardSearchBar from "@components/dashboard/DashboardSearchBar";
 import DashboardUserMenu from "@components/dashboard/DashboardUserMenu";
 import DashboardNewGroup from "@components/dashboard/DashboardNewGroup";
 import DashboardRecentActivity from "@components/dashboard/DashboardRecentActivity";
-import DashboardStatEvents from "@components/dashboard/DashboardStatEvents";
+import DashboardSummaryCards from "@components/dashboard/DashboardSummaryCards";
 import DashboardUpcomingEvents from "@components/dashboard/DashboardUpcomingEvents";
 import "@/styles/dashboard/dashboard.css";
+import "@/styles/dashboard/summary/index.css";
 
-const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 const VISIBLE_EVENTS_COUNT = 3;
 
 export default function Dashboard() {
   const { token, user } = useAuth();
-  const [now] = useState(() => Date.now());
+
+  // Resumen: números que calcula el servidor.
+  const [summary, setSummary] = useState(null);
+  const [loadingSummary, setLoadingSummary] = useState(true);
+  const [summaryError, setSummaryError] = useState("");
+
+  // Lista de próximos eventos: sigue saliendo de /events.
   const [events, setEvents] = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
   const [eventsError, setEventsError] = useState("");
 
   useEffect(() => {
     let active = true;
+
+    fetchDashboardSummary({ token })
+      .then((data) => {
+        if (active) setSummary(data);
+      })
+      .catch((error) => {
+        if (active) setSummaryError(error.message);
+      })
+      .finally(() => {
+        if (active) setLoadingSummary(false);
+      });
 
     apiFetch("/events", { token })
       .then((data) => {
@@ -41,14 +59,11 @@ export default function Dashboard() {
     };
   }, [token]);
 
+  // La lista muestra solo eventos futuros, sin contar nada acá.
+  const now = Date.now();
   const upcomingEvents = events
     .filter((event) => new Date(event.starts_at).getTime() >= now)
     .slice(0, VISIBLE_EVENTS_COUNT);
-
-  const eventsThisWeek = events.filter((event) => {
-    const start = new Date(event.starts_at).getTime();
-    return start >= now && start <= now + WEEK_MS;
-  }).length;
 
   return (
     <AppLayout>
@@ -66,11 +81,11 @@ export default function Dashboard() {
       </header>
 
       <div className="dashboard-content">
-        <section className="dashboard-summary">
-          <DashboardStatEvents
-            count={eventsThisWeek}
-            loading={loadingEvents}
-            error={eventsError}
+        <section className="dashboard-summary-section">
+          <DashboardSummaryCards
+            summary={summary}
+            loading={loadingSummary}
+            error={summaryError}
           />
           <DashboardGroups />
           <DashboardRecentActivity />
