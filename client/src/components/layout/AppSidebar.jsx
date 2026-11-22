@@ -3,7 +3,7 @@ import Logo from "@/assets/colabo_logo.svg";
 import HideSidebarIcon from "@/assets/icons/hide_sidebar.svg";
 import HomeIcon from "@/assets/icons/home.svg";
 import GroupsIcon from "@/assets/icons/groups.svg";
-import TasksIcon from "@/assets/icons/tasks.svg";
+import TasksIcon from "@/assets/icons/tasks-sidebar.svg";
 import EventsIcon from "@/assets/icons/events.svg";
 import ExpensesIcon from "@/assets/icons/expenses.svg";
 import AgreementsIcon from "@/assets/icons/agreements.svg";

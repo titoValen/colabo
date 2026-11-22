@@ -1,6 +1,6 @@
 import GroupsIcon from "@/assets/icons/groups.svg";
 import EventsIcon from "@/assets/icons/events.svg";
-import TasksIcon from "@/assets/icons/tasks.svg";
+import TasksIcon from "@/assets/icons/tasks-summary.svg";
 import ExpensesIcon from "@/assets/icons/expenses.svg";
 import AgreementsIcon from "@/assets/icons/agreements.svg";
 import HomeIcon from "@/assets/icons/home.svg";

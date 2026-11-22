@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\MessageController;
@@ -39,4 +40,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
   Route::post('/push-subscriptions', [PushSubscriptionController::class, 'store']);
   Route::delete('/push-subscriptions', [PushSubscriptionController::class, 'destroy']);
+
+  Route::get('/dashboard/summary', [DashboardController::class, 'summary']);
 });

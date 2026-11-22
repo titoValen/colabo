@@ -1,6 +1,6 @@
 import ProfileAvatar from "@components/profile/ProfileAvatar";
 import GroupsIcon from "@/assets/icons/groups.svg";
-import TasksIcon from "@/assets/icons/tasks.svg";
+import TasksIcon from "@/assets/icons/tasks-sidebar.svg";
 import EventsIcon from "@/assets/icons/events.svg";
 
 const STATS = [
