@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
   Route::apiResource('events', EventController::class);
 
-  Route::apiResource('groups', GroupController::class)->only(['index', 'store', 'show']);
+  Route::apiResource('groups', GroupController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
   Route::post('/groups/{group}/images', [GroupController::class, 'storeImages']);
 
   Route::post('/messages', [MessageController::class, 'store']);

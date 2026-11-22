@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import GroupAvatar from "@components/groups/GroupAvatar";
+import GroupCard from "@components/groups/GroupCard";
 
 const VISIBLE_GROUPS_COUNT = 4;
 
-export default function DashboardGroups({ groups, loading, error }) {
+export default function DashboardGroups({ groups, loading, error, onDelete }) {
   let content;
 
   if (loading) {
@@ -18,44 +18,28 @@ export default function DashboardGroups({ groups, loading, error }) {
         Todavía no perteneces a ningún grupo.
       </p>
     );
-  } else {
-    content = (
-      <>
-        <ul className="dashboard-group-list">
-          {groups.slice(0, VISIBLE_GROUPS_COUNT).map((group) => (
-            <li key={group.id}>
-              <Link to={`/grupos/${group.id}`} className="dashboard-group-link">
-                <GroupAvatar
-                  name={group.name}
-                  color={group.color}
-                  preset={group.avatar_preset}
-                  imageUrl={group.avatar_url}
-                  size="sm"
-                />
-                <span className="dashboard-group-text">
-                  <span className="dashboard-group-name">{group.name}</span>
-                  <span className="dashboard-group-meta">
-                    {group.users_count}{" "}
-                    {group.users_count === 1 ? "integrante" : "integrantes"}
-                  </span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        {groups.length > VISIBLE_GROUPS_COUNT && (
-          <Link to="/grupos" className="dashboard-group-all">
-            Ver todos mis grupos
-          </Link>
-        )}
-      </>
-    );
   }
 
   return (
-    <section className="dashboard-card">
-      <h2 className="dashboard-card-title">Tus grupos</h2>
-      {content}
+    <section className="dashboard-groups">
+      <header className="dashboard-groups-header">
+        <h2 className="dashboard-card-title">Tus grupos</h2>
+        <Link to="/grupos" className="dashboard-groups-all">
+          Ver todos
+        </Link>
+      </header>
+
+      {content ? (
+        <div className="dashboard-card">{content}</div>
+      ) : (
+        <ul className="dashboard-group-grid">
+          {groups.slice(0, VISIBLE_GROUPS_COUNT).map((group) => (
+            <li key={group.id}>
+              <GroupCard group={group} onDeleted={onDelete} />
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

@@ -132,24 +132,30 @@
 
 /* Tarjeta de grupo */
 
+.group-card-wrapper {
+  position: relative;
+  height: 100%;
+  border-radius: 1.75rem;
+  background-color: rgb(255 255 255 / 0.85);
+  box-shadow: 0 4px 16px rgb(36 59 83 / 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.group-card-wrapper:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgb(36 59 83 / 0.12);
+}
+
 .group-card {
   display: flex;
   flex-direction: column;
   height: 100%;
   padding: 0.75rem;
   border-radius: 1.75rem;
-  background-color: rgb(255 255 255 / 0.85);
-  box-shadow: 0 4px 16px rgb(36 59 83 / 0.06);
   color: inherit;
   text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.group-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgb(36 59 83 / 0.12);
 }
 
 .group-card:focus-visible {
@@ -247,4 +253,66 @@
 
 .group-card:hover .group-card-chevron {
   transform: rotate(-90deg) translateY(3px);
+}
+
+.group-card-menu {
+  position: absolute;
+  z-index: 5;
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+.group-card-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgb(255 255 255 / 0.65);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.82);
+  backdrop-filter: blur(6px);
+  color: var(--color-blue);
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.group-card-menu-button:hover,
+.group-card-menu-button:focus-visible {
+  background: rgb(255 255 255 / 0.96);
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+.group-card-menu-popover {
+  position: absolute;
+  top: calc(100% + 0.375rem);
+  right: 0;
+  width: 10rem;
+  overflow: hidden;
+  border: 1px solid rgb(36 59 83 / 0.1);
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 10px 24px rgb(36 59 83 / 0.16);
+}
+
+.group-card-menu-popover button {
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-blue);
+  cursor: pointer;
+  text-align: left;
+}
+
+.group-card-menu-popover button:hover,
+.group-card-menu-popover button:focus-visible {
+  background: rgb(97 150 189 / 0.1);
+}
+
+.group-card-menu-popover .group-card-menu-danger {
+  color: #b23a48;
 }

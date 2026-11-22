@@ -11,16 +11,16 @@ export class ApiError extends Error {
 }
 
 const MESSAGES_BY_STATUS = {
-  400: "Revisa los datos enviados e intenta nuevamente.",
-  401: "Tu sesión venció. Vuelve a iniciar sesión.",
-  403: "No tienes permiso para realizar esta acción.",
-  404: "No encontramos lo que buscas.",
+  400: "Revisá los datos enviados e intentá de nuevo.",
+  401: "Tu sesión venció. Volvé a iniciar sesión.",
+  403: "No tenés permiso para hacer esto.",
+  404: "No encontramos lo que buscabas.",
   422: "Revisa los datos ingresados.",
   429: "Hiciste demasiados intentos. Espera un momento.",
 };
 
 const SERVER_ERROR_MESSAGE =
-  "Tenemos un problema en el servidor. Intenta más tarde.";
+  "Tenemos un problema en el servidor. Intentá más tarde.";
 
 export async function apiFetch(path, { method = "GET", body, token } = {}) {
   // Con FormData el navegador define el Content-Type (multipart + boundary).
@@ -39,7 +39,7 @@ export async function apiFetch(path, { method = "GET", body, token } = {}) {
     });
   } catch {
     throw new ApiError(
-      "No pudimos conectarnos con Colabo. Revisa tu conexión e intenta nuevamente.",
+      "No pudimos conectarnos con Colabo. Revisa tu conexión e intenta de nuevo.",
       { code: "network" },
     );
   }

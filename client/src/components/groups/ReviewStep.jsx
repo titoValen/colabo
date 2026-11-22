@@ -39,8 +39,8 @@ export default function ReviewStep({ form, user, memberLabel, onEdit, headingRef
   return (
     <WizardStepLayout
       eyebrow="Revisión final"
-      title="Todo listo para crear el grupo"
-      description="Revisa el resumen. Puedes editar cualquier sección antes de confirmar."
+      title="Todo listo para crear tu grupo"
+      description="Revisá el resumen. Podés editar cualquier sección antes de confirmar."
       illustration={ReviewIllustration}
       headingRef={headingRef}
     >
@@ -62,14 +62,14 @@ export default function ReviewStep({ form, user, memberLabel, onEdit, headingRef
           <dl className="review-facts">
             <div>
               <dt>Administrador</dt>
-              <dd>{user?.name ?? "Usuario actual"} (usuario actual)</dd>
+              <dd>{user?.name ?? "Vos"} (vos)</dd>
             </div>
             <div>
               <dt>Invitados</dt>
               <dd>
                 {members.invitees.length > 0
                   ? members.invitees.join(", ")
-                  : "Nadie por ahora. Puedes invitar después."}
+                  : "Nadie por ahora. Podés invitar después."}
               </dd>
             </div>
             <div>
@@ -109,7 +109,7 @@ export default function ReviewStep({ form, user, memberLabel, onEdit, headingRef
               )}
             </div>
           ) : (
-            <Empty>Sin configurar. Puedes agregarlo después.</Empty>
+            <Empty>Sin configurar. Lo podés sumar después.</Empty>
           )}
         </ReviewSection>
 
@@ -139,7 +139,7 @@ export default function ReviewStep({ form, user, memberLabel, onEdit, headingRef
               </p>
               {task.description.trim() && <p>{task.description.trim()}</p>}
               <p className="review-meta">
-                Responsable: {user?.name ?? "Usuario actual"}
+                Responsable: {user?.name ?? "vos"}
                 {task.dueDate
                   ? ` · hasta el ${formatDate(task.dueDate, { day: "numeric", month: "long", year: "numeric" })}`
                   : ""}

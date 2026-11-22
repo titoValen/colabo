@@ -30,9 +30,7 @@ export default function WizardField({
             {hint}
           </p>
         ) : (
-          <span className="wizard-hint" id={`${id}-hint`}>
-            &nbsp;
-          </span>
+          <span />
         )}
         {counter !== undefined && (
           <span className="wizard-counter">{counter}</span>

@@ -1,22 +1,55 @@
-import { Link } from "react-router";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import toast from "react-hot-toast";
 import { useAuth } from "@/hooks/useAuth";
+import { apiFetch } from "@/services/api";
 import GroupAvatar from "@components/groups/GroupAvatar";
 import ProfileAvatar from "@components/profile/ProfileAvatar";
 import MembersIcon from "@/assets/icons/profile.svg";
 import ChevronIcon from "@/assets/icons/chevron_down.svg";
 import "@/styles/groups/group-shared.css";
+import "@/styles/profile/profile-security.css";
 
-export default function GroupCard({ group }) {
-  const { user } = useAuth();
+export default function GroupCard({ group, onDeleted }) {
+  const { token, user } = useAuth();
+  const navigate = useNavigate();
+  const menuRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
   const members = group.members_preview ?? [];
   const extraMembers = Math.max(0, group.users_count - members.length);
+  const isAdmin = group.my_role === "admin";
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const handlePointerDown = (event) => {
+      if (!menuRef.current?.contains(event.target)) setMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [menuOpen]);
+
+  const handleDelete = async () => {
+    setDeleting(true);
+    setDeleteError("");
+    try {
+      await apiFetch(`/groups/${group.id}`, { method: "DELETE", token });
+      setDeleteOpen(false);
+      toast.success("El grupo fue eliminado.");
+      onDeleted?.(group.id);
+    } catch (error) {
+      setDeleteError(error.message || "No pudimos eliminar el grupo.");
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   return (
-    <Link
-      to={`/grupos/${group.id}`}
-      className="group-card"
-      style={{ "--group-color": group.color }}
-    >
+    <div className="group-card-wrapper" style={{ "--group-color": group.color }}>
+      <Link to={`/grupos/${group.id}`} className="group-card">
       <span
         className="group-card-cover group-cover"
         style={{
@@ -69,5 +102,88 @@ export default function GroupCard({ group }) {
         </span>
       </span>
     </Link>
+      {isAdmin && (
+        <div className="group-card-menu" ref={menuRef}>
+          <button
+            type="button"
+            className="group-card-menu-button"
+            aria-label={`Opciones de ${group.name}`}
+            aria-haspopup="menu"
+            aria-expanded={menuOpen}
+            onClick={(event) => {
+              event.preventDefault();
+              setMenuOpen((open) => !open);
+            }}
+          >
+            <span aria-hidden="true">•••</span>
+          </button>
+          {menuOpen && (
+            <div className="group-card-menu-popover" role="menu">
+              <button
+                type="button"
+                role="menuitem"
+                onClick={() => navigate(`/grupos/${group.id}/editar`)}
+              >
+                Editar grupo
+              </button>
+              <button
+                type="button"
+                role="menuitem"
+                className="group-card-menu-danger"
+                onClick={() => {
+                  setMenuOpen(false);
+                  setDeleteError("");
+                  setDeleteOpen(true);
+                }}
+              >
+                Eliminar grupo
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {deleteOpen && (
+        <div
+          className="profile-delete-modal-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget && !deleting) setDeleteOpen(false);
+          }}
+        >
+          <div
+            className="profile-delete-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`delete-group-${group.id}-title`}
+          >
+            <h2 id={`delete-group-${group.id}-title`}>¿Eliminar el grupo?</h2>
+            <p>
+              Se eliminará <strong>{group.name}</strong> y sus datos asociados.
+              Esta acción no se puede deshacer.
+            </p>
+            {deleteError && <p className="profile-security-error" role="alert">{deleteError}</p>}
+            <div className="profile-security-actions">
+              <button
+                type="button"
+                className="btn profile-delete-confirm"
+                onClick={handleDelete}
+                disabled={deleting}
+              >
+                {deleting ? "Eliminando…" : "Sí, eliminar"}
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setDeleteOpen(false)}
+                disabled={deleting}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

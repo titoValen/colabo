@@ -7,7 +7,7 @@ export default function DashboardNewGroup() {
       <img
         className="dashboard-new-group-image"
         src={NewGroupIllustration}
-        alt="Ilustración de un grupo de personas colaborando"
+        alt=""
       />
       <h2 className="dashboard-new-group-title">¿Nuevo grupo?</h2>
       <p className="dashboard-new-group-text">

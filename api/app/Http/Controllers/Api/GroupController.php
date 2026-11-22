@@ -24,6 +24,7 @@ class GroupController extends Controller
             ->orderByDesc('groups.id')
             ->get()
             ->map(function (Group $group) {
+                $group->setAttribute('my_role', $group->pivot->role);
                 // Solo los primeros integrantes, para mostrar sus avatares en la tarjeta.
                 $group->setAttribute('members_preview', $group->users->take(4)->map(fn ($member) => [
                     'id' => $member->getKey(),
@@ -140,6 +141,100 @@ class GroupController extends Controller
             'tasks' => $group->agreements()->orderBy('id')->get(),
             'invitations' => $role === 'admin' ? $group->invitations()->get() : [],
         ]);
+    }
+
+    public function update(StoreGroupRequest $request, int $group)
+    {
+        $group = $request->user()->groups()
+            ->whereKey($group)
+            ->wherePivot('role', 'admin')
+            ->firstOrFail();
+        $data = $request->validated();
+        $expenses = $data['expenses'] ?? null;
+        $user = $request->user();
+
+        DB::transaction(function () use ($group, $data, $expenses, $user) {
+            $group->update([
+                'name' => $data['name'],
+                'type' => $data['category'],
+                'description' => $data['description'] ?? null,
+                'color' => $data['color'],
+                'avatar_preset' => $data['avatar_preset'],
+                'purpose' => $data['purpose'] ?? null,
+                'member_limit' => $data['member_limit'],
+                'members_can_invite' => $data['members_can_invite'],
+                'members_can_create_tasks' => $data['members_can_create_tasks'],
+                'members_can_add_expenses' => $data['members_can_add_expenses'],
+                'expenses_enabled' => $expenses !== null,
+                'currency' => $expenses['currency'] ?? null,
+                'budget' => $expenses['budget'] ?? null,
+                'expense_split' => $expenses['split'] ?? null,
+                'contribution_amount' => ($expenses['split'] ?? null) === 'contribution'
+                    ? $expenses['contribution_amount']
+                    : null,
+            ]);
+
+            $group->goals()->delete();
+            foreach ($data['goals'] ?? [] as $description) {
+                $group->goals()->create(['description' => $description]);
+            }
+
+            $group->rules()->delete();
+            foreach ($data['rules'] ?? [] as $rule) {
+                $group->rules()->create($rule);
+            }
+
+            $group->events()->delete();
+            foreach ($data['important_dates'] ?? [] as $date) {
+                $group->events()->create([
+                    'creator_id' => $user->getKey(),
+                    'title' => $date['title'],
+                    'starts_at' => $date['date'].' 12:00:00',
+                ]);
+            }
+
+            $group->agreements()->delete();
+            if (! empty($data['task'])) {
+                $group->agreements()->create([
+                    'creator_id' => $user->getKey(),
+                    'responsible_user_id' => $user->getKey(),
+                    'assigned_user_id' => $user->getKey(),
+                    'title' => $data['task']['title'],
+                    'description' => $data['task']['description'] ?? null,
+                    'due_date' => $data['task']['due_date'] ?? null,
+                ]);
+            }
+
+            foreach ($data['invitees'] ?? [] as $invitee) {
+                $group->invitations()->firstOrCreate(
+                    ['invitee' => $invitee],
+                    [
+                        'code' => $this->generateInvitationCode(),
+                        'expires_at' => now()->addDays(self::INVITATION_DAYS),
+                    ],
+                );
+            }
+        });
+
+        return response()->json(['group' => $group->fresh()]);
+    }
+
+    public function destroy(Request $request, int $group)
+    {
+        $group = $request->user()->groups()
+            ->whereKey($group)
+            ->wherePivot('role', 'admin')
+            ->firstOrFail();
+
+        foreach ([$group->avatar_path, $group->cover_path] as $path) {
+            if ($path) {
+                Storage::disk('public')->delete($path);
+            }
+        }
+
+        $group->delete();
+
+        return response()->json(['deleted' => true]);
     }
 
     public function storeImages(Request $request, int $group)

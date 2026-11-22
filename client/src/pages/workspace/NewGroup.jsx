@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
+import toast from "react-hot-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { apiFetch } from "@/services/api";
 import AppLayout from "@components/layout/AppLayout";
@@ -31,6 +32,8 @@ const getLobbyTarget = ({ group, imageFailed }) => [
 export default function NewGroup() {
   const { token, user } = useAuth();
   const navigate = useNavigate();
+  const { groupId } = useParams();
+  const isEditing = Boolean(groupId);
   const [form, setForm] = useState(INITIAL_FORM);
   const [step, setStep] = useState(0);
   const [maxReached, setMaxReached] = useState(0);
@@ -42,6 +45,78 @@ export default function NewGroup() {
   const [today] = useState(() => new Date().toLocaleDateString("en-CA"));
   const headingRef = useRef(null);
   const hasNavigated = useRef(false);
+
+  useEffect(() => {
+    if (!isEditing) return undefined;
+
+    let cancelled = false;
+    apiFetch(`/groups/${groupId}`, { token })
+      .then((data) => {
+        if (cancelled) return;
+        if (data.my_role !== "admin") {
+          navigate(`/grupos/${groupId}`, { replace: true });
+          return;
+        }
+
+        const { group, invitations, goals, rules, events, tasks } = data;
+        const sharedInvitation = invitations.find((invitation) => !invitation.invitee);
+        const task = tasks[0];
+
+        setForm({
+          identity: {
+            name: group.name ?? "",
+            description: group.description ?? "",
+            category: group.type ?? "Otros",
+            color: group.color,
+            avatarPreset: group.avatar_preset,
+            avatar: { file: null, preview: group.avatar_url },
+            cover: { file: null, preview: group.cover_url },
+          },
+          members: {
+            invitees: invitations
+              .filter((invitation) => invitation.invitee)
+              .map((invitation) => invitation.invitee),
+            inviteCode: sharedInvitation?.code ?? "",
+            memberLimit: group.member_limit,
+            permissions: {
+              invite: group.members_can_invite,
+              createTasks: group.members_can_create_tasks,
+              addExpenses: group.members_can_add_expenses,
+            },
+          },
+          organization: {
+            purpose: group.purpose ?? "",
+            goals: goals.map((goal) => goal.description),
+            dates: events.map((event) => ({
+              title: event.title,
+              date: String(event.starts_at).slice(0, 10),
+            })),
+            rules: rules.map((rule) => ({
+              type: rule.type,
+              description: rule.description,
+              requiresAcceptance: rule.requires_acceptance,
+            })),
+            task: {
+              title: task?.title ?? "",
+              description: task?.description ?? "",
+              dueDate: task?.due_date ? String(task.due_date).slice(0, 10) : "",
+            },
+            expenses: {
+              enabled: group.expenses_enabled,
+              currency: group.currency ?? "ARS",
+              budget: group.budget ?? "",
+              split: group.expense_split ?? "equal",
+              contribution: group.contribution_amount ?? "",
+            },
+          },
+        });
+      })
+      .catch((error) => setSubmitError(error));
+
+    return () => {
+      cancelled = true;
+    };
+  }, [groupId, isEditing, navigate, token]);
 
   // Al cambiar de etapa, el foco pasa al título para lectores de pantalla.
   useEffect(() => {
@@ -128,6 +203,36 @@ export default function NewGroup() {
     setSubmitError(null);
 
     try {
+      if (isEditing) {
+        const payload = buildGroupPayload(form);
+        payload.invite_code = null;
+
+        const { group } = await apiFetch(`/groups/${groupId}`, {
+          method: "PATCH",
+          body: payload,
+          token,
+        });
+
+        const { avatar, cover } = form.identity;
+        if (avatar.file || cover.file) {
+          const images = new FormData();
+          if (avatar.file) images.append("avatar", avatar.file);
+          if (cover.file) images.append("cover", cover.file);
+
+          await apiFetch(`/groups/${group.id}/images`, {
+            method: "POST",
+            body: images,
+            token,
+          }).catch(() => {
+            toast.error("El grupo se actualizó, pero no pudimos subir las imágenes.");
+          });
+        }
+
+        toast.success("Los cambios del grupo fueron guardados.");
+        navigate(`/grupos/${group.id}`, { replace: true });
+        return;
+      }
+
       const { group } = await apiFetch("/groups", {
         method: "POST",
         body: buildGroupPayload(form),
@@ -179,25 +284,35 @@ export default function NewGroup() {
   const memberLabel =
     invitedCount > 0
       ? `${invitedCount + 1} integrantes · ${invitedCount} por invitar`
-      : "1 integrante";
+      : "1 integrante · vos";
 
   const primaryLabel =
     step === REVIEW_STEP
       ? submitting
-        ? "Creando grupo…"
-        : "Crear grupo"
+        ? isEditing
+          ? "Guardando cambios…"
+          : "Creando grupo…"
+        : isEditing
+          ? "Guardar cambios"
+          : "Crear grupo"
       : returnToReview
         ? "Guardar y volver al resumen"
         : step === WIZARD_STEPS.length - 1
-          ? "Revisar y crear"
+          ? isEditing
+            ? "Revisar y guardar"
+            : "Revisar y crear"
           : "Continuar";
 
   return (
     <AppLayout>
       <header className="wizard-header">
         <div>
-          <h1>Crear un nuevo grupo</h1>
-          <p>Es rápido y sencillo. Puedes organizarlo a fondo después.</p>
+          <h1>{isEditing ? "Editar grupo" : "Crear un nuevo grupo"}</h1>
+          <p>
+            {isEditing
+              ? "Actualizá la información y la organización de tu grupo."
+              : "Es rápido y sencillo. Después lo organizás en profundidad."}
+          </p>
         </div>
         {step < SUCCESS_STEP && (
           <Link to="/grupos" className="btn btn-secondary">
@@ -272,7 +387,7 @@ export default function NewGroup() {
                     ))}
                   </ul>
                 )}
-                <p>Tus datos siguen aquí: puedes reintentar cuando quieras.</p>
+                <p>Tus datos siguen acá: podés reintentar cuando quieras.</p>
               </div>
             )}
 

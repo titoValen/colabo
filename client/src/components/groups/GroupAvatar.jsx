@@ -16,12 +16,12 @@ export default function GroupAvatar({
       aria-label={name ? `Imagen del grupo ${name}` : "Imagen del grupo"}
     >
       {imageUrl ? (
-        <img className="group-avatar-photo" src={imageUrl} alt="Imagen del grupo" />
+        <img className="group-avatar-photo" src={imageUrl} alt="" />
       ) : preset ? (
         <img
           className="group-avatar-icon"
           src={getPresetIcon(preset)}
-          alt="Ícono del grupo"
+          alt=""
         />
       ) : (
         <span className="group-avatar-initial">

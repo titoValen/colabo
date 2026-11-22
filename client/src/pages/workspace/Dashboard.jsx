@@ -77,7 +77,7 @@ export default function Dashboard() {
       <header className="dashboard-header">
         <div>
           <h1>Hola{user?.name ? `, ${user.name}` : ""}</h1>
-          <p>Organiza, comparte y haz realidad tus planes.</p>
+          <p>Organizá, compartí y hacé que las cosas pasen.</p>
         </div>
 
         <div className="dashboard-header-actions">
@@ -96,6 +96,9 @@ export default function Dashboard() {
           />
           <DashboardGroups
             groups={groups}
+            onDelete={(groupId) =>
+              setGroups((current) => current.filter((group) => group.id !== groupId))
+            }
             loading={loadingGroups}
             error={groupsError}
           />

@@ -10,10 +10,10 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 export function validateImage(file) {
   if (!file) return "";
   if (!IMAGE_TYPES.includes(file.type)) {
-    return "Selecciona una imagen JPG, PNG o WebP.";
+    return "Elegí una imagen JPG, PNG o WebP.";
   }
   if (file.size > IMAGE_MAX_BYTES) {
-    return "La imagen pesa más de 2 MB. Selecciona una más ligera.";
+    return "La imagen pesa más de 2 MB. Probá con una más liviana.";
   }
   return "";
 }
@@ -22,7 +22,7 @@ export function validateInvitee(value, invitees, memberLimit) {
   const invitee = value.trim();
 
   if (invitee.length < 2) {
-    return "Escribe un nombre de usuario o un correo electrónico.";
+    return "Escribí un nombre de usuario o un correo electrónico.";
   }
   if (invitee.includes("@") && !EMAIL_PATTERN.test(invitee)) {
     return "Ese correo electrónico no parece válido.";
@@ -31,7 +31,7 @@ export function validateInvitee(value, invitees, memberLimit) {
     return "Ya agregaste a esa persona.";
   }
   if (invitees.length + 1 >= memberLimit) {
-    return `Con un límite de ${memberLimit} integrantes puedes invitar hasta ${memberLimit - 1} personas.`;
+    return `Con un límite de ${memberLimit} integrantes podés invitar hasta ${memberLimit - 1} personas.`;
   }
   return "";
 }
@@ -39,7 +39,7 @@ export function validateInvitee(value, invitees, memberLimit) {
 export function validateIdentity({ name, description }) {
   const errors = {};
 
-  if (!name.trim()) errors.name = "Ponle un nombre al grupo.";
+  if (!name.trim()) errors.name = "Poné un nombre para tu grupo.";
   else if (name.trim().length > 80) {
     errors.name = "El nombre puede tener hasta 80 caracteres.";
   }
@@ -60,7 +60,7 @@ export function validateMembers({ invitees, memberLimit }) {
   ) {
     errors.memberLimit = `El límite debe estar entre ${MEMBER_LIMIT_MIN} y ${MEMBER_LIMIT_FREE} integrantes.`;
   } else if (invitees.length + 1 > memberLimit) {
-    errors.memberLimit = `Invitaste a ${invitees.length} personas y el límite es de ${memberLimit} integrantes. Sube el límite o elimina invitaciones.`;
+    errors.memberLimit = `Invitaste a ${invitees.length} personas y el límite es de ${memberLimit} integrantes. Subí el límite o quitá invitaciones.`;
   }
 
   return errors;
@@ -77,7 +77,7 @@ export function validateOrganization({ task, expenses, purpose }) {
     task.description.trim() || task.dueDate || task.title.trim();
   if (hasTaskDetails && !task.title.trim()) {
     errors["task.title"] =
-      "Escribe un título para la tarea o vacía los demás campos.";
+      "Poné un título para la tarea o vaciá los demás campos.";
   }
 
   if (expenses.enabled) {

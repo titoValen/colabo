@@ -55,14 +55,14 @@ export default function MembersStep({ value, user, errors, onChange, headingRef 
     <WizardStepLayout
       eyebrow="Etapa 2 · Integrantes"
       title="¿Quiénes forman parte?"
-      description="Invitar es opcional: puedes crear el grupo solo y sumar personas más tarde."
+      description="Invitar es opcional: podés crear el grupo vos solo y sumar gente más tarde."
       illustration={InviteIllustration}
       headingRef={headingRef}
       aside={
         <div className="wizard-tip">
           <strong>Tranquilidad total</strong>
           <p>
-            Siempre podrá invitar, quitar personas y cambiar los permisos desde el grupo.
+            Siempre vas a poder invitar, quitar personas y cambiar los permisos desde el grupo.
           </p>
         </div>
       }
@@ -80,7 +80,7 @@ export default function MembersStep({ value, user, errors, onChange, headingRef 
             />
             <div>
               <h3>
-                {user?.name ?? "Usuario actual"} <span className="role-pill">Administrador</span>
+                {user?.name ?? "Vos"} <span className="role-pill">Administrador</span>
               </h3>
               <p>Controla la configuración y administración del grupo. Se asigna automáticamente.</p>
             </div>
@@ -179,7 +179,7 @@ export default function MembersStep({ value, user, errors, onChange, headingRef 
               </p>
               <p className="wizard-hint">
                 Tu plan permite hasta {MEMBER_LIMIT_FREE} integrantes.{" "}
-                <Link to="/precios">Con Colabo Plus puedes sumar hasta {MEMBER_LIMIT_PLUS}</Link>.
+                <Link to="/precios">Con Colabo Plus podés sumar hasta {MEMBER_LIMIT_PLUS}</Link>.
               </p>
             </div>
             <div className="stepper-control" role="group" aria-labelledby="limit-label">

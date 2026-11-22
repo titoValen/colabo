@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { useAuth } from "@/hooks/useAuth";
 import { apiFetch } from "@/services/api";
 import AppLayout from "@components/layout/AppLayout";
-import GroupAvatar from "@components/groups/GroupAvatar";
+import GroupCard from "@components/groups/GroupCard";
 import Loading from "@components/shared/Loading";
 import NewGroupIllustration from "@/assets/illustration/colabo_new_group.webp";
 import "@/styles/groups/group-shared.css";
@@ -48,11 +48,11 @@ export default function Groups() {
           {error.message}
         </p>
       ) : !groups ? (
-        <Loading status="Cargando los grupos..." />
+        <Loading status="Cargando tus grupos..." />
       ) : groups.length === 0 ? (
         <section className="groups-empty">
           <img src={NewGroupIllustration} alt="" />
-          <h2>Todavía no tiene grupos</h2>
+          <h2>Todavía no tenés grupos</h2>
           <p>Crear un grupo es el primer paso para organizarse mejor.</p>
           <Link to="/grupos/nuevo" className="btn btn-primary">
             Crear mi primer grupo
@@ -62,34 +62,15 @@ export default function Groups() {
         <ul className="group-grid">
           {groups.map((group) => (
             <li key={group.id}>
-              <Link
-                to={`/grupos/${group.id}`}
-                className="group-card"
-                style={{ "--group-color": group.color }}
-              >
-                <span
-                  className="group-card-cover group-cover"
-                  style={{
-                    backgroundImage: group.cover_url ? `url("${group.cover_url}")` : undefined,
-                  }}
-                />
-                <span className="group-card-body">
-                  <GroupAvatar
-                    name={group.name}
-                    color={group.color}
-                    preset={group.avatar_preset}
-                    imageUrl={group.avatar_url}
-                    size="md"
-                  />
-                  <span className="group-card-name">{group.name}</span>
-                  <span className="group-card-meta">
-                    {group.type && <span className="group-badge">{group.type}</span>}
-                    <span>
-                      {group.users_count} {group.users_count === 1 ? "integrante" : "integrantes"}
-                    </span>
-                  </span>
-                </span>
-              </Link>
+              <GroupCard
+                group={group}
+                onDeleted={(groupId) =>
+                  setResult((current) => ({
+                    ...current,
+                    groups: current.groups.filter((item) => item.id !== groupId),
+                  }))
+                }
+              />
             </li>
           ))}
         </ul>

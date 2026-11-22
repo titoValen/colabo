@@ -36,10 +36,10 @@ export default function TaskModule({ value, user, errors, today, onChange }) {
         <WizardField
           id="task-responsible"
           label="Responsable"
-          hint="Más tarde se puede asignar a otros integrantes."
+          hint="Después vas a poder asignarla a otros integrantes."
         >
           <select id="task-responsible" className="wizard-input" defaultValue="me">
-            <option value="me">{user?.name ? `${user.name} (yo)` : "Yo"}</option>
+            <option value="me">{user?.name ? `${user.name} (vos)` : "Vos"}</option>
           </select>
         </WizardField>
 

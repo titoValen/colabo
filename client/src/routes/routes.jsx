@@ -63,7 +63,7 @@ export default function AppRoutes() {
     typeof sessionError === "string"
       ? sessionError
       : (sessionError?.message ??
-        "No pudimos verificar tu sesión. Inténtalo nuevamente.");
+        "No pudimos verificar tu sesión. Intentá nuevamente.");
 
   useEffect(() => {
     if (!isSessionExpired) return;
@@ -145,6 +145,7 @@ export default function AppRoutes() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/grupos" element={<Groups />} />
         <Route path="/grupos/nuevo" element={<NewGroup />} />
+        <Route path="/grupos/:groupId/editar" element={<NewGroup />} />
         <Route path="/grupos/:groupId" element={<GroupLobby />} />
         <Route path="/tareas" element={<Tasks />} />
         <Route path="/eventos" element={<Events />} />
