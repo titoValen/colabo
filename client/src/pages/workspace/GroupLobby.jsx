@@ -7,6 +7,7 @@ import AppLayout from "@components/layout/AppLayout";
 import GroupAvatar from "@components/groups/GroupAvatar";
 import Loading from "@components/shared/Loading";
 import ProfileAvatar from "@components/profile/ProfileAvatar";
+import ArrowBackIcon from "@/assets/icons/arrowBackRounded.svg";
 import {
   CURRENCIES,
   EXPENSE_SPLITS,
@@ -76,7 +77,8 @@ export default function GroupLobby() {
   const header = (
     <header className="lobby-header">
       <Link to="/grupos" className="lobby-back">
-        ← Mis grupos
+        <img src={ArrowBackIcon} alt="" />
+        Volver a mis grupos
       </Link>
     </header>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router";
+import { createPortal } from "react-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { apiFetch } from "@/services/api";
@@ -31,6 +32,23 @@ export default function GroupCard({ group, onDeleted }) {
     document.addEventListener("pointerdown", handlePointerDown);
     return () => document.removeEventListener("pointerdown", handlePointerDown);
   }, [menuOpen]);
+
+  useEffect(() => {
+    if (!deleteOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape" && !deleting) setDeleteOpen(false);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [deleteOpen, deleting]);
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -143,47 +161,49 @@ export default function GroupCard({ group, onDeleted }) {
         </div>
       )}
 
-      {deleteOpen && (
-        <div
-          className="profile-delete-modal-backdrop"
-          role="presentation"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget && !deleting) setDeleteOpen(false);
-          }}
-        >
+      {deleteOpen &&
+        createPortal(
           <div
-            className="profile-delete-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={`delete-group-${group.id}-title`}
+            className="profile-delete-modal-backdrop"
+            role="presentation"
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget && !deleting) setDeleteOpen(false);
+            }}
           >
-            <h2 id={`delete-group-${group.id}-title`}>¿Eliminar el grupo?</h2>
-            <p>
-              Se eliminará <strong>{group.name}</strong> y sus datos asociados.
-              Esta acción no se puede deshacer.
-            </p>
-            {deleteError && <p className="profile-security-error" role="alert">{deleteError}</p>}
-            <div className="profile-security-actions">
-              <button
-                type="button"
-                className="btn profile-delete-confirm"
-                onClick={handleDelete}
-                disabled={deleting}
-              >
-                {deleting ? "Eliminando…" : "Sí, eliminar"}
-              </button>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => setDeleteOpen(false)}
-                disabled={deleting}
-              >
-                Cancelar
-              </button>
+            <div
+              className="profile-delete-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`delete-group-${group.id}-title`}
+            >
+              <h2 id={`delete-group-${group.id}-title`}>¿Eliminar el grupo?</h2>
+              <p>
+                Se eliminará <strong>{group.name}</strong> y sus datos asociados.
+                Esta acción no se puede deshacer.
+              </p>
+              {deleteError && <p className="profile-security-error" role="alert">{deleteError}</p>}
+              <div className="profile-security-actions">
+                <button
+                  type="button"
+                  className="btn profile-delete-confirm"
+                  onClick={handleDelete}
+                  disabled={deleting}
+                >
+                  {deleting ? "Eliminando…" : "Sí, eliminar"}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setDeleteOpen(false)}
+                  disabled={deleting}
+                >
+                  Cancelar
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }

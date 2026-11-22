@@ -15,6 +15,7 @@ const ResetPassword = lazy(() => import("@/pages/auth/ResetPassword"));
 const Dashboard = lazy(() => import("@/pages/workspace/Dashboard"));
 const Groups = lazy(() => import("@/pages/workspace/Groups"));
 const NewGroup = lazy(() => import("@/pages/workspace/NewGroup"));
+const EditGroup = lazy(() => import("@/pages/workspace/EditGroup"));
 const GroupLobby = lazy(() => import("@/pages/workspace/GroupLobby"));
 const Tasks = lazy(() => import("@/pages/workspace/Tasks"));
 const Events = lazy(() => import("@/pages/workspace/Events"));
@@ -145,7 +146,7 @@ export default function AppRoutes() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/grupos" element={<Groups />} />
         <Route path="/grupos/nuevo" element={<NewGroup />} />
-        <Route path="/grupos/:groupId/editar" element={<NewGroup />} />
+        <Route path="/grupos/:groupId/editar" element={<EditGroup />} />
         <Route path="/grupos/:groupId" element={<GroupLobby />} />
         <Route path="/tareas" element={<Tasks />} />
         <Route path="/eventos" element={<Events />} />

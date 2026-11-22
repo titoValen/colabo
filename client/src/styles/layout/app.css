@@ -142,7 +142,7 @@
 }
 
 .app-nav-link:hover {
-  background-color: color-mix(in srgb, var(--color-fur) 12%, transparent);
+  background-color: color-mix(in srgb, var(--color-fur) 12%, transparent)!important;
 }
 
 .app-nav-link.is-active {
