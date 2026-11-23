@@ -253,9 +253,10 @@
   color: var(--color-blue);
 }
 
-.wizard-tip p {
+.wizard-tip p, strong {
   margin-top: 0.25rem;
-  font-size: 0.9375rem;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
 }
 
 /* Campos */
