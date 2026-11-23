@@ -284,7 +284,7 @@ export default function NewGroup() {
   const memberLabel =
     invitedCount > 0
       ? `${invitedCount + 1} integrantes · ${invitedCount} por invitar`
-      : "1 integrante · vos";
+      : "1 integrante · tú";
 
   const primaryLabel =
     step === REVIEW_STEP
@@ -310,7 +310,7 @@ export default function NewGroup() {
           <h1>{isEditing ? "Editar grupo" : "Crear un nuevo grupo"}</h1>
           <p>
             {isEditing
-              ? "Actualizá la información y la organización de tu grupo."
+              ? "Actualiza la información y la organización de tu grupo."
               : "Es rápido y sencillo. Después lo organizás en profundidad."}
           </p>
         </div>
@@ -387,7 +387,7 @@ export default function NewGroup() {
                     ))}
                   </ul>
                 )}
-                <p>Tus datos siguen acá: podés reintentar cuando quieras.</p>
+                <p>Tus datos siguen aquí: puedes reintentarlos cuando quieras.</p>
               </div>
             )}
 

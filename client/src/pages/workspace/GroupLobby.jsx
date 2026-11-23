@@ -51,7 +51,7 @@ export default function GroupLobby() {
         setResult({ id: groupId, data, error: null });
         if (state?.imageFailed) {
           toast.error(
-            "El grupo se creó, pero no pudimos subir las imágenes. Probá de nuevo más tarde.",
+            "El grupo se creó, pero no pudimos subir las imágenes. Prueba de nuevo más tarde.",
             { id: "group-images" },
           );
         }
@@ -186,7 +186,7 @@ export default function GroupLobby() {
               ))}
             </ul>
             {members.length === 1 && (
-              <Empty>Por ahora sos la única persona. Invitá a quien quieras.</Empty>
+              <Empty>Por ahora eres la única persona. Invita a quien quieras.</Empty>
             )}
           </LobbyCard>
 
@@ -232,7 +232,7 @@ export default function GroupLobby() {
                 ))}
               </ul>
             ) : (
-              <Empty>Todavía no hay objetivos. Sumalos cuando quieras.</Empty>
+              <Empty>Todavía no hay objetivos. Agrégalos cuando quieras.</Empty>
             )}
           </LobbyCard>
 
@@ -271,7 +271,7 @@ export default function GroupLobby() {
                 ))}
               </ul>
             ) : (
-              <Empty>No hay tareas todavía. ¡Creá la primera!</Empty>
+              <Empty>No hay tareas todavía. ¡Crea la primera!</Empty>
             )}
           </LobbyCard>
 

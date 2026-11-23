@@ -11,7 +11,7 @@ import {
 const EMPTY_DRAFT = { type: "rule", description: "", requiresAcceptance: false };
 
 const PLACEHOLDERS = {
-  rule: "Ej: Avisar con 24 hs si no podés venir",
+  rule: "Ej: Avisar con 24 hs si no puedes venir",
   commitment: "Ej: Cada uno trae algo para compartir",
   condition: "Ej: Los gastos del hogar se dividen en partes iguales",
 };
@@ -25,7 +25,7 @@ export default function AgreementsModule({ value, onChange }) {
 
     if (!description) return setError("Escribí el acuerdo antes de agregarlo.");
     if (value.rules.length >= LIST_MAX_ITEMS) {
-      return setError(`Podés cargar hasta ${LIST_MAX_ITEMS} acuerdos.`);
+      return setError(`Puedes cargar hasta ${LIST_MAX_ITEMS} acuerdos.`);
     }
 
     onChange({ rules: [...value.rules, { ...draft, description }] });
@@ -37,7 +37,7 @@ export default function AgreementsModule({ value, onChange }) {
     <div className="module-fields">
       <ChoiceGroup
         name="rule-type"
-        legend="¿Qué querés definir?"
+        legend="¿Qué quieres definir?"
         options={RULE_TYPES}
         value={draft.type}
         onChange={(type) => setDraft({ ...draft, type })}

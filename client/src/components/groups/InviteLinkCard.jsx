@@ -37,7 +37,7 @@ export default function InviteLinkCard({ code, onGenerate, onRemove }) {
       await navigator.clipboard.writeText(link);
       toast.success("Enlace copiado.");
     } catch {
-      toast.error("No pudimos copiar el enlace. Seleccionalo y copialo a mano.");
+      toast.error("No pudimos copiar el enlace. Selecciónalo y cópialo a mano.");
     }
   };
 

@@ -48,7 +48,7 @@ export default function IdentityStep({
     } catch {
       setImageErrors((current) => ({
         ...current,
-        [kind]: "No pudimos leer esa imagen. Probá con otra.",
+        [kind]: "No pudimos leer esa imagen. Prueba con otra.",
       }));
     }
   };
@@ -62,7 +62,7 @@ export default function IdentityStep({
     <WizardStepLayout
       eyebrow="Etapa 1 · Identidad"
       title="¿Cómo se va a llamar tu grupo?"
-      description="Dale nombre y personalidad. Podés cambiar todo esto después."
+      description="Asigna un nombre y personalidad. Puedes cambiar todo esto después."
       illustration={NewGroupIllustration}
       headingRef={headingRef}
       aside={

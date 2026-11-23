@@ -10,10 +10,10 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 export function validateImage(file) {
   if (!file) return "";
   if (!IMAGE_TYPES.includes(file.type)) {
-    return "Elegí una imagen JPG, PNG o WebP.";
+    return "Elige una imagen JPG, PNG o WebP.";
   }
   if (file.size > IMAGE_MAX_BYTES) {
-    return "La imagen pesa más de 2 MB. Probá con una más liviana.";
+    return "La imagen pesa más de 2 MB. Prueba con una más liviana.";
   }
   return "";
 }
@@ -31,7 +31,7 @@ export function validateInvitee(value, invitees, memberLimit) {
     return "Ya agregaste a esa persona.";
   }
   if (invitees.length + 1 >= memberLimit) {
-    return `Con un límite de ${memberLimit} integrantes podés invitar hasta ${memberLimit - 1} personas.`;
+    return `Con un límite de ${memberLimit} integrantes puedes invitar hasta ${memberLimit - 1} personas.`;
   }
   return "";
 }
@@ -39,7 +39,7 @@ export function validateInvitee(value, invitees, memberLimit) {
 export function validateIdentity({ name, description }) {
   const errors = {};
 
-  if (!name.trim()) errors.name = "Poné un nombre para tu grupo.";
+  if (!name.trim()) errors.name = "Coloca un nombre para tu grupo.";
   else if (name.trim().length > 80) {
     errors.name = "El nombre puede tener hasta 80 caracteres.";
   }
@@ -77,7 +77,7 @@ export function validateOrganization({ task, expenses, purpose }) {
     task.description.trim() || task.dueDate || task.title.trim();
   if (hasTaskDetails && !task.title.trim()) {
     errors["task.title"] =
-      "Poné un título para la tarea o vaciá los demás campos.";
+      "Coloca un título para la tarea o deja vacíos los demás campos.";
   }
 
   if (expenses.enabled) {
