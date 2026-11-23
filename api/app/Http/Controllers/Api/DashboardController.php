@@ -41,9 +41,12 @@ class DashboardController extends Controller
         // Solo los Pending que todavía no vencieron.
         $pendingTasks = Agreement::query()
             ->whereIn('group_id', $groupIds)
-            ->where('assigned_user_id', $user->id)
             ->where('status', AgreementStatus::Pending->value)
-            ->whereDate('due_date', '>=', $today)
+            ->where(function ($query) use ($today) {
+                $query
+                    ->whereNull('due_date')
+                    ->orWhereDate('due_date', '>=', $today);
+            })
             ->count();
 
         $upcomingEvents = Event::query()
@@ -65,6 +68,9 @@ class DashboardController extends Controller
             ->whereBetween('due_date', [$windowStart, $today]);
 
         $total = (clone $closed)->count();
+        $completed = (clone $closed)
+            ->where('status', AgreementStatus::Completed->value)
+            ->count();
 
         $onTime = (clone $closed)
             ->where('status', AgreementStatus::Completed->value)
@@ -79,6 +85,7 @@ class DashboardController extends Controller
             'pending_tasks' => $pendingTasks,
             'upcoming_events' => $upcomingEvents,
             'commitments' => [
+                'completed' => $completed,
                 'on_time' => $onTime,
                 'total' => $total,
                 'rate' => $total > 0 ? (int) round($onTime / $total * 100) : null,
