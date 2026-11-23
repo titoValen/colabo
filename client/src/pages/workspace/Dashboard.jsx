@@ -28,6 +28,9 @@ export default function Dashboard() {
   const [events, setEvents] = useState([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
   const [eventsError, setEventsError] = useState("");
+  const [groups, setGroups] = useState([]);
+  const [loadingGroups, setLoadingGroups] = useState(true);
+  const [groupsError, setGroupsError] = useState("");
 
   useEffect(() => {
     let active = true;
@@ -52,6 +55,25 @@ export default function Dashboard() {
       })
       .finally(() => {
         if (active) setLoadingEvents(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [token]);
+
+  useEffect(() => {
+    let active = true;
+
+    apiFetch("/groups", { token })
+      .then((data) => {
+        if (active) setGroups(data);
+      })
+      .catch((error) => {
+        if (active) setGroupsError(error.message);
+      })
+      .finally(() => {
+        if (active) setLoadingGroups(false);
       });
 
     return () => {
@@ -87,7 +109,14 @@ export default function Dashboard() {
             loading={loadingSummary}
             error={summaryError}
           />
-          <DashboardGroups />
+          <DashboardGroups
+            groups={groups}
+            onDelete={(groupId) =>
+              setGroups((current) => current.filter((group) => group.id !== groupId))
+            }
+            loading={loadingGroups}
+            error={groupsError}
+          />
           <DashboardRecentActivity />
         </section>
 

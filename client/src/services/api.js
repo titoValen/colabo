@@ -23,16 +23,19 @@ const SERVER_ERROR_MESSAGE =
   "Tenemos un problema en el servidor. Intentá más tarde.";
 
 export async function apiFetch(path, { method = "GET", body, token } = {}) {
+  // Con FormData el navegador define el Content-Type (multipart + boundary).
+  const isFormData = body instanceof FormData;
+
   let res;
   try {
     res = await fetch(`${API_URL}${path}`, {
       method,
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        ...(!isFormData && { "Content-Type": "application/json" }),
         ...(token && { Authorization: `Bearer ${token}` }),
       },
-      body: body ? JSON.stringify(body) : undefined,
+      body: isFormData ? body : body ? JSON.stringify(body) : undefined,
     });
   } catch {
     throw new ApiError(

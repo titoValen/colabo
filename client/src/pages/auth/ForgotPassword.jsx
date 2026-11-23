@@ -41,7 +41,7 @@ export default function ForgotPassword() {
         </figure>
         <h1 id="auth-title">Recuperar contraseña</h1>
         <p className="auth-description">
-          Ingresa tu correo electrónico y te enviaremos un enlace para crear una nueva contraseña.
+          Ingresa tu correo electrónico y recibirás un enlace para crear una nueva contraseña.
         </p>
         {error && <p className="auth-error" role="alert">{error}</p>}
         {message ? (

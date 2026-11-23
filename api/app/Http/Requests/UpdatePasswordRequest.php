@@ -26,8 +26,8 @@ class UpdatePasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'current_password.required' => 'Ingresá tu contraseña actual.',
-            'password.required' => 'Ingresá la nueva contraseña.',
+            'current_password.required' => 'Ingresa tu contraseña actual.',
+            'password.required' => 'Ingresa la nueva contraseña.',
             'password.min' => 'La nueva contraseña debe tener al menos 8 caracteres.',
             'password.confirmed' => 'Las contraseñas no coinciden.',
             'password.different' => 'La nueva contraseña debe ser distinta a la actual.',

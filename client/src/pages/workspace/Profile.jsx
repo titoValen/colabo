@@ -37,7 +37,7 @@ export default function Profile() {
     <AppLayout>
       <header className="profile-page-header">
         <h1>Tu perfil</h1>
-        <p>Gestioná tu información y personalizá tu cuenta.</p>
+        <p>Gestiona tu información y personaliza tu cuenta.</p>
       </header>
 
       <ProfileSummary
