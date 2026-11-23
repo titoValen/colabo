@@ -6,21 +6,21 @@ import IconTasks from "@/assets/icons/tasks-summary.svg";
 export default function DashboardSummaryCards({ summary, loading, error }) {
   const show = (value) => (loading || error || value == null ? "—" : value);
 
-  const rate = summary?.commitments?.rate;
+  const completed = summary?.commitments?.completed;
   const onTime = summary?.commitments?.on_time;
   const total = summary?.commitments?.total;
 
-  const commitmentValue = loading || error || rate == null ? "—" : `${rate}`;
+  const commitmentValue = loading || error || completed == null ? "—" : completed;
   const commitmentDetail =
     loading || error || total == null || total === 0
       ? "Sin compromisos en 30 días"
-      : `${onTime} de ${total} en el último mes`;
+      : `${onTime} a tiempo de ${completed} cumplidos`;
 
   const cards = [
     {
       title: "Mis grupos",
-      value: show(summary?.groups?.active),
-      detail: loading || error ? "" : `de los ${summary?.total ?? 0} que tengo`,
+      value: show(summary?.groups?.total),
+      detail: loading || error ? "" : `${summary?.groups?.active ?? 0} tienen tareas pendientes`,
       icon: IconGroups,
       alt: "Icono de equipo",
     },

@@ -87,14 +87,14 @@ export default function OrganizationStep({
     <WizardStepLayout
       eyebrow="Etapa 3 · Organización inicial"
       title="¿Cómo va a funcionar?"
-      description="Todo esto es opcional. Abrí solo lo que necesites; el resto lo podés hacer cuando quieras."
+      description="Todo esto es opcional. Abre solo lo que necesites; puedes completar el resto cuando quieras."
       illustration={OrganizeIllustration}
       headingRef={headingRef}
       aside={
         <div className="wizard-tip">
           <strong>Empezá simple</strong>
           <p>
-            Podés crear el grupo sin completar nada de esto y organizarlo después desde el lobby.
+            Puedes crear el grupo sin completar nada de esto y organizarlo después desde el lobby.
           </p>
         </div>
       }

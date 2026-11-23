@@ -52,7 +52,7 @@ export default function Groups() {
       ) : groups.length === 0 ? (
         <section className="groups-empty">
           <img src={NewGroupIllustration} alt="" />
-          <h2>Todavía no tenés grupos</h2>
+          <h2>Todavía no tienes grupos</h2>
           <p>Crear un grupo es el primer paso para organizarse mejor.</p>
           <Link to="/grupos/nuevo" className="btn btn-primary">
             Crear mi primer grupo

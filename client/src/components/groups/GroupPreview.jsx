@@ -9,7 +9,7 @@ export default function GroupPreview({
   preset,
   avatarUrl,
   coverUrl,
-  memberLabel = "1 integrante · vos",
+  memberLabel = "1 integrante · tú",
 }) {
   return (
     <article className="group-preview" aria-label="Vista previa del grupo">

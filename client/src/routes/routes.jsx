@@ -64,7 +64,7 @@ export default function AppRoutes() {
     typeof sessionError === "string"
       ? sessionError
       : (sessionError?.message ??
-        "No pudimos verificar tu sesión. Intentá nuevamente.");
+        "No pudimos verificar tu sesión. Intenta nuevamente.");
 
   useEffect(() => {
     if (!isSessionExpired) return;

@@ -19,7 +19,7 @@ export default function ObjectivesModule({ value, errors, onChange }) {
 
     if (!goal) return setGoalError("Escribí un objetivo antes de agregarlo.");
     if (value.goals.length >= LIST_MAX_ITEMS) {
-      return setGoalError(`Podés cargar hasta ${LIST_MAX_ITEMS} objetivos.`);
+      return setGoalError(`Puedes cargar hasta ${LIST_MAX_ITEMS} objetivos.`);
     }
 
     onChange({ goals: [...value.goals, goal] });
@@ -31,10 +31,10 @@ export default function ObjectivesModule({ value, errors, onChange }) {
     const title = dateDraft.title.trim();
 
     if (!title || !dateDraft.date) {
-      return setDateError("Completá el nombre y la fecha para agregarla.");
+      return setDateError("Completa el nombre y la fecha para agregarla.");
     }
     if (value.dates.length >= LIST_MAX_ITEMS) {
-      return setDateError(`Podés cargar hasta ${LIST_MAX_ITEMS} fechas.`);
+      return setDateError(`Puedes cargar hasta ${LIST_MAX_ITEMS} fechas.`);
     }
 
     onChange({ dates: [...value.dates, { title, date: dateDraft.date }] });

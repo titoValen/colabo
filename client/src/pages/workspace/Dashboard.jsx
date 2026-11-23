@@ -15,6 +15,7 @@ import "@/styles/dashboard/dashboard.css";
 import "@/styles/dashboard/summary/index.css";
 
 const VISIBLE_EVENTS_COUNT = 3;
+const SUMMARY_REFRESH_INTERVAL = 30_000;
 
 export default function Dashboard() {
   const { token, user } = useAuth();
@@ -23,6 +24,7 @@ export default function Dashboard() {
   const [summary, setSummary] = useState(null);
   const [loadingSummary, setLoadingSummary] = useState(true);
   const [summaryError, setSummaryError] = useState("");
+  const [now, setNow] = useState(() => Date.now());
 
   // Lista de próximos eventos: sigue saliendo de /events.
   const [events, setEvents] = useState([]);
@@ -34,17 +36,6 @@ export default function Dashboard() {
 
   useEffect(() => {
     let active = true;
-
-    fetchDashboardSummary({ token })
-      .then((data) => {
-        if (active) setSummary(data);
-      })
-      .catch((error) => {
-        if (active) setSummaryError(error.message);
-      })
-      .finally(() => {
-        if (active) setLoadingSummary(false);
-      });
 
     apiFetch("/events", { token })
       .then((data) => {
@@ -59,6 +50,46 @@ export default function Dashboard() {
 
     return () => {
       active = false;
+    };
+  }, [token]);
+
+  useEffect(() => {
+    let active = true;
+    let requestInFlight = false;
+
+    const refreshSummary = () => {
+      if (!active || requestInFlight) return;
+
+      requestInFlight = true;
+      setNow(Date.now());
+      fetchDashboardSummary({ token })
+        .then((data) => {
+          if (active) {
+            setSummary(data);
+            setSummaryError("");
+          }
+        })
+        .catch((error) => {
+          if (active) setSummaryError(error.message);
+        })
+        .finally(() => {
+          requestInFlight = false;
+          if (active) setLoadingSummary(false);
+        });
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") refreshSummary();
+    };
+
+    refreshSummary();
+    const interval = window.setInterval(refreshSummary, SUMMARY_REFRESH_INTERVAL);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      active = false;
+      window.clearInterval(interval);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [token]);
 
@@ -82,7 +113,6 @@ export default function Dashboard() {
   }, [token]);
 
   // La lista muestra solo eventos futuros, sin contar nada acá.
-  const now = Date.now();
   const upcomingEvents = events
     .filter((event) => new Date(event.starts_at).getTime() >= now)
     .slice(0, VISIBLE_EVENTS_COUNT);
@@ -92,7 +122,7 @@ export default function Dashboard() {
       <header className="dashboard-header">
         <div>
           <h1>Hola{user?.name ? `, ${user.name}` : ""}</h1>
-          <p>Organizá, compartí y hacé que las cosas pasen.</p>
+          <p>Organiza, comparte y haz que las cosas pasen.</p>
         </div>
 
         <div className="dashboard-header-actions">
