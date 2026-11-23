@@ -6,6 +6,8 @@ use App\Enums\AgreementStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Agreement;
 use App\Models\Event;
+use App\Models\Group;
+use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 
@@ -82,6 +84,72 @@ class DashboardController extends Controller
                 'rate' => $total > 0 ? (int) round($onTime / $total * 100) : null,
                 'window_days' => self::COMMITMENT_WINDOW_DAYS,
             ],
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $user = $request->user();
+        $query = trim($request->string('q')->toString());
+
+        if (mb_strlen($query) < 2) {
+            return response()->json([
+                'users' => [],
+                'groups' => [],
+                'tasks' => [],
+            ]);
+        }
+
+        $groupIds = $user->groups()->pluck('groups.id');
+        $like = '%'.$query.'%';
+
+        // Solo se muestran personas que comparten al menos un grupo con el usuario.
+        $users = User::query()
+            ->whereHas('groups', fn ($builder) => $builder->whereIn('groups.id', $groupIds))
+            ->where('users.id', '!=', $user->id)
+            ->where(function ($builder) use ($like) {
+                $builder
+                    ->where('name', 'like', $like)
+                    ->orWhere('email', 'like', $like);
+            })
+            ->limit(5)
+            ->get(['users.id', 'users.name', 'users.email']);
+
+        $groups = Group::query()
+            ->whereIn('groups.id', $groupIds)
+            ->where(function ($builder) use ($like) {
+                $builder
+                    ->where('name', 'like', $like)
+                    ->orWhere('type', 'like', $like)
+                    ->orWhere('description', 'like', $like);
+            })
+            ->limit(5)
+            ->get();
+
+        $tasks = Agreement::query()
+            ->with('group:id,name')
+            ->whereIn('group_id', $groupIds)
+            ->where(function ($builder) use ($like) {
+                $builder
+                    ->where('title', 'like', $like)
+                    ->orWhere('description', 'like', $like);
+            })
+            ->limit(10)
+            ->get()
+            ->map(fn (Agreement $task) => [
+                'id' => $task->id,
+                'title' => $task->title,
+                'description' => $task->description,
+                'status' => $task->status,
+                'group_id' => $task->group_id,
+                'group_name' => $task->group?->name,
+            ])
+            ->values();
+
+        return response()->json([
+            'users' => $users,
+            'groups' => $groups,
+            'tasks' => $tasks,
         ]);
     }
 }

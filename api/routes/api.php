@@ -42,4 +42,5 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::delete('/push-subscriptions', [PushSubscriptionController::class, 'destroy']);
 
   Route::get('/dashboard/summary', [DashboardController::class, 'summary']);
+  Route::get('/dashboard/search', [DashboardController::class, 'search']);
 });
