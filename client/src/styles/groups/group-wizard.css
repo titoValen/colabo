@@ -18,10 +18,6 @@
   color: var(--color-dark-gray);
 }
 
-.wizard .btn {
-  border-radius: 999px;
-}
-
 .wizard .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -393,6 +389,7 @@
 .add-row .wizard-input {
   flex: 1 1 0;
   min-width: 0;
+  margin-top:1rem;
 }
 
 .add-row--dates .wizard-input:first-child {
@@ -401,6 +398,7 @@
 
 .add-row .btn {
   flex-shrink: 0;
+  margin-top: auto;
 }
 
 /* Selector de opciones (categorías, reparto de gastos, tipo de acuerdo) */
@@ -1018,6 +1016,7 @@
 .invite-qr figcaption {
   color: var(--color-dark-gray);
   font-size: 0.8125rem;
+  font-family: var(--font-body);
 }
 
 .limit-control {

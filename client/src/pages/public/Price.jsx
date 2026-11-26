@@ -57,7 +57,7 @@ export default function Price() {
           aria-pressed={billingPeriod === "annual"}
           onClick={() => setBillingPeriod("annual")}
         >
-          Anual · Ahorra $9.998
+          Anual · Ahorra $39.998
         </button>
       </div>
 

@@ -92,7 +92,7 @@ export default function OrganizationStep({
       headingRef={headingRef}
       aside={
         <div className="wizard-tip">
-          <strong>Empezá simple</strong>
+          <strong>Empieza simple</strong>
           <p>
             Puedes crear el grupo sin completar nada de esto y organizarlo después desde el lobby.
           </p>

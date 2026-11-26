@@ -31,7 +31,7 @@ export default function DashboardUpcomingEvents({ events, loading, error }) {
     );
   } else if (events.length === 0) {
     content = (
-      <p className="dashboard-card-message">No tiene eventos próximos.</p>
+      <p className="dashboard-card-message">No tienes eventos próximos.</p>
     );
   } else {
     content = (

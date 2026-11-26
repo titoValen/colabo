@@ -309,9 +309,10 @@ export default function NewGroup() {
         <div>
           <h1>{isEditing ? "Editar grupo" : "Crear un nuevo grupo"}</h1>
           <p>
-            {isEditing
+            { isEditing
               ? "Actualiza la información y la organización de tu grupo."
-              : "Es rápido y sencillo. Después lo organizás en profundidad."}
+              : "Es rápido y sencillo. Después lo organizas en profundidad."
+            }
           </p>
         </div>
         {step < SUCCESS_STEP && (

@@ -306,6 +306,7 @@
   color: var(--color-blue);
   cursor: pointer;
   text-align: left;
+  font-family: var(--font-body);
 }
 
 .group-card-menu-popover button:hover,

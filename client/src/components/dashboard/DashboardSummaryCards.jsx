@@ -27,14 +27,14 @@ export default function DashboardSummaryCards({ summary, loading, error }) {
     {
       title: "Tareas pendientes",
       value: show(summary?.pending_tasks),
-      detail: "en todos mis grupos",
+      detail: "En todos mis grupos",
       icon: IconPending,
       alt: "Icono de tarea pendiente",
     },
     {
       title: "Próximos eventos",
       value: show(summary?.upcoming_events),
-      detail: "esta semana",
+      detail: "Esta semana",
       icon: IconEvent,
       alt: "Icono de evento",
     },

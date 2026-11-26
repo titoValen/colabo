@@ -102,7 +102,7 @@ export default function IdentityStep({
         <WizardField
           id="group-description"
           label="Descripción"
-          hint="Contale al grupo de qué se trata."
+          hint="Cuentale al grupo de qué se trata."
           error={errors.description}
           counter={`${value.description.length}/${DESCRIPTION_MAX}`}
         >

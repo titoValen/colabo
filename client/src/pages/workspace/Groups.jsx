@@ -36,7 +36,7 @@ export default function Groups() {
       <header className="groups-header">
         <div>
           <h1>Mis grupos</h1>
-          <p>Todos los espacios compartidos en los que participás.</p>
+          <p>Todos los espacios compartidos en los que participas.</p>
         </div>
         <Link to="/grupos/nuevo" className="btn btn-primary">
           Crear grupo
