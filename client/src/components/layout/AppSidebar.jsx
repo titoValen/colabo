@@ -99,13 +99,7 @@ export default function AppSidebar({ isOpen, onToggle }) {
             <li key={path}>
               <NavLink
                 to={path}
-                className="app-nav-link"
-                style={{
-                  background:
-                    currentSection?.path === path
-                      ? "var(--color-fur)"
-                      : "transparent",
-                }}
+                className={currentSection?.path === path ? "app-nav-link active" : "app-nav-link"}
               >
                 <img src={icon} alt={alt} />
                 <span>{label}</span>

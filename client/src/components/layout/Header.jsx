@@ -40,11 +40,11 @@ export default function Header() {
         >
           <img src={CloseIcon} alt="" />
         </button>
-        <Link className="header-nav-link" to="/precios" onClick={closeMenu}>
+        <Link className="header-nav-link header-nav-link-secundary" to="/precios" onClick={closeMenu}>
           Precios
         </Link>
         <Link
-          className="header-nav-link"
+          className="header-nav-link header-nav-link-secundary"
           to="/iniciar-sesion"
           onClick={closeMenu}
         >

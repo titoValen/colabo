@@ -129,10 +129,11 @@
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
+  border: 1px solid transparent;
   color: var(--color-black);
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, border 0.3s ease;
 }
 
 .app-nav-link img {
@@ -141,12 +142,13 @@
   height: 1.5rem;
 }
 
-.app-nav-link:hover {
-  background-color: color-mix(in srgb, var(--color-fur) 12%, transparent)!important;
+.app-nav-link.active {
+  background: var(--color-fur);
 }
 
-.app-nav-link.is-active {
-  background-color: color-mix(in srgb, var(--color-fur) 22%, transparent);
+.app-nav-link:not(.active):hover {
+  background: rgba(232, 122, 97, 0.5);
+  border: 1px solid var(--color-fur);
 }
 
 .app-sidebar-logo:focus-visible,

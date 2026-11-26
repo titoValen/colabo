@@ -89,11 +89,7 @@
   display: flex;
   gap: 0.5rem;
   background: var(--color-fur);
-  color: var(--color-white);
-}
-
-.landing-action-primary:hover {
-  background: var(--color-orange);
+  color: var(--color-black);
 }
 
 .landing-action-figure {
@@ -374,6 +370,7 @@
   cursor: pointer;
   padding: 1rem;
   background: var(--color-fur);
+  color: var(--color-black);
   border-radius: 0.5rem;
   transition: border-radius 0.35s ease;
 }
