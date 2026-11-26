@@ -100,7 +100,7 @@ export default function InviteLinkCard({ code, onGenerate, onRemove }) {
             {hasQrFailed ? "No pudimos generar el QR." : "Generando QR…"}
           </div>
         )}
-        <figcaption>Escaneá para unirte</figcaption>
+        <figcaption>Escanea para unirte</figcaption>
       </figure>
     </div>
   );

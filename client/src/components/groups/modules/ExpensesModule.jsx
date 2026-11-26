@@ -12,7 +12,7 @@ export default function ExpensesModule({ value, errors, onChange }) {
       <ToggleSwitch
         id="expenses-enabled"
         label="Activar gestión de gastos"
-        description="Llevá el control de gastos compartidos, aportes y saldos."
+        description="Lleva el control de gastos compartidos, aportes y saldos."
         checked={value.enabled}
         onChange={(enabled) => onChange({ enabled })}
       />

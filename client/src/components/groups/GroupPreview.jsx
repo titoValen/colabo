@@ -42,7 +42,7 @@ export default function GroupPreview({
         <p
           className={`group-preview-description${description ? "" : " is-placeholder"}`}
         >
-          {description || "Acá se va a ver la descripción de tu grupo."}
+          {description || "Aquí se va a ver la descripción de tu grupo."}
         </p>
       </div>
     </article>
